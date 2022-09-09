@@ -76,14 +76,12 @@ WSGI_APPLICATION = 'ConectArte.wsgi.application'
 DATABASES = {  
     'default': {  
         'ENGINE': 'django.db.backends.mysql',  
-        'NAME': 'my_database',  
+        'NAME': 'conectartedb',  
         'USER': 'root',  
-        'PASSWORD': 'your_password',  
-        'HOST': '127.0.0.1',  
+        'PASSWORD': 'ConectArteGC2022!',  
+        'HOST': 'localhost',  
         'PORT': '3306',  
-        'OPTIONS': {  
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
-        }  
+         
     }  
 }  
 
