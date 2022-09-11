@@ -21,7 +21,7 @@ class Usuario(models.Model):
     IdTipoUsuario = models.ForeignKey(TipoUsuario, on_delete=models.CASCADE,verbose_name="Tipo de usuario")
     NombreUsuario = models.CharField(max_length=30, blank=False, null=False,  verbose_name="Nombre de usuario")
     Descripcion = models.TextField(blank=False, null=False,  verbose_name="Descripción")
-    NumeroTelefono = models.IntegerField(max_length=6,blank=True, null=True)
+    NumeroTelefono = models.IntegerField(blank=True, null=True)
     slug= models.SlugField(max_length=255, unique=True, default="default")
 
     def __str__(self):
@@ -36,9 +36,9 @@ class Usuario(models.Model):
 
 class ClasificaEn(models.Model):
     IdCategoria = models.ForeignKey(Categorias, on_delete=models.CASCADE, verbose_name="Categoria")
-    IdUsuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, verboseverbose_name="Categoria")
+    IdUsuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, verbose_name="Categoria")
 
 
-class Sigue(models.Model):
-    IdUsuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
-    SeguidoIdUsuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+# class Sigue(models.Model):
+#     IdUsuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+#     SeguidoIdUsuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)

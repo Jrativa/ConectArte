@@ -1,5 +1,5 @@
 from django.db import models
-from Usuarios.models import *
+from apps.Usuarios.models import *
 # Create your models here.
 class Chat(models.Model):
     IdChat = models.AutoField(primary_key=True)
@@ -11,9 +11,9 @@ class Chat(models.Model):
 class Mensajes(models.Model):
     IdMensaje = models.IntegerField()
     IdChat = models.ForeignKey(Chat, on_delete=models.CASCADE, verbose_name="Chat")
-    IdUsuarioEmisor = models.ForeignKey(Usuario, on_delete=models.CASCADE, verboseverbose_name="Categoria")
+    IdUsuarioEmisor = models.ForeignKey(Usuario, on_delete=models.CASCADE, verbose_name="Categoria")
     Mensaje = models.TextField(blank=False, null=False,  verbose_name="Mensaje")
 
 class ChateanEn(models.Model):
-    IdUsuario = models.ForeignKey(models.Usuario, on_delete=models.CASCADE)
+    IdUsuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     IdChat = models.ForeignKey(Chat, on_delete=models.CASCADE)

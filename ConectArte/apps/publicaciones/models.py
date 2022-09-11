@@ -1,5 +1,5 @@
 from django.db import models
-from Usuarios.models import *
+from apps.Usuarios.models import *
 
 # Create your models here.
 class CategoriaPublicacion(models.Model):
