@@ -16,9 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from apps.Usuarios.views import home
+from django.contrib import admin
+from django.urls import include, path
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from apps.Usuarios import views
+
 
 urlpatterns = [
+    path('', home),
     path('admin/', admin.site.urls),
-    path('Home-page', home),
-
 ]
+
+urlpatterns += staticfiles_urlpatterns()

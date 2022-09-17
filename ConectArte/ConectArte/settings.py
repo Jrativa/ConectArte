@@ -57,7 +57,7 @@ ROOT_URLCONF = 'ConectArte.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR /'apps/Usuarios/templates/Usuarios'], 
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -84,7 +84,6 @@ DATABASES = {
         'PASSWORD': 'ConectArteGC2022!',  
         'HOST': 'localhost',  
         'PORT': '3306',  
-         
     }  
 }  
 
