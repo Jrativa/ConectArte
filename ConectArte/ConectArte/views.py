@@ -14,7 +14,7 @@ class HomeView(View):
         }
         return render(request, 'pages/index.html', context)
 
-
+@login_required
 def home(request):
     return render(request, 'pages/home.html')
 
