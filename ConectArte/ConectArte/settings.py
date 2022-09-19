@@ -52,17 +52,53 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'django.contrib.sites',
+    'django.contrib.humanize',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
     'apps.chat',
     'apps.publicaciones',
     'apps.Usuarios',
     'tailwind',
     'theme',
+    'crispy_forms',
+    "crispy_tailwind", 
 ]
+AUTHENTICATION_BACKENDS = [
+
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+CRISPY_TEMPLATE_PACK = "tailwind"
+
+ACCOUNT_ALLOW_REGISTRATION = env.bool("DJANGO_ACCOUNT_ALLOW_REGISTRATION", True)
+# ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_EMAIL_REQUIRED=True
+ACCOUNT_EMAIL_UNIQUE= True
+# AUTH_USER_MODEL = "apps.Usuarios"
+ACCOUNT_LOGOUT_ON_GET = True
+# ACCOUNT_EMAIL_VERIFICATION ="mandatory"
+ACCOUNT_LOGIN_ATTEMPS_LIMIT= 5
+ACCOUNT_LOGIN_ATTEMPS_TIMEOUT= 300
+LOGIN_REDIRECT_URL = '/home'
+LOGIN_URL="account_login"
+
+
 TAILWIND_APP_NAME = 'theme'
 
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
+SITE_ID = 1
 
 NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 
@@ -111,13 +147,13 @@ DATABASES = {
     }  
 }  
 
-PASSWORD_HASHERS = [
-    # https://docs.djangoproject.com/en/dev/topics/auth/passwords/#using-argon2-with-django
-    "django.contrib.auth.hashers.Argon2PasswordHasher",
-    "django.contrib.auth.hashers.PBKDF2PasswordHasher",
-    "django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher",
-    "django.contrib.auth.hashers.BCryptSHA256PasswordHasher",
-]
+# PASSWORD_HASHERS = [
+#     # https://docs.djangoproject.com/en/dev/topics/auth/passwords/#using-argon2-with-django
+#     "django.contrib.auth.hashers.Argon2PasswordHasher",
+#     "django.contrib.auth.hashers.PBKDF2PasswordHasher",
+#     "django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher",
+#     "django.contrib.auth.hashers.BCryptSHA256PasswordHasher",
+# ]
 
 
 # Password validation
@@ -139,9 +175,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-STATICFILES_DIRS = [
-   os.path.join(BASE_DIR, 'chazam/static/')
-]
+
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
@@ -162,10 +196,14 @@ USE_I18N = True
 USE_TZ = True
 
 
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -219,3 +257,6 @@ if not DEBUG:
 
     STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
+

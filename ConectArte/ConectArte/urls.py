@@ -20,15 +20,16 @@ from django.contrib import admin
 from django.urls import include, path
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from apps.Usuarios import views
-from .views import HomeView, home
+from .views import HomeView, home, finalSignup
 from django.conf import settings
 from django.conf.urls.static import static
 
 
 urlpatterns = [
-    path('', HomeView.as_view(), name = 'home'),
     path('admin/', admin.site.urls),
+    path('', HomeView.as_view(), name = 'home'),
     path('home/', home),
+    path('accounts/', include('allauth.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
