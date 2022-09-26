@@ -11,7 +11,7 @@ class Chat(models.Model):
 class Mensajes(models.Model):
     IdMensaje = models.IntegerField()
     IdChat = models.ForeignKey(Chat, on_delete=models.CASCADE, verbose_name="Chat")
-    IdUsuarioEmisor = models.ForeignKey(Usuario, on_delete=models.CASCADE, verbose_name="Categoria")
+    IdUsuarioEmisor = models.ForeignKey(Usuario, on_delete=models.CASCADE, verbose_name="Usuario")
     Mensaje = models.TextField(blank=False, null=False,  verbose_name="Mensaje")
 
 class ChateanEn(models.Model):

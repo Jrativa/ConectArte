@@ -18,10 +18,10 @@ class HomeView(View):
 def home(request):
     return render(request, 'pages/home.html')
 
-def finalSignup(request):
-    idActual = str(request.user.id)
-    o = Usuario.objects.raw("SELECT * from usuarios_usuario where IdTipoUsuario_id = "+idActual)
-    count = 0
-    for obj in o:
-        count += 1
-    return redirect(usuariosForm)
+# def finalSignup(request):
+#     idActual = str(request.user.id)
+#     o = Usuario.objects.raw("SELECT * from usuarios_usuario where IdTipoUsuario_id = "+idActual)
+#     count = 0
+#     for obj in o:
+#         count += 1
+#     return redirect(usuariosForm)
