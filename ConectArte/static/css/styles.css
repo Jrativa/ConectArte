@@ -6,7 +6,11 @@ body {
 
 
 /* CSS for header */
-
+.foto_perfil {
+    width: 10000000000px;
+    margin-bottom: 100000000px;
+  }
+  
 .header {
     display: flex;
     justify-content: space-between;

@@ -18,6 +18,10 @@ class HomeView(View):
 def home(request):
     return render(request, 'pages/home.html')
 
+def prueba(request):
+    return render(request, 'users/perfil.html')
+
+
 # def finalSignup(request):
 #     idActual = str(request.user.id)
 #     o = Usuario.objects.raw("SELECT * from usuarios_usuario where IdTipoUsuario_id = "+idActual)
