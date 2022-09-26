@@ -9,8 +9,8 @@
 {% block content %}
 
 <div class="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-  <div class="sm:mx-auto sm:w-full sm:max-w-md">
-    <img class="mx-auto h-12 w-auto" src="{% static 'images/art.png' %}" alt="art">
+  <div  class="sm:mx-auto sm:w-full sm:max-w-md">
+    <img style=" width: 13%;" class="mx-auto" src="{% static 'images/logoA.png' %}" alt="art">
     <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
       Registrate
     </h2>
@@ -22,8 +22,8 @@
     </p>
   </div>
 
-  <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-    <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">  
+  <div  class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+    <div style="width: 50%; margin-left: 25%;" class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">  
       <!--FORM-->
       <form style="height: 340px;" class="space-y-6"  id="signup_form" method="post" action="{% url 'account_signup' %}">
         {% csrf_token %}
