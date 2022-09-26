@@ -2,10 +2,11 @@
 {% load static %}
 <ul class="p-4">
     <li>
+        {% comment %} {% url 'users:profile user.username'%} {% endcomment %}
         <a href="#" class="flex items-center space-x-2 p-2 hover:bg-gray-200 rounded-lg transition-all dark:text-dark-txt dark:hover:bg-dark-third">
-            {% comment %} <img src="./images/tuat.jpg" alt="Profile picture" class="w-10 h-10 rounded-full"> {% endcomment %}
+            {% comment %} <img src="{{user.Perfil.FotoPerfil.url}}" alt="Profile picture" class="w-10 h-10 rounded-full"> {% endcomment %}
             <i class='bx bxs-user'></i>
-            <span class="font-semibold">Nombre</span>
+            <span class="font-semibold">{{user.username}}</span>
         </a>
     </li>
     <li>

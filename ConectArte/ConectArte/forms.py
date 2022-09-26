@@ -4,7 +4,7 @@ from apps.Usuarios.models import Usuario
 from django import forms
 
 
-class usuariosForm(ModelForm):
-    class Meta:
-        model = Usuario
-        fields = ['NombreUsuario', 'IdTipoUsuario']
+# class usuariosForm(ModelForm):
+#     class Meta:
+#         model = Usuario
+#         fields = ['NombreUsuario', 'IdTipoUsuario']

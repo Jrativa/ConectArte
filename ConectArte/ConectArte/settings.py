@@ -99,6 +99,7 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 SITE_ID = 1
+AUTH_USER_MODEL = 'Usuarios.Usuario'
 
 NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 
