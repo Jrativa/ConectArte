@@ -1,10 +1,15 @@
-{% extends "account/base.html" %}
+{% extends 'base.html' %}
 {% load static %}
-{% load i18n %}
 
-{% load tailwind_filters %}
+{% block navbar %}
 
-{% block head_title %}{% trans "Signup" %}{% endblock %}
+{% endblock navbar %}
+
+
+{% block left_sidebar %}
+
+{% endblock left_sidebar %}
+
 
 {% block content %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -26,7 +31,7 @@
             <h1 style="font-size: 20px; color: rgb(99, 99, 100);">{{user.username}}</h1>
             <h1 style="font-size: 20px; color: rgb(164, 165, 167);">Bogotá D.C, Colombia</h1>
             <h1 style="font-size: 20px; color: rgb(164, 165, 167);">Telefono: {{user.NumeroTelefono}}</h1>
-            <h1 style="font-size: 20px; color: rgb(164, 165, 167);">Fecha de unión: {{user.dateCreated}}</h1>
+            <h1 style="font-size: 20px; color: rgb(164, 165, 167);">Fecha de unión: {{user.date_joined}}</h1>
 
             <button style="margin-left: 98%;">
                 <i style='font-size:25px;  color: rgb(105, 107, 106);' class="fas fa-pen"></i>
@@ -94,5 +99,15 @@
   </div>
 
 </div>
+{% endblock content %}
 
-{% endblock %}
+
+{% block right_sidebar %}
+{% endblock right_sidebar %}
+
+
+
+{% block footer %}
+{% endblock footer %}
+
+{% block javascript %}{% endblock javascript %}
