@@ -38,12 +38,10 @@ class Categorias(models.Model):
 
 
 class Usuario(AbstractUser):
-    IdUsuario = models.AutoField(primary_key=True)
-    NombreUsuario = models.CharField(max_length=30, blank=False, null=False,  verbose_name="Nombre de usuario")
-    Descripcion = models.TextField(blank=False, null=False,  verbose_name="Descripción")
+    IdUsuario = models.CharField(max_length=50)
 
-    def __str__(self):
-        return self.NombreUsuario
+    # def __str__(self):
+    #     return self.NombreUsuario
     # def save(self, *args, **kwargs):
     #     self.slug = slugify(self.NombreUsuario)
     #     super(Usuario, self).save(*args, **kwargs)

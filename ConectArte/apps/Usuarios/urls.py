@@ -3,5 +3,5 @@ from .views import ProfileView
 app_name ="Usuarios"
 
 urlpatterns = [
-    path("users/<username>/",ProfileView.as_view(), name="perfil"),
+    path("<username>/",ProfileView.as_view(), name="perfil"),
 ]
