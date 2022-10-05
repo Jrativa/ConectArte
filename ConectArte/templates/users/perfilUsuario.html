@@ -2,12 +2,12 @@
 {% load static %}
 
 {% block navbar %}
-
+{% include 'components/navbar.html' %}
 {% endblock navbar %}
 
 
 {% block left_sidebar %}
-
+{% include 'components/sidebars/leftBar/sidebar.html' %}
 {% endblock left_sidebar %}
 
 
@@ -111,3 +111,4 @@
 {% endblock footer %}
 
 {% block javascript %}{% endblock javascript %}
+
