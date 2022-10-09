@@ -1,31 +1,50 @@
 from django.views.generic import TemplateView, View
 from django.shortcuts import redirect, render, get_object_or_404, redirect
 from django.core.paginator import Paginator
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from apps.Usuarios.models import Usuario
-from .forms import *
+from apps.publicaciones.forms import *
+from apps.publicaciones.models import *
 
 
-class HomeView(View):
+
+class HomeView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
-        
+        userLoggedIn = request.user
+        form = PublicacionForm()
         context={
+                'form' : form,
+            }
+        return render(request, 'pages/home.html', context)
+    
+    def post(self, request, *args, **kwargs):
+        userLoggedIn = request.user
+        form = PublicacionForm(request.POST, request.FILES)
+        files = request.FILES.getlist('Imagenes')
+        if form.is_valid():
+            newPost = form.save(commit=False)
+            AutorPost = userLoggedIn
+            newPost.save()
+            for img in files:
+                image = Imagen(Imagen=img)
+                image.save()
+                newPost.Imagen.add(image)
+            newPost.save()
 
-        }
-        return render(request, 'pages/index.html', context)
+        context={
+                'form' : form,
+            }
+        return render(request, 'pages/home.html', context)
+        
+        
 
-@login_required
+
 def home(request):
-    return render(request, 'pages/home.html')
+    context={
+        }
+    return render(request, 'pages/index.html', context)
+
+    
 
 def prueba(request):
     return render(request, 'users/perfil.html')
-
-
-# def finalSignup(request):
-#     idActual = str(request.user.id)
-#     o = Usuario.objects.raw("SELECT * from usuarios_usuario where IdTipoUsuario_id = "+idActual)
-#     count = 0
-#     for obj in o:
-#         count += 1
-#     return redirect(usuariosForm)
