@@ -12,10 +12,10 @@ class PublicacionForm(forms.ModelForm):
     
     Multimedia = forms.FileField(widget=forms.ClearableFileInput(attrs={
         'class':"",
-        'multiple': False,
-        'placeholder': 'Agregar multimedia'
+        'multiple': True,
+        'title':"uploadfile"
         }),
-        required=False
+        required=False  
         )
     class Meta:
         model = Publicacion 

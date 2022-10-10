@@ -21,19 +21,22 @@ class HomeView(LoginRequiredMixin, View):
     
     def post(self, request, *args, **kwargs):
         userLoggedIn = request.user
+        posts = Publicacion.objects.all()
         form = PublicacionForm(request.POST, request.FILES)
-        files = request.FILES.getlist('Imagen')
+        files = request.FILES.getlist('Multimedia')
+        
         if form.is_valid():
             newPost = form.save(commit=False)
             newPost.Autor = userLoggedIn
             newPost.save()
             for f in files:
-                image = Imagen(Imagen=f)
+                image = Imagen(imagen=f)
                 image.save()
                 newPost.Multimedia.add(image)
-            newPost.save()
+            newPost.save() 
         context={
                 'form' : form,
+                'posts': posts,
             }
         return render(request, 'pages/home.html', context)
         
