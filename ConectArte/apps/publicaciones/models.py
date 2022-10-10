@@ -2,6 +2,8 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth import get_user_model
 from apps.Usuarios.models import *
+from .validators import file_size
+
 
 
 User = get_user_model()
@@ -21,22 +23,22 @@ class CategoriaPublicacion(models.Model):
 
 class Publicacion(models.Model):
     IdPublicacion = models.AutoField(primary_key=True)
-    IdUsuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name="autor_publicacion")
+    Autor = models.ForeignKey(User, on_delete=models.CASCADE, related_name="autor_publicacion")
     Titulo = models.CharField(max_length=30, blank=False, null=False,  verbose_name="Titulo")
     DescripcionPublicacion = models.TextField(blank=False, null=False,  verbose_name="Descripción de la publicación")
     Multimedia = models.ManyToManyField('Imagen', blank=True)
     FechaPublicacion = models.DateField(default=timezone.now)
-    likes = models.ManyToManyField(Usuario, blank=True, related_name="likes")
-    dislikes = models.ManyToManyField(Usuario, blank=True, related_name="dislikes")
+    likes = models.ManyToManyField(User, blank=True, related_name="likes")
+    dislikes = models.ManyToManyField(User, blank=True, related_name="dislikes")
 
 class Comentarios(models.Model):
     IdComentario = models.AutoField(primary_key=True)
-    IdUsuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name="autor_comentario")
+    IdUsuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name="autor_comentario")
     IdPublicacion = models.ForeignKey(Publicacion, on_delete=models.CASCADE)
     Comentario = models.TextField(blank=False, null=False)
     FechaComment = models.DateField(default=timezone.now)
-    likes = models.ManyToManyField(Usuario, blank=True, related_name="comment_likes")
-    dislikes = models.ManyToManyField(Usuario, blank=True, related_name="comment_dislikes")
+    likes = models.ManyToManyField(User, blank=True, related_name="comment_likes")
+    dislikes = models.ManyToManyField(User, blank=True, related_name="comment_dislikes")
 
 class PerteneceACategoria(models.Model):
     IdPublicacion = models.ForeignKey(Publicacion, on_delete=models.CASCADE)
@@ -44,3 +46,9 @@ class PerteneceACategoria(models.Model):
 
 class Imagen(models.Model):
     Imagen = models.ImageField(upload_to= user_directory_path, blank=True, null = True)
+
+# class Video(models.Model):
+#     caption=models.CharField(max_length=100)
+#     video=models.FileField(upload_to="video/%y")
+#     def __str__(self):
+#         return self.caption

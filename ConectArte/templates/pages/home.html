@@ -53,7 +53,7 @@
                 <p style="margin-left: 20px; margin-top: 2.5%; font-weight: 600;">{{user.username}} {{user.lastname}}</p>
             </div>
 
-        <form action="">
+        <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
               <div class="form-group" rows="6">
                 {{form.DescripcionPublicacion}}
@@ -63,14 +63,14 @@
             <div style="border: 0px black solid; border-radius: 5px; display: flex; margin-top: 5px; height: 40px;">
                 <br>
                 <p>Agregar imagenes a tu publicación:</p>
-                {{form.Multimedia}}
+                <div class="mb-2">{{form.Multimedia}}</div> 
+                
                 <svg style="margin-left: 20px;" xmlns="http://www.w3.org/2000/svg" width="22" height="25" fill="currentColor" class="bi bi-images" viewBox="0 0 16 16">
-                  <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                  <path d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2zM14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1zM2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1h-10z"/>
+                  
+                  {% comment %} {{form.Multimedia}} {% endcomment %}
+                  
                 </svg>
-      
             </div>
-            
             <div class="flex justify-center items-center w-full">
               <label for="dropzone-file" class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                   <div class="flex flex-col justify-center items-center pt-5 pb-6">
@@ -85,10 +85,10 @@
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary btn-lg btn-block">Publicar</button>
         </div>
+        
 
         </form>
 
-        
       </div>
     </div>
   </div>
@@ -97,20 +97,40 @@
 
 
   <div style="border-radius: 5px; background-color: rgb(255, 255, 255); width: 100%; margin-top: 15px;">
-    <div style="display: flex;"> 
-      <img style="border-radius: 50%; width: 50px; height: 50px;" src="{% static 'images/sin-foto.png' %}" alt="art">
-      <div>
-        <p style="height: 25px;">{{user.username}} {{user.lastname}}</p>
-        <p style="height: 25px; margin-top: 0%;">{{user.date_joined}}</p>
+    {% for post in posts %}
+    <div>
+      <a href="{% url 'users:perfil' post.Autor.username %}">
+        <div class="font-semibold">autor:
+            {{post.Autor.username}}
+        </div>
+        <div style="display: flex;"> 
+          <img style="border-radius: 50%; width: 50px; height: 50px;" src="{% static 'images/logoA.png' %}" alt="art">
+        </div>
+      </a>
+      <h2>{{post.DescripcionPublicacion}}</h2>
+      <h3>{{post.FechaPublicacion}}</h3>
+      <div class="py-2">
+        {% for img in post.Multimedia.all %}
+          <a href="#">
+          <img src="{{img.Imagen.url}}" alt="Post image">
+          </a>
+        {% endfor %}
       </div>
-    
     </div>
 
-    <div>
+  </div>
+
+    <div style="border-radius: 5px; background-color: rgb(255, 255, 255); width: 100%; margin-top: 15px;">
+        <div style="display: flex;"> 
+          <div>
+            <img style="border-radius: 50%; width: 50px; height: 50px;" src="{% static 'images/sin-foto.png' %}" alt="art">
+          </div>
+        </div>
+      {% endfor %}
+      <div>
       Comentario de la publicación aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
       Comentario muy grande 
-      <img  src="{% static 'images/fondo.jpg' %}" alt="art">
-    </div>
+      </div>
 
   </div>
 
@@ -123,25 +143,6 @@
       </div>
     
     </div>
-
-    <div>
-      Comentario de la publicación aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-      Comentario muy grande 
-      <img  src="{% static 'images/fondo.jpg' %}" alt="art">
-    </div>
-
-  </div>
-
-  <div style="border-radius: 5px; background-color: rgb(255, 255, 255); width: 100%; margin-top: 15px;">
-    <div style="display: flex;"> 
-      <img style="border-radius: 50%; width: 50px; height: 50px;" src="{% static 'images/sin-foto.png' %}" alt="art">
-      <div>
-        <p style="height: 25px;">{{user.username}} {{user.lastname}}</p>
-        <p style="height: 25px; margin-top: 0%;">{{user.date_joined}}</p>
-      </div>
-    
-    </div>
-
     <div>
       Comentario sin foto, yo solo se que nada sé 
     </div>
@@ -154,18 +155,6 @@
       <p style="text-align: center;"> No hay mas publicaciones, sigue subiendo contenido! </p>
     </div>
   
-
-
-
-  
-
-
-
-
-
-
-
-
 {% endblock content %}
 
 

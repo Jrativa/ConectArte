@@ -12,7 +12,9 @@ class HomeView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         userLoggedIn = request.user
         form = PublicacionForm()
+        posts = Publicacion.objects.all()
         context={
+                'posts': posts,
                 'form' : form,
             }
         return render(request, 'pages/home.html', context)
@@ -20,17 +22,16 @@ class HomeView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         userLoggedIn = request.user
         form = PublicacionForm(request.POST, request.FILES)
-        files = request.FILES.getlist('Imagenes')
+        files = request.FILES.getlist('Imagen')
         if form.is_valid():
             newPost = form.save(commit=False)
-            AutorPost = userLoggedIn
+            newPost.Autor = userLoggedIn
             newPost.save()
-            for img in files:
-                image = Imagen(Imagen=img)
+            for f in files:
+                image = Imagen(Imagen=f)
                 image.save()
-                newPost.Imagen.add(image)
+                newPost.Multimedia.add(image)
             newPost.save()
-
         context={
                 'form' : form,
             }
