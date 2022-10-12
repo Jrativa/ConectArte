@@ -53,8 +53,10 @@ class perfil(models.Model):
     usuario = models.OneToOneField(Usuario, on_delete=models.CASCADE, related_name="profile")
     fotoPerfil = models.ImageField(default="Usuarios/Usuario.png", upload_to=directorioUsuario)
     dateCreated = models.DateField(auto_now_add=True)
-    Descripción = models.TextField(blank=False, null=False,  verbose_name="Descripción", default="")
-    url = models.CharField(max_length=30, blank=False, null=False,  verbose_name="Nombre de usuario")
+    Intereses = models.TextField(blank=False, null=True,  verbose_name="Intereses", default="")
+    Experiencia = models.TextField(blank=False, null=True,  verbose_name="Experiencia", default="")
+    Descripcion = models.TextField(blank=False, null=True,  verbose_name="Descripción", default="")
+    url = models.CharField(max_length=30, blank=False, null=False)
     NumeroTelefono = models.IntegerField(blank=True, null=True)
     def __str__(self):
         return self.usuario.username

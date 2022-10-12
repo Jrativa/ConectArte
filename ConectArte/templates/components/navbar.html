@@ -16,11 +16,13 @@
 
             <a href="#" class="inline-flex md:hidden items-center justify-center p-1 rounded-full hover:bg-gray-200 dark:hover:bg-dark-third mx-1">
             </a>
-
-            <div class="relative bg-gray-100 dark:bg-dark-third px-2 py-2 w-10 h-10 sm:w-11 sm:h-11 lg:h-10 lg:w-10 xl:w-max xl:pl-3 xl:pr-8 rounded-full flex items-center justify-center cursor-pointer">
-                <i class='bx bx-search-alt-2 text-xl xl:mr-2 dark:text-dark-txt'></i>
-                <input type="text" placeholder="Buscar Usuarios" class="outline-none border-none bg-transparent hidden xl:inline-block">
-            </div>
+            <form action="" method="get">
+                <div class="relative bg-gray-100 dark:bg-dark-third px-2 py-2 w-10 h-10 sm:w-11 sm:h-11 lg:h-10 lg:w-10 xl:w-max xl:pl-3 xl:pr-8 rounded-full flex items-center justify-center cursor-pointer">
+                    <button type="submit" class='bx bx-search-alt-2 text-xl xl:mr-2 dark:text-dark-txt'></button>
+                    <input name="query" type="text" placeholder="Buscar Usuarios" class="outline-none border-none bg-transparent hidden xl:inline-block">
+                </div>
+            </form>
+            
 
             <div class="text-xl grid place-items-center md:hidden bg-gray-200 dark:bg-dark-third rounded-full w-10 h-10 cursor-pointer hover:bg-gray-300 dark:text-dark-txt" id="dark-mode-toggle-mb">
                 <i class='bx bxs-bell'></i>

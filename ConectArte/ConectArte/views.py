@@ -1,5 +1,5 @@
 from django.views.generic import TemplateView, View
-from django.shortcuts import redirect, render, get_object_or_404, redirect
+from django.shortcuts import redirect, render, get_object_or_404
 from django.core.paginator import Paginator
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from apps.Usuarios.models import Usuario
@@ -40,15 +40,12 @@ class HomeView(LoginRequiredMixin, View):
             }
         return render(request, 'pages/home.html', context)
         
-        
-
 
 def home(request):
     context={
         }
     return render(request, 'pages/index.html', context)
 
-    
 
 def prueba(request):
     return render(request, 'users/perfil.html')

@@ -1,0 +1,37 @@
+{%extends "base.html"%}
+{% load static %}
+{% load tailwind_tags %}
+{% load tailwind_filters %}
+
+{% block title %}{{user.username}}{% endblock %}
+{% block navbar %}
+{% include 'components/navbar.html' %}
+{% endblock navbar %}
+
+
+{% block left_sidebar %}
+{% include 'components/sidebars/leftBar/sidebar.html' %}
+
+
+
+{% endblock left_sidebar %}
+
+{% block content %}
+
+{% for perfil in perfiles %}
+   {{ perfil.username }}
+{% empty %}
+   No se encontraron usuarios
+{% endfor %}
+
+
+{% endblock content %}
+
+
+{% block right_sidebar %}
+{% endblock right_sidebar %}
+
+
+
+{% block footer %}
+{% endblock footer %}
