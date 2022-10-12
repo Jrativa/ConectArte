@@ -19,7 +19,17 @@
 {% block content %}
 
 {% for perfil in perfiles %}
-   {{ perfil.username }}
+   
+      <div style="display: flex;"> 
+         <a href="{% url 'users:perfil' perfil.usuario.username %}"> Ir al perfil de: {{perfil.usuario.username}}<br>
+         
+         <img style="border-radius: 50%; width: 50px; height: 50px;" src="{% static 'images/sin-foto.png' %}" alt="art">
+         <div>
+           {% comment %} <p style="height: 25px;">{{perfil.fotoPerfil}}</p> {% endcomment %}
+         </a>
+         </div>
+       
+       </div>
 {% empty %}
    No se encontraron usuarios
 {% endfor %}

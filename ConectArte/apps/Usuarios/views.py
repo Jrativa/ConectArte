@@ -63,23 +63,16 @@ def EditProfile(request):
 
         return render(request, 'users/editProfile.html', context)
 
-class SearchArtist(View):
-    def get(self, request, *args, **kwargs):
-        query = self.request.GET.get('query')
-        perfiles = perfil.objects.filter(Q(user__username__icontains=query))
-        context={
-            'perfiles':perfiles
-        }
-        return render(request, 'pages/search.html', context)
+
     
 
 
-class SearchResultsView(ListView):
-    model = User
-    template_name = 'search.html'
-    def get_queryset(self):  # new
-        query = self.request.GET.get("q")
-        object_list = User.objects.filter( 
-            Q(name__icontains=query) | Q(state__icontains=query)
-        )
-        return object_list
+# class SearchResultsView(ListView):
+#     model = User
+#     template_name = 'search.html'
+#     def get_queryset(self):  # new
+#         query = self.request.GET.get("q")
+#         object_list = User.objects.filter( 
+#             Q(name__icontains=query) | Q(state__icontains=query)
+#         )
+#         return object_list

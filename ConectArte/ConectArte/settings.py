@@ -63,6 +63,8 @@ INSTALLED_APPS = [
     'apps.chat',
     'apps.publicaciones',
     'apps.Usuarios',
+    'apps.Buscador',
+    
     'tailwind',
     'theme',
     'crispy_forms',

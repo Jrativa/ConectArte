@@ -5,10 +5,11 @@ from django.contrib.auth import get_user_model
 from apps.Usuarios.models import *
 from django.db.models import Q
 
+
 class SearchArtist(View):
     def get(self, request, *args, **kwargs):
         query = self.request.GET.get('query')
-        perfiles = perfil.objects.filter(Q(user__username__icontains=query))
+        perfiles = perfil.objects.filter(Q(usuario__username__icontains=query))
         context={
             'perfiles':perfiles
         }
