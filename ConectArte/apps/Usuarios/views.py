@@ -45,9 +45,10 @@ def EditProfile(request):
             if form.is_valid():
                 userInfo.first_name = form.cleaned_data.get('first_name')
                 userInfo.last_name = form.cleaned_data.get('last_name')
-                profile.Descripcion = form.cleaned_data.get('descripcion')
-                profile.Intereses = form.cleaned_data.get('intereses')
-                profile.Experiencia = form.cleaned_data.get('experiencia')
+                profile.Descripcion = form.cleaned_data.get('Descripcion')
+                profile.Educacion = form.cleaned_data.get('Educacion')
+                profile.Experiencia = form.cleaned_data.get('Experiencia')
+                profile.Intereses = form.cleaned_data.get('Intereses')
                 profile.url = form.cleaned_data.get('url')
                 profile.NumeroTelefono = form.cleaned_data.get('NumeroTelefono')
                 profile.save()

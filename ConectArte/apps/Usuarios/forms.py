@@ -23,12 +23,12 @@ class UserForm(forms.ModelForm):
             }),
         required=True)
     
-    Intereses = forms.CharField(widget=forms.Textarea(attrs={
-            'class':"form-control", 'id':"exampleFormControlTextarea1",
-            'rows': '6',
-            'placeholder': 'Escribe tu publicación:'
-            }),
-        required=True)
+    Educacion = forms.CharField(widget=forms.Textarea(attrs={
+        'class':"form-control", 'id':"exampleFormControlTextarea1",
+        'rows': '6',
+        'placeholder': 'Escribe tu publicación:'
+        }),
+    required=True)
 
     Experiencia = forms.CharField(widget=forms.Textarea(attrs={
         'class':"form-control", 'id':"exampleFormControlTextarea1",
@@ -36,6 +36,13 @@ class UserForm(forms.ModelForm):
         'placeholder': 'Escribe tu publicación:'
         }),
     required=True)
+    
+    Intereses = forms.CharField(widget=forms.Textarea(attrs={
+            'class':"form-control", 'id':"exampleFormControlTextarea1",
+            'rows': '6',
+            'placeholder': 'Escribe tu publicación:'
+            }),
+        required=True)
     
     url = forms.CharField(widget=forms.Textarea(attrs={
             'class':"form-control", 'id':"exampleFormControlTextarea1",
@@ -53,5 +60,5 @@ class UserForm(forms.ModelForm):
 
     class Meta:
         model = perfil
-        fields = ('first_name','last_name','Descripcion','Intereses','Experiencia','url','NumeroTelefono')
+        fields = ('Descripcion', 'Educacion','Experiencia','Intereses','url','NumeroTelefono')
 

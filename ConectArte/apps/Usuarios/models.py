@@ -54,10 +54,11 @@ class perfil(models.Model):
     fotoPerfil = models.ImageField(default="Usuarios/Usuario.png", upload_to=directorioUsuario)
     dateCreated = models.DateField(auto_now_add=True)
     Intereses = models.TextField(blank=False, null=True,  verbose_name="Intereses", default="")
+    Educacion = models.TextField(blank=False, null=True,  verbose_name="Educacion", default="")
     Experiencia = models.TextField(blank=False, null=True,  verbose_name="Experiencia", default="")
     Descripcion = models.TextField(blank=False, null=True,  verbose_name="Descripción", default="")
     url = models.CharField(max_length=30, blank=False, null=False)
-    NumeroTelefono = models.IntegerField(blank=True, null=True)
+    NumeroTelefono = models.BigIntegerField(blank=True, null=True)
     def __str__(self):
         return self.usuario.username
 

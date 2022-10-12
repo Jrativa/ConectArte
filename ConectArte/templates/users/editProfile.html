@@ -15,7 +15,7 @@
 {% endblock left_sidebar %}
 
 {% block content %}
-<form class="form-horizontal dark:text-dark-txt" method="POST"  enctype="multipart/form-data">
+<form class="form-horizontal dark:text-dark-txt" method="post"  enctype="multipart/form-data">
 {% csrf_token %}
   <div class="mt-1 sm:mt-0 sm:col-span-2">
         <div class="mt-4">
@@ -33,24 +33,27 @@
         </div>
 
         <div class="mt-4">
-          <label for="descripcion" class="block text-sm font-medium dark:text-dark-txt text-gray-700">
+          <label for="Descripcion" class="block text-sm font-medium dark:text-dark-txt text-gray-700">
             Descripcion:    
         </label>
           {{form.Descripcion}}
         </div>
 
+
         <div class="mt-4">
-          <label for="intereses" class="block text-sm font-medium dark:text-dark-txt text-gray-700">
-           Intereses:    
+          <label for="Educacion" class="block text-sm font-medium dark:text-dark-txt text-gray-700">
+           Educación:    
         </label>
-          {{form.Intereses}}
+          {{form.Educacion}}
         </div>
 
         <div class="mt-4">
-          <label for="experiencia" class="block text-sm font-medium dark:text-dark-txt text-gray-700">
+          <label for="Experiencia" class="block text-sm font-medium dark:text-dark-txt text-gray-700">
            Experiencia:    
         </label>
           {{form.Experiencia}}
+
+
         </div>
         {% comment %} <label for="city" class="block text-sm font-medium dark:text-dark-txt text-gray-700">
         Ubicacion
@@ -61,6 +64,13 @@
         Cumpleaños: yyyy-mm-dd
         </label>
         {{form.birthday}} {% endcomment %}
+        <div class="mt-4">
+          <label for="Intereses" class="block text-sm font-medium dark:text-dark-txt text-gray-700">
+           Intereses:    
+        </label>
+          {{form.Intereses}}
+        </div>
+        
         <div class="mt-4">
           <label for="url" class="block text-sm font-medium dark:text-dark-txt text-gray-700">
             Pagina web:
