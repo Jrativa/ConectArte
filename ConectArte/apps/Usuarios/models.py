@@ -57,7 +57,7 @@ class perfil(models.Model):
     Educacion = models.TextField(blank=False, null=True,  verbose_name="Educacion", default="")
     Experiencia = models.TextField(blank=False, null=True,  verbose_name="Experiencia", default="")
     Descripcion = models.TextField(blank=False, null=True,  verbose_name="Descripción", default="")
-    url = models.CharField(max_length=30, blank=False, null=False)
+    url = models.CharField(max_length=100, blank=False, null=False)
     NumeroTelefono = models.BigIntegerField(blank=True, null=True)
     def __str__(self):
         return self.usuario.username
