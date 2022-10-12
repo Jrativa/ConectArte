@@ -44,19 +44,18 @@ class UserForm(forms.ModelForm):
             }),
         required=True)
     
-    url = forms.CharField(widget=forms.Textarea(attrs={
-            'class':"form-control", 'id':"exampleFormControlTextarea1",
-            'rows': '6',
-            'placeholder': 'Escribe el link de tu sitio web:'
-            }),
-        required=False)
+    url = forms.CharField(
+        widget=forms.TextInput(attrs={
+            'class':'shadow-sm focus:ring-indigo-500 dark:bg-dark-third dark:text-dark-txt focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md',
+            })
+    )
+        
     
-    NumeroTelefono = forms.CharField(widget=forms.Textarea(attrs={
-            'class':"form-control", 'id':"exampleFormControlTextarea1",
-            'rows': '6',
-            'placeholder': 'Escribe tu número de telefono:' 
-            }),
-        required=False)
+    NumeroTelefono = forms.CharField(
+        widget=forms.TextInput(attrs={
+            'class':'shadow-sm focus:ring-indigo-500 dark:bg-dark-third dark:text-dark-txt focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md',
+            })
+    )
 
     class Meta:
         model = perfil

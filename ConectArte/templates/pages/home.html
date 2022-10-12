@@ -93,9 +93,8 @@
 
   <!-- Fin Modal -->
 
-
+  {% for post in posts %}
   <div style="border-radius: 5px; background-color: rgb(255, 255, 255); width: 100%; margin-top: 15px;">
-    {% for post in posts %}
     <div>
       <div style="display: flex;"> 
         <a href="{% url 'users:perfil' post.Autor.username %}">
@@ -111,7 +110,7 @@
       <h2>{{post.DescripcionPublicacion}}</h2>
       <div class="py-2">
     
-          <div data-interval="false" id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+          <div  data-interval="false" id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
               {% for img in post.Multimedia.all %}
               <div class="carousel-item {% if forloop.first %} active {% endif %}">                
@@ -127,7 +126,7 @@
             <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
               <span class="carousel-control-next-icon" aria-hidden="true"></span>
               <span class="sr-only">Next</span>
-            </a>
+            </a>   
           </div>
 
 
@@ -138,17 +137,7 @@
 
   </div>
 
-    <div style="border-radius: 5px; background-color: rgb(255, 255, 255); width: 100%; margin-top: 15px;">
-        <div style="display: flex;"> 
-          <div>
-          </div>
-        </div>
-      {% endfor %}
-      <div>
-
-      </div>
-
-  </div>
+  {% endfor %}
 
     <div>
       <hr>
