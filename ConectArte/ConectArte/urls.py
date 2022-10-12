@@ -30,6 +30,7 @@ urlpatterns = [
     path('', home),
     path('accounts/', include('allauth.urls')),
     path('users/', include('apps.Usuarios.urls', namespace ="users")),
+    path('search/', include('apps.Buscador.urls', namespace='search')),
     path('prueba/', prueba),
 ]
 
