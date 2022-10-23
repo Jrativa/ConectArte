@@ -9,52 +9,56 @@ class UserForm(forms.ModelForm):
     first_name = forms.CharField(
         widget=forms.TextInput(attrs={
             'class':'shadow-sm focus:ring-indigo-500 dark:bg-dark-third dark:text-dark-txt focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md',
-            })
+            }),
+            required=False
     )
     last_name = forms.CharField(
         widget=forms.TextInput(attrs={
             'class':'shadow-sm focus:ring-indigo-500 dark:bg-dark-third dark:text-dark-txt focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md',
-            })
+            }),
+            required=False
     )
     Descripcion = forms.CharField(widget=forms.Textarea(attrs={
             'class':"form-control", 'id':"exampleFormControlTextarea1",
             'rows': '6',
             'placeholder': 'Escribe tu publicación:'
             }),
-        required=True)
+        required=False)
     
     Educacion = forms.CharField(widget=forms.Textarea(attrs={
         'class':"form-control", 'id':"exampleFormControlTextarea1",
         'rows': '6',
         'placeholder': 'Escribe tu publicación:'
         }),
-    required=True)
+    required=False)
 
     Experiencia = forms.CharField(widget=forms.Textarea(attrs={
         'class':"form-control", 'id':"exampleFormControlTextarea1",
         'rows': '6',
         'placeholder': 'Escribe tu publicación:'
         }),
-    required=True)
+    required=False)
     
     Intereses = forms.CharField(widget=forms.Textarea(attrs={
             'class':"form-control", 'id':"exampleFormControlTextarea1",
             'rows': '6',
             'placeholder': 'Escribe tu publicación:'
             }),
-        required=True)
+        required=False)
     
     url = forms.CharField(
         widget=forms.TextInput(attrs={
             'class':'shadow-sm focus:ring-indigo-500 dark:bg-dark-third dark:text-dark-txt focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md',
-            })
+            }),
+            required=False
     )
         
     
     NumeroTelefono = forms.CharField(
         widget=forms.TextInput(attrs={
             'class':'shadow-sm focus:ring-indigo-500 dark:bg-dark-third dark:text-dark-txt focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md',
-            })
+            }),
+             required=False
     )
 
     class Meta:

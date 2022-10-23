@@ -23,7 +23,8 @@ class HomeView(LoginRequiredMixin, View):
         userLoggedIn = request.user
         posts = Publicacion.objects.all()
         form = PublicacionForm(request.POST, request.FILES)
-        files = request.FILES.getlist('Multimedia')
+        files = request.FILES.getlist('Multimedia_Img')
+        files2 = request.FILES.getlist('Multimedia_Video')
         
         if form.is_valid():
             newPost = form.save(commit=False)
@@ -32,7 +33,11 @@ class HomeView(LoginRequiredMixin, View):
             for f in files:
                 image = Imagen(imagen=f)
                 image.save()
-                newPost.Multimedia.add(image)
+                newPost.Multimedia_Img.add(image)
+            for f in files2:
+                video = Video(video=f)
+                video.save()
+                newPost.Multimedia_Video.add(video)
             newPost.save() 
         context={
                 'form' : form,

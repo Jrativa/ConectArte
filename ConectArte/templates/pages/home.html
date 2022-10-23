@@ -66,8 +66,13 @@
             <div style="border: 0px black solid; border-radius: 5px; display: flex; margin-top: 5px; height: 40px;">
                 <br>
                 <p>Agregar imagenes a tu publicación:</p>
-                <div class="mb-2">{{form.Multimedia}}</div> 
+                <div class="mb-2">{{form.Multimedia_Img}}</div> 
             </div>
+            <div style="border: 0px black solid; border-radius: 5px; display: flex; margin-top: 5px; height: 40px;">
+              <br>
+              <p>Agregar videos a tu publicación:</p>
+              <div class="mb-2">{{form.Multimedia_Video}}</div> 
+          </div>
             {% comment %} <div class="flex justify-center items-center w-full">
               <label for="dropzone-file" class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                   <div class="flex flex-col justify-center items-center pt-5 pb-6">
@@ -112,12 +117,19 @@
     
           <div  data-interval="false" id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
-              {% for img in post.Multimedia.all %}
+              {% for img in post.Multimedia_Img.all %}
               <div class="carousel-item {% if forloop.first %} active {% endif %}">                
                 <img class="d-block w-100" src="{{img.imagen.url}}" alt="">
               </div>  
               {% endfor %}
               
+              {% for video in post.Multimedia_Video.all %}
+              <div class="carousel-item {% if forloop.first %} active {% endif %}">                
+                <video class="embed-responsive embed-responsive-16by9" controls="controls" >
+                  <source src="{{video.video.url}}" type="video/mp4" />
+                </video>                  
+              </div>  
+              {% endfor %}
             </div>
             <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>

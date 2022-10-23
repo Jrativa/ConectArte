@@ -23,12 +23,16 @@ class CategoriaPublicacion(models.Model):
 class Imagen(models.Model):
     imagen = models.ImageField(upload_to= user_directory_path, blank=True, null = True)
 
+class Video(models.Model):
+    video=models.FileField(upload_to= user_directory_path, blank=True, null = True)
+
 class Publicacion(models.Model):
     IdPublicacion = models.AutoField(primary_key=True)
     Autor = models.ForeignKey(User, on_delete=models.CASCADE, related_name="autor_publicacion")
     Titulo = models.CharField(max_length=30, blank=False, null=False,  verbose_name="Titulo")
     DescripcionPublicacion = models.TextField(blank=False, null=False,  verbose_name="Descripción de la publicación")
-    Multimedia = models.ManyToManyField(Imagen, blank=True)
+    Multimedia_Img = models.ManyToManyField(Imagen, blank=True)
+    Multimedia_Video = models.ManyToManyField(Video, blank=True, validators=[file_size])
     FechaPublicacion = models.DateField(default=timezone.now)
     likes = models.ManyToManyField(User, blank=True, related_name="likes")
     dislikes = models.ManyToManyField(User, blank=True, related_name="dislikes")
@@ -48,8 +52,3 @@ class PerteneceACategoria(models.Model):
 
 
 
-# class Video(models.Model):
-#     caption=models.CharField(max_length=100)
-#     video=models.FileField(upload_to="video/%y")
-#     def __str__(self):
-#         return self.caption

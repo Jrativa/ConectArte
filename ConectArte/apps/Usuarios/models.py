@@ -35,8 +35,6 @@ class Categorias(models.Model):
     def __str__(self):
         return self.NombreCategoria
 
-
-
 class Usuario(AbstractUser):
     IdUsuario = models.CharField(max_length=50)
 

@@ -10,7 +10,14 @@ class PublicacionForm(forms.ModelForm):
             }),
         required=True)
     
-    Multimedia = forms.FileField(widget=forms.ClearableFileInput(attrs={
+    Multimedia_Img = forms.FileField(widget=forms.ClearableFileInput(attrs={
+        'class':"",
+        'multiple': True,
+        'title':"uploadfile"
+        }),
+        required=False  
+        )
+    Multimedia_Video = forms.FileField(widget=forms.ClearableFileInput(attrs={
         'class':"",
         'multiple': True,
         'title':"uploadfile"
