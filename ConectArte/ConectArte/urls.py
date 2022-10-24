@@ -18,7 +18,7 @@ from django.urls import path
 from django.contrib import admin
 from django.urls import include, path
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from apps.Usuarios import views
+from apps.vacantes.views import *
 from .views import HomeView, home, prueba
 from django.conf import settings
 from django.conf.urls.static import static
@@ -31,6 +31,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('users/', include('apps.Usuarios.urls', namespace ="users")),
     path('search/', include('apps.Buscador.urls', namespace='search')),
+    path('vacantes/', VacanteView.as_view(), name="vacante"),
     path('prueba/', prueba),
 ]
 

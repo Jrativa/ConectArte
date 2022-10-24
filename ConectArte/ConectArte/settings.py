@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     'apps.publicaciones',
     'apps.Usuarios',
     'apps.Buscador',
+    'apps.vacantes',
     
     'tailwind',
     'theme',

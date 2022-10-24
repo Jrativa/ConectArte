@@ -20,21 +20,6 @@ class ProfileView(View):
         }
         return render(request, 'users/perfilUsuario.html', context)
 
-        
-
-    
-#     def post(self, request, username, *args, **kwargs):
-#         user = get_object_or_404(User, username=username)
-#         perfilUsuario = perfil.objects.get(usuario=user)
-#         form = UserForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#         context={
-#             'form' : form,
-#             'user':user,
-#             'perfil':perfilUsuario
-#         }
-#         return render(request, 'users/editProfile.html', context)
 @login_required
 def EditProfile(request):
         user = request.user.id
@@ -62,17 +47,3 @@ def EditProfile(request):
         }
 
         return render(request, 'users/editProfile.html', context)
-
-
-    
-
-
-# class SearchResultsView(ListView):
-#     model = User
-#     template_name = 'search.html'
-#     def get_queryset(self):  # new
-#         query = self.request.GET.get("q")
-#         object_list = User.objects.filter( 
-#             Q(name__icontains=query) | Q(state__icontains=query)
-#         )
-#         return object_list
