@@ -6,3 +6,4 @@ urlpatterns = [
     path("MostrarVacantes/",VacanteView.as_view(), name="vacante"),
     
 ]
+## URLS DE VACANTES
