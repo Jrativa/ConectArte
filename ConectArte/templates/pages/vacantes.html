@@ -1,8 +1,11 @@
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 
 
@@ -27,124 +30,196 @@
 
 {% block content %}
 
-  
-<button data-toggle="modal" data-target="#Modal_Publicar" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 20" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-        <path  d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
-      </svg>
-    <span>  Publicar vacante</span>
+
+<button data-toggle="modal" data-target="#Modal_Publicar"
+  class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 20" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+    <path d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+  </svg>
+  <span> Publicar vacante</span>
 </button>
 
 
-  
-  <!-- Modal -->
-  <div class="modal fade" id="Modal_Publicar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2  style="text-align: center; margin-left: 38%; font-weight: 600;" class="modal-title" id="exampleModalLabel">Crear publicación</h2>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
 
-            <div style="display: flex; height: 55px;">
-                <div style="width: 50px; height: 50px;"> 
-                  <img style="border-radius: 50%;" src="{% static 'images/sin-foto.png' %}" alt="art">
-                </div>
-                <p style="margin-left: 20px; margin-top: 2.5%; font-weight: 600;">{{user.username}} {{user.lastname}}</p>
-            </div>
+<!-- Modal -->
+<div class="modal fade" id="Modal_Publicar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 style="text-align: center; margin-left: 38%; font-weight: 600;" class="modal-title" id="exampleModalLabel">
+          Crear publicación</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div style="display: flex; height: 100px;">
+          <div style="width: 100px; height: 100px;">
+            <img style="border-radius: 50%;" src="{% static 'images/sin-foto.png' %}" alt="art">
+          </div>
+          <p style="margin-left: 20px; margin-top: 2.5%; font-weight: 600;">{{user.username}} {{user.lastname}}</p>
+        </div>
 
         <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="form-group" rows="6">
-                Titulo de la vacante
-                {{form.TituloVacante}}
+          {% csrf_token %}
+          <div class="form-group" rows="1">
+            Titulo de la vacante
+            {{form.TituloVacante}}
+          </div>
+          <div class="form-group" rows="6">
+            Elige una categoria para la vacante
+            {{form.CategoriaVacante}}
+            {% comment %} <textarea placeholder="Elige categoria..." class="form-control"
+              id="exampleFormControlTextarea1" rows="6"></textarea> {% endcomment %}
+          </div>
+          <div class="form-group" rows="6">
+            ¿De qué trata el trabajo
+            {{form.DescripcionVacante}}
+          </div>
+          <div class="form-group" rows="6">
+            Remuneración
+            {{form.Pago}}
+          </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Publicar</button>
+      </div>
+
+
+      </form>
+
+
+    </div>
+  </div>
+</div>
+
+<!-- Fin Modal -->
+
+{% for vacante in vacantes %}
+
+
+<div  style=" margin-top: 40px; border-top: 1px #3b82f6 solid; border-left: 1px #3b82f6 solid; border-right: 1px #3b82f6 solid;" class="container">
+  <div style="margin-top: 3%;" class="row">
+    <div style="  margin: 0 auto;" class="col-2">
+      <img style="border-radius: 50%; width: 70px; height: 70px; margin-left: 0px; margin-top: 10px; margin-left: 7px;"
+        src="{% static 'images/sin-foto.png' %}" alt="art">
+      {% comment %} <p style="margin-top: 60px;">{{perfil.fotoPerfil}}</p> {% endcomment %}
+    </div>
+    <div style="width: 80%;" class="col-10">
+      TITULO DE LA VACANTE
+      <div>
+        <p style="height: 25px; margin-top: 0%; "> Responsable: <a href="">{{vacante.AutorVacante.username}}</a></p>
+      </div>
+      <div style="display: flex;">
+        <p style="height: 25px; margin-top: 0%;">Pago ofrecido: ${{vacante.Pago}}</p>
+        <p style="height: 25px; margin-left: 17%;">
+          <svg style="color: #3b82f6;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+          </svg>          
+          Bogotá
+        </p>
+        <p style="height: 25px; margin-left: 17%;">
+          <svg style="color: #3b82f6;;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>          
+          {{vacante.FechaPublicacionVacante}}
+        </p>
+      </div>
+    </div>
+
+    <div style="margin-left: 80%; margin-top: 15px;">
+      <button data-toggle="modal" data-target=".bd-example-modal-lg" type="button" style="margin-top: 20px; margin-right: 10px;" class="btn btn-outline-info btn-block">Ver oferta</button>
+    </div>
+  </div>
+</div>
+
+
+
+{% endfor %}
+
+<div>
+  <hr>
+  <p style="text-align: center;"> No hay mas ofertas por el momento</p>
+</div>
+
+<!-- modal publicaciones -->
+<div  class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div style="height: 500px;" class="modal-content">
+
+      <div class="modal-header">
+        <h1 style="text-align: center; margin-left: 38%; font-weight: 600;" class="modal-title" id="exampleModalLabel">
+         TITULO DE LA OFERTA</h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+
+      <div class="modal-body">
+
+        <div class="container">
+          <div class="row">
+            <div style="  margin: 0 auto;" class="col-2">
+              <img style="border-radius: 50%; width: 100px; height: 100px; margin-left: 0px; margin-top: 10px; margin-left: 7px;"
+                src="{% static 'images/sin-foto.png' %}" alt="art">
+              {% comment %} <p style="margin-top: 60px;">{{perfil.fotoPerfil}}</p> {% endcomment %}
+            </div>
+            <div style="width: 80%;" class="col-10">
+              <div>
+                <p style="height: 25px; margin-top: 0%; "> Responsable: <a href="">{{vacante.AutorVacante.username}}</a></p>
               </div>
-              <div class="form-group" rows="6">
-                Elige una categoria para la vacante
-                {{form.CategoriaVacante}}
-                {% comment %} <textarea placeholder= class="form-control" id="exampleFormControlTextarea1" rows="6"></textarea> {% endcomment %}
+              <div style="display: flex;">
+                <p style="height: 25px; margin-top: 0%;">Pago ofrecido: ${{vacante.Pago}}</p>
               </div>
-              <div class="form-group" rows="6">
-                ¿De qué trata el trabajo
-                {{form.DescripcionVacante}}
-              </div>
-              <div class="form-group" rows="6">
-                Remuneración
-                {{form.Pago}}
-              </div>
-              
+            </div>
+        
+            <div class="col-6">
+              <p style="height: 25px; margin-left: 17%;">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                </svg>          
+                Bogotá
+              </p>
+            </div>
+            <div class="col-6">
+              <p style="height: 25px; margin-left: 17%;">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>           
+                Publicado {{vacante.FechaPublicacionVacante}}
+              </p> 
+            </div>
+
+            <div style="margin-top: 50px;" class="col-12">
+              <p style="height: 25px; width: 100%; ">
+                BairesDev is proud to be the fastest-growing company in America. With people all over the world and world-class clients, we are only as strong as our multicultural teams. To consistently deliver the highest quality solutions, we only hire the Top 1% of the best talents and we challenge them on exciting projects.
+                Junior/MidLevel Java Developer at BairesDev
+              </p> 
+            </div>
             
-            {% comment %} <div class="flex justify-center items-center w-full">
-              <label for="dropzone-file" class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                  <div class="flex flex-col justify-center items-center pt-5 pb-6">
-                      <svg aria-hidden="true" class="mb-3 w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
-                      <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Agregar fotos/videos </span> o arrastra aquí</p>
-                      <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF</p>
-                  </div>
-                  <input id="dropzone-file" type="file" class="hidden" />
-              </label>
-            </div>  {% endcomment %}
+          </div>
         </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary btn-lg btn-block">Publicar</button>
-        </div>
-        
 
-        </form>
-        
 
       </div>
-    </div>
-  </div>
-
-  <!-- Fin Modal -->
-
-  {% for vacante in vacantes %}
-  <div id = "results" style="display: flex; background-color: rgba(237, 237, 237, 0.943); border-radius: 5px; width: 600px; margin-top: 40px; height: 100px;"> 
-    <img style="border-radius: 50%; width: 50px; height: 50px; margin-left: 0px; margin-top: 10px; margin-left: 7px;" src="{% static 'images/sin-foto.png' %}" alt="art">
-       {% comment %} <p style="margin-top: 60px;">{{perfil.fotoPerfil}}</p> {% endcomment %}
-     
-    <a href="{% url 'users:perfil' vacante.AutorVacante.username %}" 
-     style=" font-size: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  font-weight: 500;margin-top: 12px; margin-left: 15px;">
-     <p style="height: 25px; margin-top: 0%;">{{vacante.AutorVacante.username}}</p>
-     <h2>{{vacante.DescripcionVacante}}</h2>
-     <h2>Pago ofrecido: {{vacante.Pago}}</h2>
-     <p style="height: 25px; margin-top: 0%;">{{vacante.FechaPublicacionVacante}}</p>
-    </a>
-    <a href="{% url 'users:perfil' vacante.AutorVacante.username %}" 
-     style=" font-size: 10px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  font-weight: 500;margin-top: 40px; margin-left: -55px; color: grey;"> 
-    </a>
-  </div>
-
-  {% comment %} <div style="border-radius: 5px; background-color: rgb(255, 255, 255); width: 100%; margin-top: 15px;">
-    <div>
-      <div style="display: flex;"> 
-        <div>
-        <a href="{% url 'users:perfil' vacante.AutorVacante.username %}">
-        <img style="border-radius: 50%; width: 50px; height: 50px;" src="{% static 'images/sin-foto.png' %}" alt="art">
-          <p style="height: 25px;">{{vacante.AutorVacante.username}}</p>
-        </a>
-        </div>
-        <div>
-          <p style="height: 25px; margin-top: 0%;">{{vacante.FechaPublicacionVacante}}</p>
-        </div>
+      <div class="modal-footer">
+        <button type="submit" style="background-color: blue;" class="btn btn-primary btn-lg btn-block">Contactarme</button>
       </div>
-      <h2>{{vacante.DescripcionVacante}}</h2>
-      <h2>Pago ofrecido: {{vacante.Pago}}</h2>
+
+      ...
     </div>
+  </div>
+</div>
 
-  </div> {% endcomment %}
+<!-- modal publicaciones -->
 
-  {% endfor %}
 
-    <div>
-      <hr>
-      <p style="text-align: center;"> No hay mas ofertas por el momento</p>
-    </div>
-  
 {% endblock content %}
 
 
@@ -159,8 +234,11 @@
 
 {% block javascript %}
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 {% endblock javascript %}

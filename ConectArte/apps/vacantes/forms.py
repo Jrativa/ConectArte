@@ -11,7 +11,7 @@ class VacanteForm(forms.ModelForm):
         required=True)
     TituloVacante = forms.CharField(widget=forms.Textarea(attrs={
             'class':"form-control", 'id':"exampleFormControlTextarea1",
-            'rows': '6',
+            'rows': '1',
             'placeholder': 'Titulo de la vacante:'
             }),
         required=True)
