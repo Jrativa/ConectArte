@@ -13,6 +13,7 @@ class HomeView(LoginRequiredMixin, View):
         userLoggedIn = request.user
         form = PublicacionForm()
         posts = Publicacion.objects.all()
+
         context={
                 'posts': posts,
                 'form' : form,
@@ -51,6 +52,3 @@ def home(request):
         }
     return render(request, 'pages/index.html', context)
 
-
-def prueba(request):
-    return render(request, 'users/perfil.html')

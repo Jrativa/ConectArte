@@ -85,7 +85,8 @@
 
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-primary btn-lg btn-block">Publicar</button>
+        
+        <button type="submit" style="background-color: blue;" class="btn btn-primary btn-lg btn-block">Publicar</button>
       </div>
 
 
@@ -100,18 +101,16 @@
 
 {% for vacante in vacantes %}
 
-
 <div  style=" margin-top: 40px; border-top: 1px #3b82f6 solid; border-left: 1px #3b82f6 solid; border-right: 1px #3b82f6 solid;" class="container">
   <div style="margin-top: 3%;" class="row">
     <div style="  margin: 0 auto;" class="col-2">
       <img style="border-radius: 50%; width: 70px; height: 70px; margin-left: 0px; margin-top: 10px; margin-left: 7px;"
         src="{% static 'images/sin-foto.png' %}" alt="art">
-      {% comment %} <p style="margin-top: 60px;">{{perfil.fotoPerfil}}</p> {% endcomment %}
     </div>
     <div style="width: 80%;" class="col-10">
-      TITULO DE LA VACANTE
+      {{vacante.TituloVacante}}
       <div>
-        <p style="height: 25px; margin-top: 0%; "> Responsable: <a href="">{{vacante.AutorVacante.username}}</a></p>
+        <p style="height: 25px; margin-top: 0%; "> Contratador: {{vacante.AutorVacante.username}}</p>
       </div>
       <div style="display: flex;">
         <p style="height: 25px; margin-top: 0%;">Pago ofrecido: ${{vacante.Pago}}</p>
@@ -130,38 +129,31 @@
         </p>
       </div>
     </div>
+    <div class="popup-info2">
+      <h1>{{vacante.TituloVacante}}</h1>
+      <p>{{vacante.CategoriaVacante}}</p>
+      <p>{{vacante.DescripcionVacante}}</p>
+      <p>{{vacante.Pago}}</p>
+      <p>{{vacante.AutorVacante.username}}</p>
+      <p>{{vacante.FechaPublicacionVacante}}</p>
+    </div>
 
     <div style="margin-left: 80%; margin-top: 15px;">
       <button data-toggle="modal" data-target=".bd-example-modal-lg" type="button" style="margin-top: 20px; margin-right: 10px;" class="btn btn-outline-info btn-block">Ver oferta</button>
     </div>
-  </div>
-</div>
-
-
-
-{% endfor %}
-
-<div>
-  <hr>
-  <p style="text-align: center;"> No hay mas ofertas por el momento</p>
-</div>
-
-<!-- modal publicaciones -->
+    <!-- modal VACANTES -->
 <div  class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div style="height: 500px;" class="modal-content">
 
       <div class="modal-header">
         <h1 style="text-align: center; margin-left: 38%; font-weight: 600;" class="modal-title" id="exampleModalLabel">
-         TITULO DE LA OFERTA</h1>
+         {{vacante.TituloVacante}}Jp</h1>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-
-
       <div class="modal-body">
-
         <div class="container">
           <div class="row">
             <div style="  margin: 0 auto;" class="col-2">
@@ -171,13 +163,12 @@
             </div>
             <div style="width: 80%;" class="col-10">
               <div>
-                <p style="height: 25px; margin-top: 0%; "> Responsable: <a href="">{{vacante.AutorVacante.username}}</a></p>
+                <p style="height: 25px; margin-top: 0%; "> Responsable: {{vacante.AutorVacante.username}}</p>
               </div>
               <div style="display: flex;">
                 <p style="height: 25px; margin-top: 0%;">Pago ofrecido: ${{vacante.Pago}}</p>
               </div>
             </div>
-        
             <div class="col-6">
               <p style="height: 25px; margin-left: 17%;">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -195,29 +186,49 @@
                 Publicado {{vacante.FechaPublicacionVacante}}
               </p> 
             </div>
-
             <div style="margin-top: 50px;" class="col-12">
               <p style="height: 25px; width: 100%; ">
-                BairesDev is proud to be the fastest-growing company in America. With people all over the world and world-class clients, we are only as strong as our multicultural teams. To consistently deliver the highest quality solutions, we only hire the Top 1% of the best talents and we challenge them on exciting projects.
-                Junior/MidLevel Java Developer at BairesDev
+                {{vacante.DescripcionVacante}}
               </p> 
-            </div>
-            
+            </div> 
           </div>
         </div>
-
-
       </div>
       <div class="modal-footer">
         <button type="submit" style="background-color: blue;" class="btn btn-primary btn-lg btn-block">Contactarme</button>
       </div>
-
       ...
     </div>
   </div>
 </div>
+<!-- modal vacantes --> 
+  </div>
+</div>
 
-<!-- modal publicaciones -->
+{% comment %} <script type="text/javascript">
+  const popupinfo = document.querySelector(".popup-info2")
+  console.log(popupinfo[1]);
+  popupbtns.forEach(btn => btn.addEventListener('click', () => {
+    const popupinfo = btn.parentNode.childNodes[11];
+        popupContent.querySelector(".popup-TituloVacante").src = popupinfo.children[0].textContent //project image
+        popup.querySelector(".popup-CategoriaVacante").textContent = popupinfo.children[1].textContent; // project title
+        popupContent.querySelector(".popup-DescripcionVacante").textContent  =  popupinfo.children[2].textContent; // project description
+        popupContent.querySelector(".popup-Pago").textContent =  popupinfo.children[3].textContent; //project link text
+        popupContent.querySelector(".popup-Autor").href = popupinfo.children[4].textContent;
+        popupContent.querySelector(".popup-Fecha").href = popupinfo.children[5].textContent;
+        
+        wrapper.style.display = "block";
+        popup.style.display = "block";
+    }));
+</script> {% endcomment %}
+
+{% endfor %}
+
+<div>
+  <hr>
+  <p style="text-align: center;"> No hay mas ofertas por el momento</p>
+</div>
+
 
 
 {% endblock content %}

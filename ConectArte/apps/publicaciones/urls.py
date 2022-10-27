@@ -1,8 +1,7 @@
 from django.urls import path 
-from .views import SearchArtist
-app_name ="publicaciones"
+from .views import commentView
 
-urlpatterns = [
-    
-    
+app_name ="publicaciones"
+urlpatterns = [ 
+    path('publicacion/<int:pk>/', commentView.as_view(), name="comments"),
 ]

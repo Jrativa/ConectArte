@@ -3,15 +3,39 @@ from django.http import HttpResponse
 from django.views.generic import TemplateView, View, ListView
 from django.contrib.auth import get_user_model
 from apps.Usuarios.models import *
-from django.db.models import Q
-
-class SearchArtist(View):
-    def get(self, request, *args, **kwargs):
-        query = self.request.GET.get('query')
-        perfiles = perfil.objects.filter(Q(user__username__icontains=query))
-        context={
-            'perfiles':perfiles
-        }
-        return render(request, 'pages/search.html', context)
+from .models import *
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from .forms import ComentarioForm
 
 # Create your views here.
+class commentView(LoginRequiredMixin, View):
+    def get(self, request, pk, *args, **kwargs):
+        post = Publicacion.objects.get(pk=pk)
+        form = ComentarioForm()
+        comments = Comentarios.objects.filter(IdPublicacion=post).order_by('-FechaComment')
+        context = {
+            'post': post,
+            'form': form,
+            'comments':comments
+        }
+        return render(request, 'pages/comments.html', context)
+
+    def post(self, request, pk, *args, **kwargs):
+        post = Publicacion.objects.get(pk=pk)
+        form = ComentarioForm(request.POST)
+
+        if form.is_valid():
+            new_comment = form.save(commit=False)
+            new_comment.IdUsuario = request.user
+            new_comment.IdPublicacion = post
+            new_comment.save()
+
+        comments = Comentarios.objects.filter(IdPublicacion=post).order_by('-FechaComment')
+
+        context = {
+            'post': post,
+            'form': form,
+            'comments':comments
+        }
+
+        return render(request, 'pages/comments.html', context)
