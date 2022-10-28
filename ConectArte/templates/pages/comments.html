@@ -18,19 +18,62 @@
 {% include 'components/sidebars/leftBar/sidebar.html' %}
 
 
-
 {% endblock left_sidebar %}
 
 
 {% block content %}
+  <strong>Autor de la publicación: {{post.Autor.username}}</strong> <br> <br>
+  <button data-toggle="modal" data-target="#Modal_Publicar" class="btn btn-primary btn-lg btn-block" style="background-color: #0d6efd !important;">
 
-    <strong>Autor de la publicación: {{post.Autor.username}}</strong> <br> <br>
+    <span> Comentar</span>
+  </button>
+  <br>
 
-    {% for comment in comments %}
-        <b>{{comment.IdUsuario.username}}</b>
-        <p>{{comment.Comentario}}</p>
-        <i>{{comment.FechaComment}}</i><br><br>
-    {% endfor %}
+  <!-- Modal -->
+  <div class="modal fade" id="Modal_Publicar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h2 style="text-align: center; margin-left: 38%; font-weight: 600;" class="modal-title" id="exampleModalLabel">
+            Crear publicación</h2>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+
+          <div style="display: flex; height: 100px;">
+
+            <div style="width: 100px; height: 100px;">
+              <img style="border-radius: 50%;" src="{% static 'images/sin-foto.png' %}" alt="art">
+            </div>
+
+            <p style="margin-left: 20px; margin-top: 2.5%; font-weight: 600;">{{user.username}} {{user.lastname}}</p>
+          </div>
+
+          <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group" rows="6">
+                {{form.Comentario}}
+            </div>
+            <div class="modal-footer">
+            <button type="submit" class="btn btn-primary btn-lg btn-block" style="background-color: #0d6efd !important;">Comentar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Fin Modal -->
+
+  {% for comment in comments %}
+      <b>{{comment.IdUsuario.username}} comentó: </b>
+      <p>{{comment.Comentario}}</p>
+      <i>{{comment.FechaComment}}</i><br><br>
+  {% endfor %}
 
 
 {% endblock content %}
@@ -38,15 +81,35 @@
 
 
 {% block right_sidebar %}
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="form-group" rows="6">
-            {{form.Comentario}}
-        </div>
-        <div class="modal-footer">
-        <button type="submit" class="btn btn-primary btn-lg btn-block" style="background-color: #0d6efd !important;">Comentar</button>
-        </div>
-    </form>
+  <div class="py-2">
+    <div  data-interval="false" id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        {% for img in post.Multimedia_Img.all %}
+        <div class="carousel-item {% if forloop.first %} active {% endif %}">                
+          <img class="d-block w-100" src="{{img.imagen.url}}" alt="">
+        </div>  
+        {% endfor %}
+        
+        {% for video in post.Multimedia_Video.all %}
+        <div class="carousel-item {% if forloop.first %} active {% endif %}">                
+          <video class="embed-responsive embed-responsive-16by9" controls="controls" >
+            <source src="{{video.video.url}}" type="video/mp4" />
+          </video>                  
+        </div>  
+        {% endfor %}
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>   
+    </div>
+    
+  </div>
+    
 {% endblock right_sidebar %}
 
 

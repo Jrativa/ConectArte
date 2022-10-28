@@ -22,30 +22,16 @@ def create_user_profile(sender, instance, created, **kwargs):
 def guardarPerfil(sender, instance, **kwargs):
     instance.profile.save()
 
-class TipoUsuario(models.Model):
-    IdTipoUsuario = models.AutoField(primary_key=True )
-    NombreTipoUsuario = models.CharField(max_length=30, blank=False, null=False )
-
-    def __str__(self):
-        return self.NombreTipoUsuario
 
 class Categorias(models.Model):  
     IdCategoria = models.AutoField(primary_key=True)
-    NombreCategoria = models.CharField(max_length=20, blank=False, null=False)
+    NombreCategoria = models.CharField(max_length=100,verbose_name="Categoría de la vacante", null=False)
     def __str__(self):
         return self.NombreCategoria
 
 class Usuario(AbstractUser):
     IdUsuario = models.CharField(max_length=50)
-
-    # def __str__(self):
-    #     return self.NombreUsuario
-    # def save(self, *args, **kwargs):
-    #     self.slug = slugify(self.NombreUsuario)
-    #     super(Usuario, self).save(*args, **kwargs)
-    # def getUserType(self):
-    #     obj = Categorias.objects.get(IdCategoria = self.IdTipoUsuario)
-    #     return obj.NombreCategoria
+    
 
 class perfil(models.Model):
     usuario = models.OneToOneField(Usuario, on_delete=models.CASCADE, related_name="profile")
@@ -60,13 +46,9 @@ class perfil(models.Model):
     def __str__(self):
         return self.usuario.username
 
-
-
 post_save.connect(create_user_profile, sender=Usuario)
 post_save.connect(guardarPerfil, sender=Usuario)
 
-
-    
 
 class ClasificaEn(models.Model):
     IdCategoria = models.ForeignKey(Categorias, on_delete=models.CASCADE, verbose_name="Categoria")

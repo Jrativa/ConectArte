@@ -31,7 +31,6 @@ class commentView(LoginRequiredMixin, View):
             new_comment.save()
 
         comments = Comentarios.objects.filter(IdPublicacion=post).order_by('-FechaComment')
-
         context = {
             'post': post,
             'form': form,
