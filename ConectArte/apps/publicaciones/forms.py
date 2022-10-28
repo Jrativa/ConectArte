@@ -27,3 +27,14 @@ class PublicacionForm(forms.ModelForm):
     class Meta:
         model = Publicacion 
         fields = ['DescripcionPublicacion']
+
+class ComentarioForm(forms.ModelForm):
+    Comentario = forms.CharField(widget=forms.Textarea(attrs={
+            'class':"form-control", 'id':"exampleFormControlTextarea1",
+            'rows': '5',
+            'placeholder': 'Escribe tu opinión:'
+            }),
+        required=True)
+    class Meta:
+        model = Comentarios
+        fields = ['Comentario']
