@@ -12,15 +12,15 @@ from django.contrib.auth.decorators import login_required
 
 User = get_user_model()
 
-def followers(View):
-    
-    return render ('users/followers.html')
+#Vista para abrir la nueva pagina de followers
+def followers(request):
+    return render (request, 'users/followers.html')
 
 
 
 class ProfileView(View):
-    def get(self, request, username, *args, **kwargs):
-        user = get_object_or_404(User, username=username)
+    def get(self,  *args, **kwargs):
+        user = get_object_or_404(User)
         perfilUsuario = perfil.objects.get(usuario=user)
         context={
             'user':user,
