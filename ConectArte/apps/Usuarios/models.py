@@ -6,7 +6,6 @@ from PIL import Image
 from django.db.models.signals import post_save
 from django.utils.text import slugify
 
-# Create your models here.
 
 def directorioUsuario(instancia, nombreArchivo):
     nombreFotoPerfil = "Usuarios/{0}/profile.jpg.".format(instancia.usuario.username)
@@ -54,7 +53,8 @@ class ClasificaEn(models.Model):
     IdCategoria = models.ForeignKey(Categorias, on_delete=models.CASCADE, verbose_name="Categoria")
     IdUsuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, verbose_name="Categoria")
 
+#Se activa la clase SigueA, para poder crear la migracion en la BD.
 
-# class Sigue(models.Model):
-#     IdUsuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
-#     SeguidoIdUsuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+class SigueA(models.Model):
+     IdUsuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='Id_usuario')
+     IdUsuarioSeguido = models.ForeignKey(Usuario, on_delete=models.CASCADE,related_name='Id_usuario_seguido')

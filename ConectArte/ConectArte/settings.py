@@ -43,7 +43,7 @@ if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 
-# Application definition
+# Application definition   
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'apps.Usuarios',
     'apps.Buscador',
     'apps.vacantes',
+    
     
     'tailwind',
     'theme',
