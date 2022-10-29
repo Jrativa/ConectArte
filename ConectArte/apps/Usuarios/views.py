@@ -1,7 +1,9 @@
+from multiprocessing import context
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.views.generic import TemplateView, View, ListView
 from django.contrib.auth import get_user_model
+from requests import request
 from apps.Usuarios.models import *
 from django.db.models import Q
 from .forms import UserForm
@@ -9,6 +11,12 @@ from django.contrib.auth.decorators import login_required
 
 
 User = get_user_model()
+
+def followers(View):
+    
+    return render ('users/followers.html')
+
+
 
 class ProfileView(View):
     def get(self, request, username, *args, **kwargs):

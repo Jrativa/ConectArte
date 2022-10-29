@@ -10,7 +10,8 @@
         </a>
     </li>
     <li>
-        <a href="#" class="flex items-center space-x-2 p-2 hover:bg-gray-200 rounded-lg transition-all dark:text-dark-txt dark:hover:bg-dark-third">
+        <!--Se hizo conexión a la página de followers desde el feed principal-->
+        <a href="{% url 'users:followers' %}" class="flex items-center space-x-2 p-2 hover:bg-gray-200 rounded-lg transition-all dark:text-dark-txt dark:hover:bg-dark-third">
             {% comment %} <img src="./images/page.png" alt="Profile picture" class="w-10 h-10 rounded-full"> {% endcomment %}
             <i class='bx bx-user-plus'></i>
             <span class="font-semibold">Seguidos</span>
