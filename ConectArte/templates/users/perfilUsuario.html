@@ -28,6 +28,20 @@
             <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  font-weight: 500;
             margin-top: 2%; color: black; font-size: px;">{{perfil.usuario.username}}</h1>
 
+
+
+            <!--Botones de follow y unfollow, usan if para comprobar si el usuario sigue o no a esa cuenta-->
+            {%if request.user.is_authenticated%}  
+              {%if request.user.username != perfil.usuario.username %}
+                  {%if perfil.usuario.username not in profreq.following%}
+                    <button><a class="boton-follow" href="{% url 'users:follow' perfil.usuario %}">Follow</a></button>
+                  {%else%}
+                    <button><a class="boton-unfollow" href="{% url 'users:unfollow' perfil.usuario %}">Unfollow</a></button>
+                  {%endif%}
+              {%endif%}
+            {%endif%}
+
+           
             
             <h1 style="font-size: 20px; color: rgb(164, 165, 167);">Bogotá D.C, Colombia</h1>
             <h1 style="font-size: 20px; color: rgb(164, 165, 167);">Telefono: {{perfil.NumeroTelefono}}</h1>

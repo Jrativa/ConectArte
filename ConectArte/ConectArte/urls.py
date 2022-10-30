@@ -33,6 +33,7 @@ urlpatterns = [
     path('search/', include('apps.Buscador.urls', namespace='search')),
     path('publicacion/', include('apps.publicaciones.urls', namespace='publicacion')),
     path('vacantes/', VacanteView.as_view(), name="vacante"),
+    
 ]
 
 urlpatterns += staticfiles_urlpatterns()
