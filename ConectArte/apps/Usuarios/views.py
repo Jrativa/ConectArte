@@ -1,3 +1,4 @@
+from email import message
 from multiprocessing import context
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
@@ -16,13 +17,32 @@ User = get_user_model()
 def followers(request):
     return render (request, 'users/followers.html')
 
+def follow(request, username):
+    IdUsuario = request.user
+    IdUsuarioSeguido = get_object_or_404(User, username=username)
+    UsuarioSeguido_id=IdUsuarioSeguido
+    rel = SigueA(IdUsuario_id=IdUsuario, IdUsuarioSeguido_id=UsuarioSeguido_id )
+    rel.save()
+    message.success(request, f'sigues a {username}')
+    return render (request, 'home.html')
+
+def unfollow(request, username):
+    IdUsuario = request.user
+    IdUsuarioSeguido = get_object_or_404(User, username=username)
+    UsuarioSeguido_id=IdUsuarioSeguido
+    rel = SigueA.objects.filter(IdUsuario_id=IdUsuario, IdUsuarioSeguido_id=UsuarioSeguido_id ).get()
+    rel.delete()
+    message.success(request, f'ya no sigues a {username}')
+    return render (request, 'home.html')
 
 
 class ProfileView(View):
-    def get(self,  *args, **kwargs):
-        user = get_object_or_404(User)
+    def get(self, request, username, *args, **kwargs):
+        
+        user = get_object_or_404(User, username=username)
         perfilUsuario = perfil.objects.get(usuario=user)
         context={
+            
             'user':user,
             'perfil':perfilUsuario
         }

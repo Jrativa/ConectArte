@@ -44,6 +44,15 @@ class perfil(models.Model):
     NumeroTelefono = models.BigIntegerField(blank=True, null=True)
     def __str__(self):
         return self.usuario.username
+        
+#Se añaden los metodos following y followers para saber que usuarios siguie o quien sigue a ese usuario
+    def following(self):
+        user_ids=SigueA.objects.filter(IdUsuario=self.user).values_list('IdUsuario_id', flat=True)
+        return Usuario.objects.filter(id__in=user_ids) 
+
+    def followers(self):
+        user_ids=SigueA.objects.filter(IdUsuarioSeguido=self.user).values_list('IdUsuarioSeguido_id', flat=True)
+        return Usuario.objects.filter(id__in=user_ids) 
 
 post_save.connect(create_user_profile, sender=Usuario)
 post_save.connect(guardarPerfil, sender=Usuario)
@@ -56,5 +65,14 @@ class ClasificaEn(models.Model):
 #Se activa la clase SigueA, para poder crear la migracion en la BD.
 
 class SigueA(models.Model):
-     IdUsuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='Id_usuario')
-     IdUsuarioSeguido = models.ForeignKey(Usuario, on_delete=models.CASCADE,related_name='Id_usuario_seguido')
+    IdUsuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='Id_usuario')
+    IdUsuarioSeguido = models.ForeignKey(Usuario, on_delete=models.CASCADE,related_name='Id_usuario_seguido')
+    def __str__(self):
+        return f'{self.IdUsuario}to{self.IdUsuarioSeguido}'
+    class Meta:
+        indexes=[ 
+            models.Index(fields=['IdUsuario', 'IdUsuarioSeguido',]),
+        ]
+
+
+
