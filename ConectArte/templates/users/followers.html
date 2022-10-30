@@ -1,1 +1,28 @@
-<h1>Prueba 1</h1>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block navbar %}
+{% include 'components/navbar.html' %}
+{% endblock navbar %}
+
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<div style="box-shadow: 0px 0px 0.5px 0.5px  #d1d1d1; border: 1px solid #e0dfdc;" class="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+  <div  class="sm:mx-auto sm:w-full sm:max-w-md">
+
+  </div>
+  <div  class="mt-8  sm:max-w-md">
+    <div style=" border-radius: 10px; width: 95%; margin-left: 2%;" class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+
+        <i class='bx bx-user-plus'style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  font-weight: 500;
+        margin-top: 2%; color: black; font-size: 30px;"></i>
+        <span style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  font-weight: 500;
+        margin-top: 2%; color: black; font-size: 30px;">Seguidos</span>        
+
+        
+    </div>
+  </div>
+
+</div>
+{% endblock content %}
