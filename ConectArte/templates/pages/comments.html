@@ -20,13 +20,14 @@
 
 {% block content %}
 
-<div style="text-align: center; background-color: blue; width: 100%; display: flex;
+<div style="text-align: center; width: 100%; display: flex;
 justify-content: center">
-  <div  data-interval="false" id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-    <div  class="carousel-inner">
+  <div data-interval="false" id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
       {% for img in post.Multimedia_Img.all %}
-      <div  class="carousel-item {% if forloop.first %} active {% endif %}">
-        <img class="d-block w-100" style="margin: auto !important;   display: block !important" src="{{img.imagen.url}}" alt="">
+      <div class="carousel-item {% if forloop.first %} active {% endif %}">
+        <img class="d-block w-100" style="margin: auto !important;   display: block !important; border-radius: 15px;" src="{{img.imagen.url}}"
+          alt="">
       </div>
       {% endfor %}
 
@@ -53,43 +54,63 @@ justify-content: center">
 </div>
 </div>
 
-  <!-- Modal -->
-  <div class="modal fade" id="Modal_Publicar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
+<!-- Modal -->
+<div class="modal fade" id="Modal_Publicar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
 
-        <div class="modal-header">
-          <h2 style="text-align: center; margin-left: 38%; font-weight: 600;" class="modal-title" id="exampleModalLabel">
-            Crear publicación</h2>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+      <div class="modal-header">
+        <h2 style="text-align: center; margin-left: 38%; font-weight: 600;" class="modal-title" id="exampleModalLabel">
+          Crear publicación</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
 
-        <div class="modal-body">
+      <div class="modal-body">
 
-          <div style="display: flex; height: 100px;">
+        <div style="display: flex; height: 100px;">
 
-            <div style="width: 100px; height: 100px;">
-              <img style="border-radius: 50%;" src="{% static 'images/sin-foto.png' %}" alt="art">
-            </div>
-
-            <p style="margin-left: 20px; margin-top: 2.5%; font-weight: 600;">{{user.username}} {{user.lastname}}</p>
+          <div style="width: 80px; height: 80px;">
+            <img style="border-radius: 50%;" src="{% static 'images/sin-foto.png' %}" alt="art">
           </div>
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <p style="margin-top: 2.5%; font-weight: 600;">{{user.first_name}} {{user.last_name}}
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div style="display: flex;" class="col">
+                <p id="fechita" style="height: 25px;  font-size: 12px; margin-top: 2px;">
+                </p><svg style="width: 18px; margin-left: 2%;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                  fill="currentColor" class="w-6 h-6">
+                  <path fill-rule="evenodd"
+                    d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM6.262 6.072a8.25 8.25 0 1010.562-.766 4.5 4.5 0 01-1.318 1.357L14.25 7.5l.165.33a.809.809 0 01-1.086 1.085l-.604-.302a1.125 1.125 0 00-1.298.21l-.132.131c-.439.44-.439 1.152 0 1.591l.296.296c.256.257.622.374.98.314l1.17-.195c.323-.054.654.036.905.245l1.33 1.108c.32.267.46.694.358 1.1a8.7 8.7 0 01-2.288 4.04l-.723.724a1.125 1.125 0 01-1.298.21l-.153-.076a1.125 1.125 0 01-.622-1.006v-1.089c0-.298-.119-.585-.33-.796l-1.347-1.347a1.125 1.125 0 01-.21-1.298L9.75 12l-1.64-1.64a6 6 0 01-1.676-3.257l-.172-1.03z"
+                    clip-rule="evenodd" />
+                </svg>
 
-          <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="form-group" rows="6">
-                {{form.Comentario}}
+              </div>
             </div>
-            <div class="modal-footer">
-            <button type="submit" class="btn btn-primary btn-lg btn-block" style="background-color: #0d6efd !important;">Comentar</button>
-            </div>
-          </form>
+          </div>
         </div>
+
+        <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="form-group" rows="6">
+            {{form.Comentario}}
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary btn-lg btn-block"
+              style="background-color: #0d6efd !important;">Comentar</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
+</div>
 
 <!-- Fin Modal -->
 {% endblock content %}
@@ -98,75 +119,116 @@ justify-content: center">
 
 {% block right_sidebar %}
 
+<div style="overflow: auto; height: 100%; box-shadow: 0px 0px 0.5px 0.5px #d1d1d1; border: 1px solid #e0dfdc; border-radius: 5px; background-color: rgb(255, 255, 255); width: 100%;">
+  <div
+  >
+    <div>
+      <div style="display: flex;">
+        <a href="{% url 'users:perfil' post.Autor.username %}">
+          <img style="border-radius: 50%; width: 50px; height: 50px; margin-left: 5px; margin-top: 5px;"
+            src="{% static 'images/sin-foto.png' %}" alt="art">
+          <div>
+            <p style="height: 25px; margin-left: 5px; margin-top: 3px; font-weight: 600;">{{post.Autor.first_name}}
+              {{post.Autor.last_name}} </p>
+        </a>
+        <div style="display: flex; height: 30px;">
+          <p style="height: 25px; margin-left: 5px; font-size: 12px; margin-top: 2px;">{{post.FechaPublicacion}}</p><svg
+            style="width: 18px; margin-left: 2%;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+            fill="currentColor" class="w-6 h-6">
+            <path fill-rule="evenodd"
+              d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM6.262 6.072a8.25 8.25 0 1010.562-.766 4.5 4.5 0 01-1.318 1.357L14.25 7.5l.165.33a.809.809 0 01-1.086 1.085l-.604-.302a1.125 1.125 0 00-1.298.21l-.132.131c-.439.44-.439 1.152 0 1.591l.296.296c.256.257.622.374.98.314l1.17-.195c.323-.054.654.036.905.245l1.33 1.108c.32.267.46.694.358 1.1a8.7 8.7 0 01-2.288 4.04l-.723.724a1.125 1.125 0 01-1.298.21l-.153-.076a1.125 1.125 0 01-.622-1.006v-1.089c0-.298-.119-.585-.33-.796l-1.347-1.347a1.125 1.125 0 01-.21-1.298L9.75 12l-1.64-1.64a6 6 0 01-1.676-3.257l-.172-1.03z"
+              clip-rule="evenodd" />
+          </svg>
+        </div>
 
-<div
-  style="box-shadow: 0px 0px 0.5px 0.5px #d1d1d1; border: 1px solid #e0dfdc; border-radius: 5px; background-color: rgb(255, 255, 255); width: 100%;">
-  <div>
-    <div style="display: flex;">
-      <a href="{% url 'users:perfil' post.Autor.username %}">
-        <img style="border-radius: 50%; width: 50px; height: 50px; margin-left: 5px; margin-top: 5px;"
-          src="{% static 'images/sin-foto.png' %}" alt="art">
-        <div>
-          <p style="height: 25px; margin-left: 5px; margin-top: 3px; font-weight: 600;">{{post.Autor.first_name}}
-            {{post.Autor.last_name}} </p>
-      </a>
-      <div style="display: flex; height: 30px;">
-        <p style="height: 25px; margin-left: 5px; font-size: 12px; margin-top: 2px;">{{post.FechaPublicacion}}</p><svg
-          style="width: 18px; margin-left: 2%;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-          fill="currentColor" class="w-6 h-6">
-          <path fill-rule="evenodd"
-            d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM6.262 6.072a8.25 8.25 0 1010.562-.766 4.5 4.5 0 01-1.318 1.357L14.25 7.5l.165.33a.809.809 0 01-1.086 1.085l-.604-.302a1.125 1.125 0 00-1.298.21l-.132.131c-.439.44-.439 1.152 0 1.591l.296.296c.256.257.622.374.98.314l1.17-.195c.323-.054.654.036.905.245l1.33 1.108c.32.267.46.694.358 1.1a8.7 8.7 0 01-2.288 4.04l-.723.724a1.125 1.125 0 01-1.298.21l-.153-.076a1.125 1.125 0 01-.622-1.006v-1.089c0-.298-.119-.585-.33-.796l-1.347-1.347a1.125 1.125 0 01-.21-1.298L9.75 12l-1.64-1.64a6 6 0 01-1.676-3.257l-.172-1.03z"
-            clip-rule="evenodd" />
-        </svg>
       </div>
 
     </div>
 
+    <h2 style="margin-left: 5px;">{{post.DescripcionPublicacion}}</h2>
+
+    <hr>
+
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <button id="megusta" onclick="cambiarcolormg()"
+            class="bg-grey-light hover:bg-grey text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center"
+            style="width: 100%; height: 35px;">
+            <svg style="float: left;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+              stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z" />
+            </svg>
+            <a>Me gusta</a>
+          </button>
+        </div>
+        <div class="col">
+          <button onclick="traerfecha()" data-toggle="modal" data-target="#Modal_Publicar"
+            class="bg-grey-light hover:bg-grey text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center"
+            style="width: 100%; height: 35px;">
+            <svg style="float: left;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+              stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
+            </svg>
+            <p>Comentar</p>
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <h2 style="margin-left: 5px;">{{post.DescripcionPublicacion}}</h2>
 
-  <hr>
+  <div>
+    {% for comment in comments %}
+    <div style="margin-right: 2px;">
+      <div style="display: flex; ">
+        <a href="{% url 'users:perfil' post.Autor.username %}">
+          <div style="width: 50px; height: 50px;">
+            <img
+              style="border-radius: 50%; width: 50px; height: 50px; margin-left: 5px; margin-top: 5px; display: block"
+              src="{% static 'images/sin-foto.png' %}" alt="art">
+          </div>
 
-  <div class="container">
-    <div class="row">
-      <div class="col">
-      <button
-        class="bg-grey-light hover:bg-grey text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center"
-        style="width: 100%; height: 35px;">
-        <svg style="float: left;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-          stroke="currentColor" class="w-6 h-6">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
-        </svg>
-        <a>Me gusta</a>
-      </button>
+          <div>
+            <p style="height: 25px; margin-left: 15px; margin-top: 3px; font-weight: 600;">
+              {{comment.IdUsuario.username}}
+            </p>
+        </a>
+        <div>
+
+          <div style="border: 1px solid #e0dfdc; border-radius: 20px; background-color: #eaeaea; margin-left: 10px;">
+            <div class="container">
+              <div class="row">
+                <div class="col">
+                  <p><i>{{comment.Comentario}}</i></p>
+                </div>
+              </div>
+              <div class="row">
+                <div style="width: 320px; text-align: right; display: flex;" class="col">
+                  <svg style="width: 18px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                    class="w-6 h-6">
+                    <path fill-rule="evenodd"
+                      d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM6.262 6.072a8.25 8.25 0 1010.562-.766 4.5 4.5 0 01-1.318 1.357L14.25 7.5l.165.33a.809.809 0 01-1.086 1.085l-.604-.302a1.125 1.125 0 00-1.298.21l-.132.131c-.439.44-.439 1.152 0 1.591l.296.296c.256.257.622.374.98.314l1.17-.195c.323-.054.654.036.905.245l1.33 1.108c.32.267.46.694.358 1.1a8.7 8.7 0 01-2.288 4.04l-.723.724a1.125 1.125 0 01-1.298.21l-.153-.076a1.125 1.125 0 01-.622-1.006v-1.089c0-.298-.119-.585-.33-.796l-1.347-1.347a1.125 1.125 0 01-.21-1.298L9.75 12l-1.64-1.64a6 6 0 01-1.676-3.257l-.172-1.03z"
+                      clip-rule="evenodd" />
+                  </svg>
+                  <i style="height: 25px; font-size: 12px; margin-top: 2px ; ">{{comment.FechaComment}}</i>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
-    <div class="col">
-      <button data-toggle="modal" data-target="#Modal_Publicar"
-        class="bg-grey-light hover:bg-grey text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center"
-        style="width: 100%; height: 35px;">
-        <svg style="float: left;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-          stroke="currentColor" class="w-6 h-6">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
-        </svg>
-        <p>Comentar</p>
-      </button>
-    </div>
+    {% endfor %}
+    <div style="height: 15px;">
+
     </div>
   </div>
 
-  {% for comment in comments %}
-  <b>{{comment.IdUsuario.username}} comentó: </b>
-  <p>{{comment.Comentario}}</p>
-  <i>{{comment.FechaComment}}</i><br><br>
-  {% endfor %}
-
-</div>
-</div>
-
-</div>
 
 
 
@@ -174,13 +236,68 @@ justify-content: center">
 
 
 
-{% endblock right_sidebar %}
+  {% endblock right_sidebar %}
 
 
-{% block footer %}
-{% endblock footer %}
+  {% block footer %}
+  {% endblock footer %}
 
 
-{% block javascript %}
+  {% block javascript %}
 
-{% endblock javascript %}
+  <script>
+    let botonMG = false;
+    function cambiarcolormg() {
+      if (botonMG == true) {
+        document.getElementById('megusta').style.color = "";
+        botonMG = false;
+        console.log(botonMG);
+      } else if (botonMG == false) {
+        document.getElementById('megusta').style.color = "#0d6efd";
+        botonMG = true;
+      }
+
+    }
+    function traerfecha() {
+      let fecha = new Date();
+      console.log(fecha);
+
+      if (fecha.getMonth() == 0) {
+        dato = "Ene"
+      } else if (fecha.getMonth() == 1) {
+        dato = "Feb"
+      } else if (fecha.getMonth() == 2) {
+        dato = "Mar"
+      } else if (fecha.getMonth() == 3) {
+        dato = "Abr"
+      } else if (fecha.getMonth() == 4) {
+        dato = "May"
+      } else if (fecha.getMonth() == 5) {
+        dato = "Jun"
+      } else if (fecha.getMonth() == 6) {
+        dato = "Jul"
+      } else if (fecha.getMonth() == 7) {
+        dato = "Ago"
+      } else if (fecha.getMonth() == 8) {
+        dato = "Sep"
+      } else if (fecha.getMonth() == 9) {
+        dato = "Oct"
+      } else if (fecha.getMonth() == 10) {
+        dato = "Nov"
+      } else if (fecha.getMonth() == 11) {
+        dato = "Dic"
+      }
+
+
+      const contenido = document.getElementById("fechita");
+
+      fecha_imprimir = dato + '. ' + fecha.getDate() + ', ' + fecha.getFullYear();
+      console.log(fecha_imprimir);
+
+
+      contenido.innerHTML = fecha_imprimir
+
+    }
+  </script>
+
+  {% endblock javascript %}
