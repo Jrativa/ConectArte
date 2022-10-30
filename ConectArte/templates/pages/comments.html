@@ -20,13 +20,13 @@
 
 {% block content %}
 
-<div style="text-align: center; width: 100%; display: flex;
+<div id="foto" style="text-align: center; width: 100%; display: flex;
 justify-content: center">
   <div data-interval="false" id="carouselExampleControls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
       {% for img in post.Multimedia_Img.all %}
       <div class="carousel-item {% if forloop.first %} active {% endif %}">
-        <img class="d-block w-100" style="margin: auto !important;   display: block !important; border-radius: 15px;" src="{{img.imagen.url}}"
+        <img class="d-block w-100" style="height: 652px;  display: block !important; border-radius: 15px;" src="{{img.imagen.url}}"
           alt="">
       </div>
       {% endfor %}
@@ -186,7 +186,7 @@ justify-content: center">
       <div style="display: flex; ">
         <a href="{% url 'users:perfil' post.Autor.username %}">
           <div style="width: 50px; height: 50px;">
-            <img
+            <img 
               style="border-radius: 50%; width: 50px; height: 50px; margin-left: 5px; margin-top: 5px; display: block"
               src="{% static 'images/sin-foto.png' %}" alt="art">
           </div>
@@ -298,6 +298,19 @@ justify-content: center">
       contenido.innerHTML = fecha_imprimir
 
     }
+  </script>
+
+<script type="text/javascript">
+
+  $(document).ready(function(){
+  
+        var height = $(window).height();
+        height= height - 58;
+        console.log(height)
+  
+        $('#foto').height(height);
+  });
+  
   </script>
 
   {% endblock javascript %}
