@@ -47,11 +47,13 @@ class perfil(models.Model):
 
 #Se añaden los metodos following y followers para saber que usuarios siguie o quien sigue a ese usuario
     def following(self):
-        user_ids=SigueA.objects.filter(IdUsuario=self.usuario).values_list('IdUsuario_id', flat=True).distinct()
-        return Usuario.objects.filter(id__in=user_ids) 
-    
+        user_ids=SigueA.objects.filter(IdUsuario_id=self.id).values_list('IdUsuarioSeguido_id')
+        Dicc = Usuario.objects.filter(id__in=user_ids) 
+        return list(Dicc.values_list('username', flat=True))
+        
+
     def followers(self):
-        user_ids=SigueA.objects.filter(IdUsuarioSeguido=self.usuario).values_list('IdUsuarioSeguido_id', flat=True).distinct()
+        user_ids=SigueA.objects.filter(IdUsuarioSeguido=self.id).values_list('IdUsuarioSeguido_id', flat=True).distinct()
         return Usuario.objects.filter(id__in=user_ids) 
 
 post_save.connect(create_user_profile, sender=Usuario)
