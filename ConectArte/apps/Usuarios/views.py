@@ -9,6 +9,7 @@ from apps.Usuarios.models import *
 from django.db.models import Q
 from .forms import UserForm
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 
 User = get_user_model()
@@ -18,13 +19,13 @@ def followers(request):
     return render (request, 'users/followers.html')
 
 def follow(request, username):
-    IdUsuario = request.user
+    IdUsuario = request.user.id
     IdUsuarioSeguido = get_object_or_404(User, username=username)
-    UsuarioSeguido_id=IdUsuarioSeguido
+    UsuarioSeguido_id=IdUsuarioSeguido.id
     rel = SigueA(IdUsuario_id=IdUsuario, IdUsuarioSeguido_id=UsuarioSeguido_id )
     rel.save()
-    message.success(request, f'sigues a {username}')
-    return render (request, 'home.html')
+    messages.success(request, f'Ahora sigues a {username}')
+    return render (request, 'pages/home.html')
 
 def unfollow(request, username):
     IdUsuario = request.user
@@ -32,8 +33,8 @@ def unfollow(request, username):
     UsuarioSeguido_id=IdUsuarioSeguido
     rel = SigueA.objects.filter(IdUsuario_id=IdUsuario, IdUsuarioSeguido_id=UsuarioSeguido_id ).get()
     rel.delete()
-    message.success(request, f'ya no sigues a {username}')
-    return render (request, 'home.html')
+    messages.success(request, f'Ya no sigues a {username}')
+    return render (request, 'pages/home.html')
 
 
 class ProfileView(View):
