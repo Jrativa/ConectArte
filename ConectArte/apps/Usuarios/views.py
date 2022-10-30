@@ -41,10 +41,11 @@ class ProfileView(View):
     def get(self, request, username, *args, **kwargs):
         user = get_object_or_404(User, username=username)
         perfilUsuario = perfil.objects.get(usuario=user)
+        proflogued = perfil.objects.get(usuario=request.user)
         context={
-            
             'user':user,
-            'perfil':perfilUsuario
+            'perfil':perfilUsuario,
+            'profreq':proflogued
         }
         return render(request, 'users/perfilUsuario.html', context)
 

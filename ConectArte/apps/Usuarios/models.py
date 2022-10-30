@@ -2,9 +2,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 import os 
-from PIL import Image
 from django.db.models.signals import post_save
-from django.utils.text import slugify
+from requests import request
 
 
 def directorioUsuario(instancia, nombreArchivo):
@@ -20,6 +19,7 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 def guardarPerfil(sender, instance, **kwargs):
     instance.profile.save()
+
 
 
 class Categorias(models.Model):  
@@ -45,16 +45,18 @@ class perfil(models.Model):
     def __str__(self):
         return self.usuario.username
 
-#Se añaden los metodos following y followers para saber que usuarios siguie o quien sigue a ese usuario
-    def following(self):
-        user_ids=SigueA.objects.filter(IdUsuario_id=self.id).values_list('IdUsuarioSeguido_id')
+    #Se añaden los metodos following y followers para saber que usuarios siguie o quien sigue a ese usuario
+
+    def following(usuario):
+        print(usuario)
+        user_ids=SigueA.objects.filter(IdUsuario_id=usuario.id).values_list('IdUsuarioSeguido_id')
         Dicc = Usuario.objects.filter(id__in=user_ids) 
         return list(Dicc.values_list('username', flat=True))
         
 
     def followers(self):
         user_ids=SigueA.objects.filter(IdUsuarioSeguido=self.id).values_list('IdUsuarioSeguido_id', flat=True).distinct()
-        return Usuario.objects.filter(id__in=user_ids) 
+        return Usuario.objects.filter(id__in=user_ids)  
 
 post_save.connect(create_user_profile, sender=Usuario)
 post_save.connect(guardarPerfil, sender=Usuario)
