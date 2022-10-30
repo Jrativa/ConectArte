@@ -44,14 +44,14 @@ class perfil(models.Model):
     NumeroTelefono = models.BigIntegerField(blank=True, null=True)
     def __str__(self):
         return self.usuario.username
-        
+
 #Se añaden los metodos following y followers para saber que usuarios siguie o quien sigue a ese usuario
     def following(self):
-        user_ids=SigueA.objects.filter(IdUsuario=self.user).values_list('IdUsuario_id', flat=True)
+        user_ids=SigueA.objects.filter(IdUsuario=self.usuario).values_list('IdUsuario_id', flat=True).distinct()
         return Usuario.objects.filter(id__in=user_ids) 
-
+    
     def followers(self):
-        user_ids=SigueA.objects.filter(IdUsuarioSeguido=self.user).values_list('IdUsuarioSeguido_id', flat=True)
+        user_ids=SigueA.objects.filter(IdUsuarioSeguido=self.usuario).values_list('IdUsuarioSeguido_id', flat=True).distinct()
         return Usuario.objects.filter(id__in=user_ids) 
 
 post_save.connect(create_user_profile, sender=Usuario)
