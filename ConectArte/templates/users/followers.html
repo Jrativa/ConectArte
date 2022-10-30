@@ -19,7 +19,15 @@
         <i class='bx bx-user-plus'style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  font-weight: 500;
         margin-top: 2%; color: black; font-size: 30px;"></i>
         <span style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  font-weight: 500;
-        margin-top: 2%; color: black; font-size: 30px;">Seguidos</span>        
+        margin-top: 2%; color: black; font-size: 30px;">Usuarios a los que sigues:</span>    <br>
+
+        <ul>
+        {%for i in profreq.following%}
+        
+        <li>{{i}}</li>
+        {% endfor %}
+        </ul>
+
 
         
     </div>

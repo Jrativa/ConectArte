@@ -16,7 +16,11 @@ User = get_user_model()
 
 #Vista para abrir la nueva pagina de followers
 def followers(request):
-    return render (request, 'users/followers.html')
+    proflogued = perfil.objects.get(usuario=request.user)
+    context={
+        'profreq':proflogued
+    }
+    return render (request, 'users/followers.html', context)
 
 #Metodo para añadir un seguidor a la cuenta, 
 def follow(request, username):
