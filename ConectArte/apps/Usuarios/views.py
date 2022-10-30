@@ -18,23 +18,33 @@ User = get_user_model()
 def followers(request):
     return render (request, 'users/followers.html')
 
+#Metodo para añadir un seguidor a la cuenta, 
 def follow(request, username):
     IdUsuario = request.user.id
     IdUsuarioSeguido = get_object_or_404(User, username=username)
     UsuarioSeguido_id=IdUsuarioSeguido.id
     rel = SigueA(IdUsuario_id=IdUsuario, IdUsuarioSeguido_id=UsuarioSeguido_id )
     rel.save()
-    messages.success(request, f'Ahora sigues a {username}')
-    return render (request, 'pages/home.html')
+    user = get_object_or_404(User, username=username)
+    perfilUsuario = perfil.objects.get(usuario=user)
+    context={
+        'perfil':perfilUsuario,
+    }
+    return render(request, 'users/perfilUsuario.html', context)
 
+#Metodo para eliminar un seguidor a la cuenta, 
 def unfollow(request, username):
     IdUsuario = request.user
     IdUsuarioSeguido = get_object_or_404(User, username=username)
     UsuarioSeguido_id=IdUsuarioSeguido
     rel = SigueA.objects.filter(IdUsuario_id=IdUsuario, IdUsuarioSeguido_id=UsuarioSeguido_id ).get()
     rel.delete()
-    messages.success(request, f'Ya no sigues a {username}')
-    return render (request, 'pages/home.html')
+    user = get_object_or_404(User, username=username)
+    perfilUsuario = perfil.objects.get(usuario=user)
+    context={
+        'perfil':perfilUsuario,
+    }
+    return render(request, 'users/perfilUsuario.html', context)
 
 
 class ProfileView(View):
