@@ -15,7 +15,7 @@ class PublicacionForm(forms.ModelForm):
         'multiple': True,
         'title':"uploadfile"
         }),
-        required=True  
+        required=False  
         )
     Multimedia_Video = forms.FileField(widget=forms.ClearableFileInput(attrs={
         'class':"block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 ",

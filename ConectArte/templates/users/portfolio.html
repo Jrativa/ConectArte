@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block navbar %}
+{% include 'components/navbar.html' %}
+{% endblock navbar %}
+
+
+
+
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<div style="box-shadow: 0px 0px 0.5px 0.5px  #d1d1d1; border: 1px solid #e0dfdc;" class="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+  <div  class="sm:mx-auto sm:w-full sm:max-w-md">
+
+  </div>
+
+  {% comment %} <div  class="mt-8  sm:max-w-md">
+    <div style=" border-radius: 10px; width: 95%; margin-left: 2%;" class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+        <div>
+            
+            <img style=" width: 20%; border-radius: 50%; border: rgb(223, 216, 216) 5px solid; " class="mx-auto" src="{% static 'images/sin-foto.png' %}" alt="art">
+            
+
+            <h5 style="font-size: 15px 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  font-weight: 500;
+            margin-top: 2%; color: black; font-size: 30px;">{{user.first_name}} {{user.last_name}}</h5>
+            <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  font-weight: 500;
+            margin-top: 2%; color: black; font-size: px;">{{perfil.usuario.username}}</h1>
+            
+            <h1 style="font-size: 20px; color: rgb(164, 165, 167);">Bogotá D.C, Colombia</h1>
+            <h1 style="font-size: 20px; color: rgb(164, 165, 167);">Telefono: {{perfil.NumeroTelefono}}</h1>
+            <h1 style="font-size: 20px; color: rgb(164, 165, 167);">Fecha de unión: {{user.date_joined}}</h1>
+            <h1 href="" style="font-size: 20px; color: rgb(164, 165, 167);">Mas sobre mi: <a style=" text-decoration-line: underline;
+              ;color: rgb(0, 85, 255);" href="http://{{perfil.url}}">{{perfil.url}}</a></h1>
+        </div>
+    </div>
+  </div>
+
+  <div  class="mt-8  sm:max-w-md">
+    <div style=" border-radius: 10px; width: 95%; margin-left: 2%;" class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+        <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  font-weight: 500;
+        margin-top: 2%; color: black; font-size: 30px;">Sobre mi</h1>
+        <h1 style="font-size: 20px; color: rgb(99, 99, 100);">{{perfil.Descripcion}}</h1>
+
+        
+    </div>
+  </div>
+
+  <div  class="mt-8  sm:max-w-md">
+    <div style=" border-radius: 10px; width: 95%; margin-left: 2%;" class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+        <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  font-weight: 500;
+        margin-top: 2%; color: black; font-size: 30px;">Experiencia</h1>
+        <h1 style="font-size: 20px; color: rgb(99, 99, 100);">{{perfil.Experiencia}}</h1>
+
+        
+    </div>
+  </div>
+  <div  class="mt-8  sm:max-w-md">
+    <div style=" border-radius: 10px; width: 95%; margin-left: 2%;" class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+        <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  font-weight: 500;
+        margin-top: 2%; color: black; font-size: 30px;">Educación</h1>
+        <h1 style="font-size: 20px; color: rgb(99, 99, 100);">{{perfil.Educacion}}</h1>   
+    </div>
+  </div>
+
+
+  <div  class="mt-8  sm:max-w-md">
+    <div style=" border-radius: 10px; width: 95%; margin-left: 2%;" class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+        <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  font-weight: 500;
+        margin-top: 2%; color: black; font-size: 30px;">Intereses</h1>
+        <h1 style="font-size: 20px; color: rgb(99, 99, 100);">{{perfil.Intereses}}</h1>
+    </div>
+  </div> {% endcomment %}
+  <div>
+    {% for post in postsUser %}
+      <div style=" box-shadow: 0px 0px 0.5px 0.5px #d1d1d1; border: 1px solid #e0dfdc; border-radius: 5px; background-color: rgb(255, 255, 255); width: 100%; margin-top: 7%;">
+        <div>
+          <div style="display: flex;"> 
+            <a  href="{% url 'users:perfil' post.Autor.username %}">
+            <img style="border-radius: 50%; width: 50px; height: 50px; margin-left: 5px; margin-top: 5px;" src="{% static 'images/sin-foto.png' %}" alt="art">
+            <div>
+                <p style="height: 25px; margin-left: 5px; margin-top: 3px; font-weight: 600;">{{post.Autor.first_name}} {{post.Autor.last_name}} </p>
+            </a>
+              <div style="display: flex; height: 30px;">
+              <p style="height: 25px; margin-left: 5px; font-size: 12px; margin-top: 2px;">{{post.FechaPublicacion}}</p><svg style="width: 18px; margin-left: 2%;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM6.262 6.072a8.25 8.25 0 1010.562-.766 4.5 4.5 0 01-1.318 1.357L14.25 7.5l.165.33a.809.809 0 01-1.086 1.085l-.604-.302a1.125 1.125 0 00-1.298.21l-.132.131c-.439.44-.439 1.152 0 1.591l.296.296c.256.257.622.374.98.314l1.17-.195c.323-.054.654.036.905.245l1.33 1.108c.32.267.46.694.358 1.1a8.7 8.7 0 01-2.288 4.04l-.723.724a1.125 1.125 0 01-1.298.21l-.153-.076a1.125 1.125 0 01-.622-1.006v-1.089c0-.298-.119-.585-.33-.796l-1.347-1.347a1.125 1.125 0 01-.21-1.298L9.75 12l-1.64-1.64a6 6 0 01-1.676-3.257l-.172-1.03z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            </div>
+          </div>
+
+          <h2 style="margin-left: 5px;">{{post.DescripcionPublicacion}}</h2>
+          <div class="py-2">
+              <div  data-interval="false" id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                  {% for img in post.Multimedia_Img.all %}
+                  <div class="carousel-item {% if forloop.first %} active {% endif %}">                
+                    <img class="d-block w-100" src="{{img.imagen.url}}" alt="">
+                  </div>  
+                  {% endfor %}
+                  
+                  {% for video in post.Multimedia_Video.all %}
+                  <div class="carousel-item {% if forloop.first %} active {% endif %}">                
+                    <video class="embed-responsive embed-responsive-16by9" controls="controls" >
+                      <source src="{{video.video.url}}" type="video/mp4" />
+                    </video>                  
+                  </div>  
+                  {% endfor %}
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>   
+              </div>
+              
+          </div>
+          <hr>
+        
+                <button class="bg-grey-light hover:bg-grey text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center" style="width: 100%; height: 35px; margin-left: 25%;">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+                  </svg>                            
+                  <a href = "{% url 'publicacion:comments' post.pk %}">Interactuar con la publicación</a>
+                </button>
+        </div>
+
+      </div>
+
+    {% endfor %}
+  </div>
+  <div>
+
+  </div>
+
+</div>
+{% endblock content %}
+
+
+{% block right_sidebar %}
+{% endblock right_sidebar %}
+
+
+
+{% block footer %}
+{% endblock footer %}
+
+{% block javascript %}{% endblock javascript %}
+
