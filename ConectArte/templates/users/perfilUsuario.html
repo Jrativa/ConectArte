@@ -11,21 +11,24 @@
 {% block content %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-<div style="box-shadow: 0px 0px 0.5px 0.5px  #d1d1d1; border: 1px solid #e0dfdc;" class="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-  <div  class="sm:mx-auto sm:w-full sm:max-w-md">
+<div style="box-shadow: 0px 0px 0.5px 0.5px  #d1d1d1; border: 1px solid #e0dfdc;"
+  class="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-md">
 
   </div>
 
-  <div  class="mt-8  sm:max-w-md">
-    <div style=" border-radius: 10px; width: 95%; margin-left: 2%;" class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-        <div>
-            
-            <img style=" width: 20%; border-radius: 50%; border: rgb(223, 216, 216) 5px solid; " class="mx-auto" src="{% static 'images/sin-foto.png' %}" alt="art">
-            
+  <div class="mt-8  sm:max-w-md">
+    <div style=" border-radius: 10px; width: 95%; margin-left: 2%;"
+      class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+      <div>
 
-            <h5 style="font-size: 15px 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  font-weight: 500;
+        <img style=" width: 20%; border-radius: 50%; border: rgb(223, 216, 216) 5px solid; " class="mx-auto"
+          src="{% static 'images/sin-foto.png' %}" alt="art">
+
+
+        <h5 style="font-size: 15px 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  font-weight: 500;
             margin-top: 2%; color: black; font-size: 30px;">{{user.first_name}} {{user.last_name}}</h5>
-            <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  font-weight: 500;
+        <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  font-weight: 500;
             margin-top: 2%; color: black; font-size: px;">{{perfil.usuario.username}}</h1>
 
 
@@ -34,12 +37,33 @@
             {%if request.user.is_authenticated%}  
               {%if request.user.username != perfil.usuario.username %}
                   {%if perfil.usuario.username not in profreq.following%}
-                    <button><a class="boton-follow" href="{% url 'users:follow' perfil.usuario %}">Follow</a></button>
+                    <button class="Followers"><a  href="{% url 'users:follow' perfil.usuario %}">Seguir</a></button>
                   {%else%}
-                    <button><a class="boton-unfollow" href="{% url 'users:unfollow' perfil.usuario %}">Unfollow</a></button>
+                    <button class="Followers"><a  href="{% url 'users:unfollow' perfil.usuario %}">Siguiendo</a></button>
                   {%endif%}
               {%endif%}
             {%endif%}
+
+            
+            <style>
+
+              .Followers{
+                margin-left: 70%;
+                margin-top: -33px; 
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-weight: 500; background-color: rgb(153, 181, 198); 
+                color: white;
+                text-align: center; 
+                border-radius: 10px; 
+                height: 30px; 
+                width: 30%;
+              }
+
+              .Followers:hover{ 
+                  transition: 0.6s;
+                  background-color: rgb(79, 79, 208);
+              }
+            </style>
 
            
             
@@ -48,61 +72,67 @@
             <h1 style="font-size: 20px; color: rgb(164, 165, 167);">Fecha de unión: {{user.date_joined}}</h1>
             <h1 href="" style="font-size: 20px; color: rgb(164, 165, 167);">Mas sobre mi: <a style=" text-decoration-line: underline;
               ;color: rgb(0, 85, 255);" href="http://{{perfil.url}}">{{perfil.url}}</a></h1>
- 
-
-          
 
 
-        </div>
+
+
+
+      </div>
     </div>
   </div>
 
-  <div  class="mt-8  sm:max-w-md">
-    <div style=" border-radius: 10px; width: 95%; margin-left: 2%;" class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-        <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  font-weight: 500;
+  <div class="mt-8  sm:max-w-md">
+    <div style=" border-radius: 10px; width: 95%; margin-left: 2%;"
+      class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+      <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  font-weight: 500;
         margin-top: 2%; color: black; font-size: 30px;">Sobre mi</h1>
-        <h1 style="font-size: 20px; color: rgb(99, 99, 100);">{{perfil.Descripcion}}</h1>
+      <h1 style="font-size: 20px; color: rgb(99, 99, 100);">{{perfil.Descripcion}}</h1>
 
-        
+
     </div>
   </div>
 
-  <div  class="mt-8  sm:max-w-md">
-    <div style=" border-radius: 10px; width: 95%; margin-left: 2%;" class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-        <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  font-weight: 500;
+  <div class="mt-8  sm:max-w-md">
+    <div style=" border-radius: 10px; width: 95%; margin-left: 2%;"
+      class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+      <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  font-weight: 500;
         margin-top: 2%; color: black; font-size: 30px;">Experiencia</h1>
-        <h1 style="font-size: 20px; color: rgb(99, 99, 100);">{{perfil.Experiencia}}</h1>
+      <h1 style="font-size: 20px; color: rgb(99, 99, 100);">{{perfil.Experiencia}}</h1>
 
-        
+
     </div>
   </div>
 
-  <div  class="mt-8  sm:max-w-md">
-    <div style=" border-radius: 10px; width: 95%; margin-left: 2%;" class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-        <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  font-weight: 500;
+  <div class="mt-8  sm:max-w-md">
+    <div style=" border-radius: 10px; width: 95%; margin-left: 2%;"
+      class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+      <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  font-weight: 500;
         margin-top: 2%; color: black; font-size: 30px;">Educación</h1>
-        <h1 style="font-size: 20px; color: rgb(99, 99, 100);">{{perfil.Educacion}}</h1>
+      <h1 style="font-size: 20px; color: rgb(99, 99, 100);">{{perfil.Educacion}}</h1>
 
-        
+
     </div>
   </div>
 
 
-  <div  class="mt-8  sm:max-w-md">
-    <div style=" border-radius: 10px; width: 95%; margin-left: 2%;" class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-        <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  font-weight: 500;
+  <div class="mt-8  sm:max-w-md">
+    <div style=" border-radius: 10px; width: 95%; margin-left: 2%;"
+      class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+      <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  font-weight: 500;
         margin-top: 2%; color: black; font-size: 30px;">Intereses</h1>
-        <h1 style="font-size: 20px; color: rgb(99, 99, 100);">{{perfil.Intereses}}</h1>
+      <h1 style="font-size: 20px; color: rgb(99, 99, 100);">{{perfil.Intereses}}</h1>
 
-       
+
     </div>
   </div>
   <div>
-    <a href="{% url 'users:editProfile' %}" class="flex items-center space-x-2 p-2 hover:bg-gray-200 rounded-lg transition-all dark:text-dark-txt dark:hover:bg-dark-third">
+    <a href="{% url 'users:editProfile' %}"
+      class="flex items-center space-x-2 p-2 hover:bg-gray-200 rounded-lg transition-all dark:text-dark-txt dark:hover:bg-dark-third">
       <i class='bx bx-right-arrow-alt'></i>
       <span class="font-semibold">Editar perfil</span>
     </a>
-    <a href="{% url 'account_login' %}" class="flex items-center space-x-2 p-2 hover:bg-gray-200 rounded-lg transition-all dark:text-dark-txt dark:hover:bg-dark-third">
+    <a href="{% url 'account_login' %}"
+      class="flex items-center space-x-2 p-2 hover:bg-gray-200 rounded-lg transition-all dark:text-dark-txt dark:hover:bg-dark-third">
       <i class='bx bx-left-arrow-alt'></i>
       <span class="font-semibold">Regresar al inicio</span>
     </a>
@@ -124,4 +154,3 @@
 {% endblock footer %}
 
 {% block javascript %}{% endblock javascript %}
-

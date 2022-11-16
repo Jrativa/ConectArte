@@ -6,6 +6,7 @@ from django.views.generic import TemplateView, View, ListView
 from django.contrib.auth import get_user_model
 from requests import request
 from apps.Usuarios.models import *
+from apps.publicaciones.models import *
 from django.db.models import Q
 from .forms import UserForm
 from django.contrib.auth.decorators import login_required
@@ -49,6 +50,30 @@ def unfollow(request, username):
         'perfil':perfilUsuario,
     }
     return render(request, 'users/perfilUsuario.html', context)
+
+#Metodo para eliminar un seguidor a la cuenta, 
+def portfolio(request, username):
+    user = get_object_or_404(User, username=username)
+    perfilUsuario = perfil.objects.get(usuario=user)
+    postsUser = Publicacion.objects.filter(usuario=user)
+    context={
+        'perfil':perfilUsuario,
+        'postsUser' : postsUser,
+    }
+    return render(request, 'users/portfolio.html', context)
+
+class PortfolioView(View):
+    def get(self, request, username, *args, **kwargs):
+        user = get_object_or_404(User, username=username)
+        perfilUsuario = perfil.objects.get(usuario=user)
+        postsUser = Publicacion.objects.filter(Autor=user)
+        context={
+            'user':user,
+            'perfil':perfilUsuario,
+            'postsUser' : postsUser,
+        }
+        return render(request, 'users/portfolio.html', context)
+
 
 
 class ProfileView(View):
