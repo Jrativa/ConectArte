@@ -895,32 +895,71 @@
   </div> {% endcomment %}
   <div>
 
+    <div>
+
+    </div>
+
+
+    <!--
+      INFORMACIÓN PERSONAL
+    -->
+    <div class="container-fluid tm-container-content tm-mt-60">
+      <div>
+        <h2 class="tm-text-primary">
+          INFORMACIÓN PERSONAL
+        </h2>
+        <div class="d-flex justify-content-end align-items-center">
+          
+        </div>
+      </div>
+    <hr>
+    <!-- GALERIA  -->
+    </div> <!-- container-fluid, tm-container-content -->
 
     <div class="container-fluid tm-container-content tm-mt-60">
-      <div class="row mb-4">
-        <h2 class="col-6 tm-text-primary">
-          Galeria
+      <div>
+        <h2 class="tm-text-primary">
+          GALERIA
         </h2>
-        <div class="col-6 d-flex justify-content-end align-items-center">
+        <div class="d-flex justify-content-end align-items-center">
           <form action="" class="tm-text-primary">
-            Page <input type="text" value="1" size="1" class="tm-input-paging tm-text-primary"> of 200
+            Cantidad de fotos: <input  type="text" value="5" class="tm-input-paging tm-text-primary"> 
           </form>
         </div>
       </div>
-      <div class="row tm-mb-90 tm-gallery">
-        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
+    
+      <hr>
+
+    </div> <!-- container-fluid, tm-container-content -->
+
+    <!-- PUBLICACIONES  -->
+
+    <div class="container-fluid tm-container-content tm-mt-60">
+      <div>
+        <h2 class="tm-text-primary">
+          PUBLICACIONES
+        </h2>
+        <div class="d-flex justify-content-end align-items-center">
+          <form action="" class="tm-text-primary">
+            Cantidad de publicaciones: <input  type="text" value="5" class="tm-input-paging tm-text-primary"> 
+          </form>
+        </div>
+      </div>
+      <div>
+        <div>
           {% for post in postsUser %}
+          <div class="col-md-4"> 
           <figure class="effect-ming tm-video-item">
             {% for img in post.Multimedia_Img.all %}
-            <img src="{{img.imagen.url}}" alt="" class="img-fluid" style="width: 100%">
+            <img src="{{img.imagen.url}}" alt="" class="img-fluid">
             {% endfor %}
             <figcaption class="d-flex align-items-center justify-content-center">
               <h2>Ver</h2>
             </figcaption>
           </figure>
+        </div>
          <!--  <div class="d-flex justify-content-between tm-text-gray">
-            <span class="tm-text-gray-light">14 Oct 2020</span>
-            <span>16,100 views</span>
+            
           </div> -->
           {% endfor %}
         </div>
