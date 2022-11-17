@@ -22,7 +22,7 @@ class PublicacionForm(forms.ModelForm):
         'multiple': True,
         'title':"uploadfile"
         }),
-        required= True  
+        required= False  
         )
     class Meta:
         model = Publicacion 
