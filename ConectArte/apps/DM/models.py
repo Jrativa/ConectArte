@@ -1,3 +1,10 @@
 from django.db import models
+import uuid
 
-# Create your models here.
+class ModelBase(models.Model):
+    id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)
+    tiempo = models.DateTimeField(auto_now_add=True)
+    actualizar = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        abstract = True
