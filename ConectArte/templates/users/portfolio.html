@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block navbar %}
+
 {% include 'components/navbar.html' %}
 {% endblock navbar %}
 
@@ -12,177 +13,6 @@
 
 
 <style>
-  #loader-wrapper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1001;
-  }
-
-  #loader {
-    display: block;
-    position: relative;
-    left: 50%;
-    top: 50%;
-    width: 150px;
-    height: 150px;
-    margin: -75px 0 0 -75px;
-    border-radius: 50%;
-    border: 3px solid transparent;
-    border-top-color: #3498db;
-
-    -webkit-animation: spin 2s linear infinite;
-    /* Chrome, Opera 15+, Safari 5+ */
-    animation: spin 2s linear infinite;
-    /* Chrome, Firefox 16+, IE 10+, Opera */
-
-    z-index: 1002;
-  }
-
-  #loader:before {
-    content: "";
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    right: 5px;
-    bottom: 5px;
-    border-radius: 50%;
-    border: 3px solid transparent;
-    border-top-color: #e74c3c;
-
-    -webkit-animation: spin 3s linear infinite;
-    /* Chrome, Opera 15+, Safari 5+ */
-    animation: spin 3s linear infinite;
-    /* Chrome, Firefox 16+, IE 10+, Opera */
-  }
-
-  #loader:after {
-    content: "";
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    right: 15px;
-    bottom: 15px;
-    border-radius: 50%;
-    border: 3px solid transparent;
-    border-top-color: #f9c922;
-
-    -webkit-animation: spin 1.5s linear infinite;
-    /* Chrome, Opera 15+, Safari 5+ */
-    animation: spin 1.5s linear infinite;
-    /* Chrome, Firefox 16+, IE 10+, Opera */
-  }
-
-  @-webkit-keyframes spin {
-    0% {
-      -webkit-transform: rotate(0deg);
-      /* Chrome, Opera 15+, Safari 3.1+ */
-      -ms-transform: rotate(0deg);
-      /* IE 9 */
-      transform: rotate(0deg);
-      /* Firefox 16+, IE 10+, Opera */
-    }
-
-    100% {
-      -webkit-transform: rotate(360deg);
-      /* Chrome, Opera 15+, Safari 3.1+ */
-      -ms-transform: rotate(360deg);
-      /* IE 9 */
-      transform: rotate(360deg);
-      /* Firefox 16+, IE 10+, Opera */
-    }
-  }
-
-  @keyframes spin {
-    0% {
-      -webkit-transform: rotate(0deg);
-      /* Chrome, Opera 15+, Safari 3.1+ */
-      -ms-transform: rotate(0deg);
-      /* IE 9 */
-      transform: rotate(0deg);
-      /* Firefox 16+, IE 10+, Opera */
-    }
-
-    100% {
-      -webkit-transform: rotate(360deg);
-      /* Chrome, Opera 15+, Safari 3.1+ */
-      -ms-transform: rotate(360deg);
-      /* IE 9 */
-      transform: rotate(360deg);
-      /* Firefox 16+, IE 10+, Opera */
-    }
-  }
-
-  #loader-wrapper .loader-section {
-    position: fixed;
-    top: 0;
-    width: 51%;
-    height: 100%;
-    background: #222222;
-    z-index: 1001;
-    -webkit-transform: translateX(0);
-    /* Chrome, Opera 15+, Safari 3.1+ */
-    -ms-transform: translateX(0);
-    /* IE 9 */
-    transform: translateX(0);
-    /* Firefox 16+, IE 10+, Opera */
-  }
-
-  #loader-wrapper .loader-section.section-left {
-    left: 0;
-  }
-
-  #loader-wrapper .loader-section.section-right {
-    right: 0;
-  }
-
-  /* Loaded */
-  .loaded #loader-wrapper .loader-section.section-left {
-    -webkit-transform: translateX(-100%);
-    /* Chrome, Opera 15+, Safari 3.1+ */
-    -ms-transform: translateX(-100%);
-    /* IE 9 */
-    transform: translateX(-100%);
-    /* Firefox 16+, IE 10+, Opera */
-
-    -webkit-transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
-    transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
-  }
-
-  .loaded #loader-wrapper .loader-section.section-right {
-    -webkit-transform: translateX(100%);
-    /* Chrome, Opera 15+, Safari 3.1+ */
-    -ms-transform: translateX(100%);
-    /* IE 9 */
-    transform: translateX(100%);
-    /* Firefox 16+, IE 10+, Opera */
-
-    -webkit-transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
-    transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
-  }
-
-  .loaded #loader {
-    opacity: 0;
-    -webkit-transition: all 0.3s ease-out;
-    transition: all 0.3s ease-out;
-  }
-
-  .loaded #loader-wrapper {
-    visibility: hidden;
-
-    -webkit-transform: translateY(-100%);
-    /* Chrome, Opera 15+, Safari 3.1+ */
-    -ms-transform: translateY(-100%);
-    /* IE 9 */
-    transform: translateY(-100%);
-    /* Firefox 16+, IE 10+, Opera */
-
-    -webkit-transition: all 0.3s 1s ease-out;
-    transition: all 0.3s 1s ease-out;
-  }
-
   p {
     line-height: 1.8;
   }
@@ -828,99 +658,137 @@
   integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
 
-  <div style="box-shadow: 0px 0px 0.5px 0.5px  #d1d1d1; border: 1px solid #e0dfdc; width: 100%;"
+<div style="box-shadow: 0px 0px 0.5px 0.5px  #d1d1d1; border: 1px solid #e0dfdc; width: 100%;"
   class="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
 
-  {% comment %} <div class="mt-8  sm:max-w-md">
-    <div style=" border-radius: 10px; width: 95%; margin-left: 2%;"
-      class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-      <div>
 
-        <img style=" width: 20%; border-radius: 50%; border: rgb(223, 216, 216) 5px solid; " class="mx-auto"
-          src="{% static 'images/sin-foto.png' %}" alt="art">
-
-
-        <h5 style="font-size: 15px 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  font-weight: 500;
-            margin-top: 2%; color: black; font-size: 30px;">{{user.first_name}} {{user.last_name}}</h5>
-        <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  font-weight: 500;
-            margin-top: 2%; color: black; font-size: px;">{{perfil.usuario.username}}</h1>
-
-        <h1 style="font-size: 20px; color: rgb(164, 165, 167);">Bogotá D.C, Colombia</h1>
-        <h1 style="font-size: 20px; color: rgb(164, 165, 167);">Telefono: {{perfil.NumeroTelefono}}</h1>
-        <h1 style="font-size: 20px; color: rgb(164, 165, 167);">Fecha de unión: {{user.date_joined}}</h1>
-        <h1 href="" style="font-size: 20px; color: rgb(164, 165, 167);">Mas sobre mi: <a style=" text-decoration-line: underline;
-              ;color: rgb(0, 85, 255);" href="http://{{perfil.url}}">{{perfil.url}}</a></h1>
-      </div>
-    </div>
-  </div>
-
-  <div class="mt-8  sm:max-w-md">
-    <div style=" border-radius: 10px; width: 95%; margin-left: 2%;"
-      class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-      <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  font-weight: 500;
-        margin-top: 2%; color: black; font-size: 30px;">Sobre mi</h1>
-      <h1 style="font-size: 20px; color: rgb(99, 99, 100);">{{perfil.Descripcion}}</h1>
-
-
-    </div>
-  </div>
-
-  <div class="mt-8  sm:max-w-md">
-    <div style=" border-radius: 10px; width: 95%; margin-left: 2%;"
-      class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-      <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  font-weight: 500;
-        margin-top: 2%; color: black; font-size: 30px;">Experiencia</h1>
-      <h1 style="font-size: 20px; color: rgb(99, 99, 100);">{{perfil.Experiencia}}</h1>
-
-
-    </div>
-  </div>
-  <div class="mt-8  sm:max-w-md">
-    <div style=" border-radius: 10px; width: 95%; margin-left: 2%;"
-      class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-      <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  font-weight: 500;
-        margin-top: 2%; color: black; font-size: 30px;">Educación</h1>
-      <h1 style="font-size: 20px; color: rgb(99, 99, 100);">{{perfil.Educacion}}</h1>
-    </div>
-  </div>
-
-
-  <div class="mt-8  sm:max-w-md">
-    <div style=" border-radius: 10px; width: 95%; margin-left: 2%;"
-      class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-      <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  font-weight: 500;
-        margin-top: 2%; color: black; font-size: 30px;">Intereses</h1>
-      <h1 style="font-size: 20px; color: rgb(99, 99, 100);">{{perfil.Intereses}}</h1>
-    </div>
-  </div> {% endcomment %}
   <div>
 
-
+    <!--
+      INFORMACIÓN PERSONAL
+    -->
     <div class="container-fluid tm-container-content tm-mt-60">
-      <div class="row mb-4">
-        <h2 class="col-6 tm-text-primary">
-          Galeria
-        </h2>
-        <div class="col-6 d-flex justify-content-end align-items-center">
-          <form action="" class="tm-text-primary">
-            Page <input type="text" value="1" size="1" class="tm-input-paging tm-text-primary"> of 200
-          </form>
+      <div style="margin: 2%;">
+        <div class="position-relative d-flex align-items-center justify-content-center">
+          <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">Información</h1>
+          <h1   class="position-absolute text-uppercase tm-text-primary">Información personal</h1>
         </div>
+
+
+        <!-- Header End -->
+
+
+        <!-- About Start -->
+        <div class="container-fluid py-5" id="about">
+          <div class="container">
+
+            <div class="row align-items-center">
+              <div class="col-lg-5 pb-4 pb-lg-0">
+                <img class="img-fluid rounded w-100" src="{% static 'images/sin-foto.png' %}" alt="">
+              </div>
+              <div class="col-lg-7">
+                <h3 class="mb-4">Usuario</h3>
+                <p>(descripcion artista)</p>
+                <div class="row mb-3">
+                  <div class="col-sm-6 py-2">
+                    <h6>Nombres: <span class="text-secondary">(Nombre artista)</span></h6>
+                  </div>
+                  <div class="col-sm-6 py-2">
+                    <h6>Apellidos: <span class="text-secondary">(Apellido artista)</span></h6>
+                  </div>
+                  <div class="col-sm-6 py-2">
+                    <h6>Ubicación: <span class="text-secondary">Bogotá</span></h6>
+                  </div>
+                  <div class="col-sm-6 py-2">
+                    <h6>Telefono: <span class="text-secondary">(Telefono artista)</span></h6>
+                  </div>
+                  <div class="col-sm-6 py-2">
+                    <h6>Fecha de unión: <span class="text-secondary">(Fecha artista)</span></h6>
+                  </div>
+                  <div class="col-sm-6 py-2">
+                    <h6>Mas sobre mi: <span class="text-secondary">(url artista)</span></h6>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Qualification Start -->
+        <div class="container-fluid py-5" id="qualification">
+          <div class="container">
+            <div class="position-relative d-flex align-items-center justify-content-center">
+              <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">Experiencia</h1>
+              <h1   class="position-absolute text-uppercase tm-text-primary">Experiencia y educación</h1>
+            </div>
+            <div class="row align-items-center">
+              <div class="col-lg-6">
+                <h3 class="mb-4">Educación</h3>
+                <div class="border-left border-primary pt-2 pl-4 ml-2">
+                  <div class="position-relative mb-4">
+                    <i class="far fa-dot-circle text-primary position-absolute" style="top: 2px; left: -32px;"></i>
+                    
+                    <p>(educación)</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <h3 class="mb-4">Experiencia</h3>
+                <div class="border-left border-primary pt-2 pl-4 ml-2">
+                  
+                  <div class="position-relative mb-4">
+                    <i class="far fa-dot-circle text-primary position-absolute" style="top: 2px; left: -32px;"></i>
+                    <p>(Experiencia)</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Qualification End -->
+
       </div>
-      <div class="row tm-mb-90 tm-gallery">
-        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
+    </div>
+    <hr>
+  </div>
+
+  <!-- PUBLICACIONES  -->
+
+  <div class="container-fluid tm-container-content tm-mt-60">
+    <div>
+      <div class="position-relative d-flex align-items-center justify-content-center">
+        <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">Publicaciones</h1>
+        <h1   class="position-absolute text-uppercase tm-text-primary">Publicaciones</h1>
+      </div>
+      <div class="d-flex justify-content-end align-items-center">
+        <form action="" class="tm-text-primary">
+          Cantidad de publicaciones: <input type="text" value="5" class="tm-input-paging tm-text-primary">
+        </form>
+      </div>
+    </div>
+    <div>
+      <div>
+
+        <div style="margin: 3%" class="row">
           {% for post in postsUser %}
-          <figure class="effect-ming tm-video-item">
-            {% for img in post.Multimedia_Img.all %}
-            <img src="{{img.imagen.url}}" alt="" class="img-fluid" style="width: 100%">
-            {% endfor %}
-            <figcaption class="d-flex align-items-center justify-content-center">
-              <h2>Ver</h2>
-            </figcaption>
-          </figure>
-         <!--  <div class="d-flex justify-content-between tm-text-gray">
-            <span class="tm-text-gray-light">14 Oct 2020</span>
-            <span>16,100 views</span>
+          <div class="col-md-4">
+            <figure style="height: 300px;" class="effect-ming tm-video-item">
+              {% for img in post.Multimedia_Img.all %}
+              <img style="height: auto; width: auto; vertical-align: middle;" src="{{img.imagen.url}}" alt=""
+                class="img-fluid">
+              {% endfor %}
+              <a href="/publicacion/publicacion/3/">
+                <figcaption class="d-flex align-items-center justify-content-center">
+                  <h2>Ver</h2>
+                </figcaption>
+              </a>
+            </figure>
+          </div>
+
+          <!--  <div class="d-flex justify-content-between tm-text-gray">
+            
           </div> -->
           {% endfor %}
         </div>
@@ -930,10 +798,8 @@
     </div> <!-- container-fluid, tm-container-content -->
 
   </div>
-  <div>
 
-  </div>
-
+</div>
 </div>
 {% endblock content %}
 
