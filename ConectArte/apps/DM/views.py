@@ -1,3 +1,5 @@
 from django.shortcuts import render
+from apps.DM.models import *
 
-# Create your views here.
+def mensajes_privados(request, username, *args, **kwargs):
+    

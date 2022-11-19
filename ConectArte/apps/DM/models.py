@@ -13,9 +13,6 @@ class ModelBase(models.Model):
     class Meta:
         abstract = True
 
-
-
-
 class CanalMensaje(ModelBase):
     canal = models.ForeignKey("Canal", on_delete=models.CASCADE)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -33,12 +30,10 @@ class CanalQuerySet(models.QuerySet):
     def solo_dos(self):
         return self.annotate(num_usuarios = Count("usuarios").filter(num_usuarios=2))
 
-
 class CanalManager(models.Manager):
     
     def get_queryset(self, *args, **kwargs):
         return CanalQuerySet(self.model, using=self._db)
-
 
 class Canal(ModelBase):
     usuarios = models.ManyToManyField(User, blank=True, through=CanalUsuario)
