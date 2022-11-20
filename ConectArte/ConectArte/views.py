@@ -5,23 +5,29 @@ from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from apps.Usuarios.models import Usuario
 from apps.publicaciones.forms import *
 from apps.publicaciones.models import *
+from apps.DM.models import *
+
 
 
 
 class HomeView(LoginRequiredMixin, View):
+
     def get(self, request, *args, **kwargs):
         userLoggedIn = request.user
+        inbox = Canal.objects.filter(canalusuario__usuario__in=[request.user.id])
         form = PublicacionForm()
         posts = Publicacion.objects.all()
 
         context={
                 'posts': posts,
                 'form' : form,
+                'inbox':inbox
             }
         return render(request, 'pages/home.html', context)
     
     def post(self, request, *args, **kwargs):
         userLoggedIn = request.user
+        inbox = Canal.objects.filter(canalusuario__usuario__in=[request.user.id])
         posts = Publicacion.objects.all()
         form = PublicacionForm(request.POST, request.FILES)
         files = request.FILES.getlist('Multimedia_Img')
@@ -43,6 +49,7 @@ class HomeView(LoginRequiredMixin, View):
         context={
                 'form' : form,
                 'posts': posts,
+                'inbox':inbox
             }
         return render(request, 'pages/home.html', context)
         
