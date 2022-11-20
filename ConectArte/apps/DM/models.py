@@ -61,8 +61,6 @@ class CanalManager(models.Manager):
 		if qs.exists():
 			return qs.order_by("tiempo").first(), False #obj, created
 
-
-
 		obj_canal =Canal.objects.create()
 		canal_usuario_a = CanalUsuario(usuario=username_a, canal=obj_canal)
 		canal_usuario_b = CanalUsuario(usuario=username_b, canal=obj_canal)

@@ -88,8 +88,12 @@
 
 	<div id="contenedor_ms">
 	{% for mensaje in object.canalmensaje_set.all %}	
-		<div class="div_ms {% if request.user == mensaje.usuario %}mis_mensajes
-		{% else %} tus_mensajes{% endif %}">
+		<div class="div_ms 
+		{% if request.user == mensaje.usuario %}
+		mis_mensajes
+		{% else %} 
+		tus_mensajes
+		{% endif %}">
 			<small>{{mensaje.usuario}}</small>
 			<p>{{mensaje.texto}}</p>
 			<small>{{mensaje.tiempo}}</small>
@@ -97,6 +101,7 @@
 
 	{% endfor %}
 	</div>
+	
 	<div class="div_form_ms">
 		<form id="form_submit" action="{{ request.path }}" method="POST">
 			{% csrf_token %}
@@ -110,7 +115,7 @@
 	</form>
 
 	</div>
-<!--
+
 <script>
 
 	const MsgForm = document.getElementById("form_submit")
@@ -124,7 +129,7 @@
 		const  targetDate = event.target 
 		const formData = new FormData(targetDate)
 
-		const xhr = new XMLHttpRequest() // ajax fetch
+		const xhr = new XMLHttpRequest() 
 
 
 		const endpoint = MsgForm.getAttribute("action")
@@ -162,5 +167,5 @@
 
 
 </script>
--->
+
 {% endblock %}
