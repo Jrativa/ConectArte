@@ -1,5 +1,7 @@
 from django.db import models
 from django.conf import settings
+from apps.Usuarios.models import *
+
 import uuid
 from django.apps import apps
 from django.db.models import Count
@@ -59,16 +61,11 @@ class CanalManager(models.Manager):
 		if qs.exists():
 			return qs.order_by("tiempo").first(), False #obj, created
 
-		User1 = apps.get_model("auth", "User")
 
-        
-		usuario_a = User1.objects.get(username=username_a)
-		usuario_b = User.objects.get(username=username_b)
 
-		
 		obj_canal =Canal.objects.create()
-		canal_usuario_a = CanalUsuario(usuario=usuario_a, canal=obj_canal)
-		canal_usuario_b = CanalUsuario(usuario=usuario_b, canal=obj_canal)
+		canal_usuario_a = CanalUsuario(usuario=username_a, canal=obj_canal)
+		canal_usuario_b = CanalUsuario(usuario=username_b, canal=obj_canal)
 		CanalUsuario.objects.bulk_create([canal_usuario_a, canal_usuario_b])
 		return obj_canal, True
 

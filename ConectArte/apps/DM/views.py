@@ -4,12 +4,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 from .models import CanalMensaje, CanalUsuario, Canal
 from django.http import HttpResponse, Http404, JsonResponse
-
+from django.shortcuts import render, get_object_or_404, redirect
 from .forms import FormMensajes
-
 from django.views.generic.edit import FormMixin
-
 from django.views.generic import View
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 class Inbox(View):
 	def get(self, request):
@@ -99,15 +99,18 @@ class DetailMs(LoginRequiredMixin, CanalFormMixin, DetailView):
 
 def mensajes_privados(request, username, *args, **kwargs):
 
+	IdUsuario = request.user
+	IdUsuarioSeguido = get_object_or_404(User, username=username)
+
 	if not request.user.is_authenticated:
 		return HttpResponse("Prohibido")
 
 	mi_username = request.user.username
 
-	canal, created = Canal.objects.obtener_o_crear_canal_ms(mi_username, username)
+	canal, created = Canal.objects.obtener_o_crear_canal_ms(IdUsuario, IdUsuarioSeguido)
 
 	if created:
-		print("Si, fue creado")
+		print("Se ha creado el canal")
 
 	Usuarios_Canal = canal.canalusuario_set.all().values("usuario__username")
 	print(Usuarios_Canal)
