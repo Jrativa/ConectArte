@@ -13,15 +13,10 @@ User = get_user_model()
 
 class Inbox(View):
 	def get(self, request):
-
 		inbox = Canal.objects.filter(canalusuario__usuario__in=[request.user.id])
-
-
 		context = {
-
 			"inbox":inbox
 		}
-
 		return render(request, 'inbox.html', context)
 
 
