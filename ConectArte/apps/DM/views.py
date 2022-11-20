@@ -28,7 +28,6 @@ class Inbox(View):
 class CanalFormMixin(FormMixin):
 	form_class =FormMensajes
 
-
 	def get_success_url(self):
 		return self.request.path
 
@@ -61,7 +60,7 @@ class CanalFormMixin(FormMixin):
 			return super().form_invalid(form)
 
 class CanalDetailView(LoginRequiredMixin, CanalFormMixin, DetailView):
-	template_name= 'Dm/canal_detail.html'
+	template_name= 'pages/canal_detail.html'
 	queryset = Canal.objects.all()
 
 	def get_context_data(self, *args, **kwargs):
@@ -79,7 +78,7 @@ class CanalDetailView(LoginRequiredMixin, CanalFormMixin, DetailView):
 
 class DetailMs(LoginRequiredMixin, CanalFormMixin, DetailView):
 
-	template_name= 'Dm/canal_detail.html'
+	template_name= 'pages/canal_detail.html'
 
 	def get_object(self, *args, **kwargs):
 
