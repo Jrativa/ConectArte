@@ -17,7 +17,7 @@ class Inbox(View):
 		context = {
 			"inbox":inbox
 		}
-		return render(request, 'inbox.html', context)
+		return render(request, 'pages/inbox.html', context)
 
 
 class CanalFormMixin(FormMixin):

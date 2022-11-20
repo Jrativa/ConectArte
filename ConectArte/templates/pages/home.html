@@ -24,13 +24,10 @@
 {% block left_sidebar %}
 {% include 'components/sidebars/leftBar/sidebar.html' %}
 
-
-
 {% endblock left_sidebar %}
 
 
 {% block content %}
-
 
 <div
   style=" height: 130px; box-shadow: 0px 0px 0.5px 0.5px  #d1d1d1; border: 1px solid #e0dfdc; border-radius: 5px; background-color: rgb(255, 255, 255); width: 100%; margin-top: 15px;">
@@ -104,8 +101,7 @@
             {% csrf_token %}
             <div class="form-group" rows="6">
               {{form.DescripcionPublicacion}}
-              {% comment %} <textarea placeholder=class="form-control" id="exampleFormControlTextarea1"
-                rows="6"></textarea> {% endcomment %}
+
             </div>
             <div class="col">
               <p style="float: left; margin-right: 5px;">Agrega a tu publicación: </p>
@@ -233,9 +229,82 @@
 
 {% endblock content %}
 
+<!--Inicia bloque de mensajes-->
 
 {% block right_sidebar %}
 
+  {% block contenedor %}
+
+  <h1>
+    Bienvenido {{user}}.
+  </h1>
+
+  {% for inbox in inbox %}
+  <div class="div_inbox">
+
+    
+    {% for second_user in inbox.canalusuario_set.all %}
+
+      {% if second_user.usuario ==  request.user %}
+
+      {% else %}
+
+        <a href="{% url 'dm:detailms' second_user.usuario.username %}">
+          <p>
+            {{second_user.usuario}}
+          </p>
+          <small>
+            ({{inbox.canalmensaje_set.count}}) Mensajes
+          </small>
+        </a>
+
+      {% endif %}
+
+    {% endfor %}
+
+    {% if inbox.canalmensaje_set.count != 0 %}
+      <div class="div_ms_inbox">
+        
+        {% with ultimo_mensaje=inbox.canalmensaje_set.last %}
+
+          <p>
+            Mensaje: {{ultimo_mensaje.texto}}
+          </p>
+
+        {% endwith %}
+      </div>	
+    {% else %}
+      <p>
+        No hay mensajes en nuestro inbox
+      </p>
+    {% endif %}
+
+
+
+  </div>
+  {% empty %}
+
+  <h2>
+    Inbox vacio
+  </h2>
+
+  {% endfor %}
+
+
+  <style>
+    
+    .div_inbox{
+      width: 100%;
+      margin:10px auto;
+      background: #fff;
+      border-radius: 5px;
+      border:1px solid #e6e6e6;
+      padding: 5px;
+    }
+
+  </style>
+      
+  {% endblock %}
 
 
 
@@ -243,6 +312,7 @@
 
 
 {% block footer %}
+
 {% endblock footer %}
 
 

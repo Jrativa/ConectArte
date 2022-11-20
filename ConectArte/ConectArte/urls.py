@@ -33,7 +33,7 @@ urlpatterns = [
     path('search/', include('apps.Buscador.urls', namespace='search')),
     path('publicacion/', include('apps.publicaciones.urls', namespace='publicacion')),
     path('vacantes/', VacanteView.as_view(), name="vacante"),
-    path('dm/', include('apps.DM.urls')),
+    path('dm/', include('apps.DM.urls', namespace='dm')),
     
 ]
 
