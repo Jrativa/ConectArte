@@ -67,10 +67,13 @@ class PortfolioView(View):
         user = get_object_or_404(User, username=username)
         perfilUsuario = perfil.objects.get(usuario=user)
         postsUser = Publicacion.objects.filter(Autor=user)
+        cant_post = len(postsUser)
         context={
             'user':user,
             'perfil':perfilUsuario,
             'postsUser' : postsUser,
+            'cant_post': cant_post,
+            
         }
         return render(request, 'users/portfolio.html', context)
 

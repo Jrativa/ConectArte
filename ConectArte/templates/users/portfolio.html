@@ -8,7 +8,6 @@
 
 
 
-
 {% block content %}
 
 
@@ -658,10 +657,8 @@
   integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
 
-<div style="box-shadow: 0px 0px 0.5px 0.5px  #d1d1d1; border: 1px solid #e0dfdc; width: 100%;"
+<div style="box-shadow: 0px 0px 0.5px 0.5px  #d1d1d1; border: 1px solid #e0dfdc;"
   class="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-
-
   <div>
 
     <!--
@@ -671,7 +668,7 @@
       <div style="margin: 2%;">
         <div class="position-relative d-flex align-items-center justify-content-center">
           <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">Información</h1>
-          <h1   class="position-absolute text-uppercase tm-text-primary">Información personal</h1>
+          <h1 class="position-absolute text-uppercase tm-text-primary">Información personal</h1>
         </div>
 
 
@@ -687,26 +684,26 @@
                 <img class="img-fluid rounded w-100" src="{% static 'images/sin-foto.png' %}" alt="">
               </div>
               <div class="col-lg-7">
-                <h3 class="mb-4">Usuario</h3>
-                <p>(descripcion artista)</p>
+                <h3 style="font-size: 200%;">{{perfil.usuario.username}}</h3>
+                <p style="font-style: italic;">"{{perfil.Descripcion}}"</p>
                 <div class="row mb-3">
                   <div class="col-sm-6 py-2">
-                    <h6>Nombres: <span class="text-secondary">(Nombre artista)</span></h6>
+                    <h6>Nombres: <span class="text-secondary">{{perfil.usuario.first_name}} </span></h6>
                   </div>
                   <div class="col-sm-6 py-2">
-                    <h6>Apellidos: <span class="text-secondary">(Apellido artista)</span></h6>
+                    <h6>Apellidos: <span class="text-secondary">{{perfil.usuario.last_name}}</span></h6>
                   </div>
                   <div class="col-sm-6 py-2">
                     <h6>Ubicación: <span class="text-secondary">Bogotá</span></h6>
                   </div>
                   <div class="col-sm-6 py-2">
-                    <h6>Telefono: <span class="text-secondary">(Telefono artista)</span></h6>
+                    <h6>Telefono: <span class="text-secondary">{{perfil.NumeroTelefono}}</span></h6>
                   </div>
                   <div class="col-sm-6 py-2">
-                    <h6>Fecha de unión: <span class="text-secondary">(Fecha artista)</span></h6>
+                    <h6>Fecha de unión: <span class="text-secondary">{{perfil.usuario.date_joined}}</span></h6>
                   </div>
                   <div class="col-sm-6 py-2">
-                    <h6>Mas sobre mi: <span class="text-secondary">(url artista)</span></h6>
+                    <h6>Mas sobre mi: <span class="text-secondary"><a  href="http://{{perfil.url}}">{{perfil.url}}</a></span></h6>
                   </div>
 
                 </div>
@@ -721,7 +718,7 @@
           <div class="container">
             <div class="position-relative d-flex align-items-center justify-content-center">
               <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">Experiencia</h1>
-              <h1   class="position-absolute text-uppercase tm-text-primary">Experiencia y educación</h1>
+              <h1 class="position-absolute text-uppercase tm-text-primary">Experiencia y educación</h1>
             </div>
             <div class="row align-items-center">
               <div class="col-lg-6">
@@ -729,18 +726,19 @@
                 <div class="border-left border-primary pt-2 pl-4 ml-2">
                   <div class="position-relative mb-4">
                     <i class="far fa-dot-circle text-primary position-absolute" style="top: 2px; left: -32px;"></i>
-                    
-                    <p>(educación)</p>
+
+                    <p>{{perfil.Educacion}}</p>
                   </div>
                 </div>
               </div>
               <div class="col-lg-6">
                 <h3 class="mb-4">Experiencia</h3>
                 <div class="border-left border-primary pt-2 pl-4 ml-2">
-                  
+
                   <div class="position-relative mb-4">
                     <i class="far fa-dot-circle text-primary position-absolute" style="top: 2px; left: -32px;"></i>
-                    <p>(Experiencia)</p>
+                    <p>{{perfil.Experiencia}}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -760,11 +758,11 @@
     <div>
       <div class="position-relative d-flex align-items-center justify-content-center">
         <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">Publicaciones</h1>
-        <h1   class="position-absolute text-uppercase tm-text-primary">Publicaciones</h1>
+        <h1 class="position-absolute text-uppercase tm-text-primary">Publicaciones</h1>
       </div>
       <div class="d-flex justify-content-end align-items-center">
         <form action="" class="tm-text-primary">
-          Cantidad de publicaciones: <input type="text" value="5" class="tm-input-paging tm-text-primary">
+          Cantidad de publicaciones: <input type="text" readonly="readonly" value="{{cant_post}}" class="tm-input-paging tm-text-primary">
         </form>
       </div>
     </div>
@@ -774,12 +772,12 @@
         <div style="margin: 3%" class="row">
           {% for post in postsUser %}
           <div class="col-md-4">
-            <figure style="height: 300px;" class="effect-ming tm-video-item">
+            <figure id="fotos_publi"  style="height: 300px;" class="effect-ming tm-video-item">
               {% for img in post.Multimedia_Img.all %}
               <img style="height: auto; width: auto; vertical-align: middle;" src="{{img.imagen.url}}" alt=""
                 class="img-fluid">
               {% endfor %}
-              <a href="/publicacion/publicacion/3/">
+              <a href="{% url 'publicacion:comments' post.pk %}">
                 <figcaption class="d-flex align-items-center justify-content-center">
                   <h2>Ver</h2>
                 </figcaption>
@@ -800,7 +798,6 @@
   </div>
 
 </div>
-</div>
 {% endblock content %}
 
 
@@ -812,4 +809,10 @@
 {% block footer %}
 {% endblock footer %}
 
-{% block javascript %}{% endblock javascript %}
+{% block javascript %}
+<script>
+  var numDiv = document.getElementsByTagName("fotos_publi").length;
+  console.log(numDiv)
+
+</script>
+{% endblock javascript %}

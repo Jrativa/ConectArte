@@ -126,16 +126,25 @@
     </div>
   </div>
   <div>
-    <a href="{% url 'users:editProfile' %}"
-      class="flex items-center space-x-2 p-2 hover:bg-gray-200 rounded-lg transition-all dark:text-dark-txt dark:hover:bg-dark-third">
+    {%if request.user.username != perfil.usuario.username %}
+    <a href="{% url 'users:portfolio' perfil.usuario.username %}" class="flex items-center space-x-2 p-2 hover:bg-gray-200 rounded-lg transition-all dark:text-dark-txt dark:hover:bg-dark-third">
+      <i class='bx bx-right-arrow-alt'></i>
+      <span class="font-semibold">Visita mi portafolio</span>
+    </a>
+    {%endif %}
+    {%if request.user.username == perfil.usuario.username %}
+    <a href="{% url 'users:editProfile' %}" class="flex items-center space-x-2 p-2 hover:bg-gray-200 rounded-lg transition-all dark:text-dark-txt dark:hover:bg-dark-third">
       <i class='bx bx-right-arrow-alt'></i>
       <span class="font-semibold">Editar perfil</span>
     </a>
+    {%endif %}
+
     <a href="{% url 'account_login' %}"
       class="flex items-center space-x-2 p-2 hover:bg-gray-200 rounded-lg transition-all dark:text-dark-txt dark:hover:bg-dark-third">
       <i class='bx bx-left-arrow-alt'></i>
       <span class="font-semibold">Regresar al inicio</span>
     </a>
+    
   </div>
   <div>
 
