@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
-from .models import CanalMensaje, CanalUsuario, Canal
+from .models import *
 from django.http import HttpResponse, Http404, JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import FormMensajes
@@ -43,9 +43,8 @@ class CanalFormMixin(FormMixin):
 			mensaje = form.cleaned_data.get("mensaje")
 			canal_obj = CanalMensaje.objects.create(canal=canal, usuario=usuario, texto=mensaje)
 			
-			if request.is_ajax():
+			if request.headers.get('x-requested-with') == 'XMLHttpRequest':
 				return JsonResponse({
-
 					'mensaje':canal_obj.texto,
 					'username':canal_obj.usuario.username
 					}, status=201)
@@ -54,7 +53,7 @@ class CanalFormMixin(FormMixin):
 
 		else:
 
-			if request.is_ajax():
+			if request.headers.get('x-requested-with') == 'XMLHttpRequest':
 				return JsonResponse({"Error":form.errors}, status=400)
 
 			return super().form_invalid(form)
