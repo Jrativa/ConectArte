@@ -10,10 +10,34 @@ from apps.publicaciones.models import *
 from django.db.models import Q
 from .forms import UserForm
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
+from apps.DM.models import *
 
 
 User = get_user_model()
+
+
+def mensajes_privados(request, username, *args, **kwargs):
+
+	IdUsuario = request.user
+	IdUsuarioSeguido = get_object_or_404(User, username=username)
+
+	if not request.user.is_authenticated:
+		return HttpResponse("Prohibido")
+
+	canal, created = Canal.objects.obtener_o_crear_canal_ms(IdUsuario, IdUsuarioSeguido)
+
+	if created:
+		print("Se ha creado el canal")
+
+	Usuarios_Canal = canal.canalusuario_set.all().values("usuario__username")
+	print(Usuarios_Canal)
+	mensaje_canal  = canal.canalmensaje_set.all()
+	print(mensaje_canal.values("texto"))
+
+	return HttpResponse(f"Nuestro Id del Canal - {canal.id}")
+
+
+
 
 #Vista para abrir la nueva pagina de followers
 def followers(request):
@@ -32,6 +56,7 @@ def follow(request, username):
     rel.save()
     user = get_object_or_404(User, username=username)
     perfilUsuario = perfil.objects.get(usuario=user)
+    mensajes_privados(request, username)
     context={
         'perfil':perfilUsuario,
     }
