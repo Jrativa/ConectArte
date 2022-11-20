@@ -43,19 +43,19 @@ class CanalFormMixin(FormMixin):
 			mensaje = form.cleaned_data.get("mensaje")
 			canal_obj = CanalMensaje.objects.create(canal=canal, usuario=usuario, texto=mensaje)
 			
-			if request.is_ajax():
-				return JsonResponse({
+			#if request.is_ajax():
+			#	return JsonResponse({
 
-					'mensaje':canal_obj.texto,
-					'username':canal_obj.usuario.username
-					}, status=201)
+			#		'mensaje':canal_obj.texto,
+			#		'username':canal_obj.usuario.username
+			#		}, status=201)
 
 			return super().form_valid(form)
 
 		else:
 
-			if request.is_ajax():
-				return JsonResponse({"Error":form.errors}, status=400)
+			#if request.is_ajax():
+			#	return JsonResponse({"Error":form.errors}, status=400)
 
 			return super().form_invalid(form)
 
@@ -103,8 +103,6 @@ def mensajes_privados(request, username, *args, **kwargs):
 
 	if not request.user.is_authenticated:
 		return HttpResponse("Prohibido")
-
-	mi_username = request.user.username
 
 	canal, created = Canal.objects.obtener_o_crear_canal_ms(IdUsuario, IdUsuarioSeguido)
 
