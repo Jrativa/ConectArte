@@ -25,6 +25,7 @@
 
 
 
+
 {% endblock left_sidebar %}
 
 
@@ -234,14 +235,40 @@
 
 
 {% block right_sidebar %}
-<h1>FILTRO</h1>
+
+<div id="Category_search">
+
+    
+
+  <form>
+    
+    <label>Buscar por tipo de vacante:</label> 
+    <div class="form-group">
+      <div class="form-check"><input class="form-check-input" type="checkbox" id="cantante_cb" name = "cantante_cb"> Cantante <br></div>
+      <div class="form-check"><input class="form-check-input" type="checkbox" id="musico_cb" name = "musico_cb"> Musico <br></div>
+      <div class="form-check"><input class="form-check-input" type="checkbox" id="animador_cb" name = "animador_cb"> Animador <br></div>
+      <div class="form-check"><input class="form-check-input" type="checkbox" id="pintor_cb" name = "pintor_cb"> Pintor <br></div>
+      <div class="form-check"><input class="form-check-input" type="checkbox" id="artesano_cb" name = "artesano_cb"> Artesano <br></div>
+    </div>
+
+  
+    <label>Buscar por remuneración:</label> 
+
+  
+    <div class="form-group">
+      <input type="number" min=0 name = "filtro_maximo" placeholder = "Máximo" class = "filtro_n">  
+      <input type="number" min=0 name = "filtro_minimo" placeholder = "Mínimo" class = "filtro_n2">
+    </div>
+
+    <form action="form-group">
+      <button type="submit" class="btn btn-primary">Buscar</button>
+    </form>
+    
+  </form>
 
 
-<h1>BUSCAR POR NOMBRE...</h1>
 
-
-<h1>BUSCAR POR RANGOS</h1>
-
+</div>
 
 
 {% endblock right_sidebar %}
