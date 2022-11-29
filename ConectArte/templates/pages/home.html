@@ -227,9 +227,9 @@
 
   {% block contenedor %}
 
-  <h1>
-    Bienvenido {{user}}.
-  </h1>
+
+  <h2 style="text-align: center; font-weight: 600;" class="modal-title"
+  id="exampleModalLabel">Bienvenido a tus mensajes {{user}}</h2>
 
   {% for inbox in inbox %}
   <div class="div_inbox">
@@ -243,10 +243,11 @@
 
         <a href="{% url 'dm:detailms' second_user.usuario.username %}">
           <p>
-            {{second_user.usuario}}
+            <h2 style="text-align: center; font-weight: 600;color: rgb(22, 148, 232);" class="modal-title"
+            id="exampleModalLabel">{{second_user.usuario}}</h2>
           </p>
           <small>
-            ({{inbox.canalmensaje_set.count}}) Mensajes
+            Tienes ({{inbox.canalmensaje_set.count}}) Mensajes
           </small>
         </a>
 
@@ -260,14 +261,16 @@
         {% with ultimo_mensaje=inbox.canalmensaje_set.last %}
 
           <p>
-            Mensaje: {{ultimo_mensaje.texto}}
+            <h2 style="text-align: center; font-weight: 650;font-size: 12px;" class="modal-title"
+            id="exampleModalLabel">Mensaje: {{ultimo_mensaje.texto}}</h2>
           </p>
 
         {% endwith %}
       </div>	
     {% else %}
       <p>
-        No hay mensajes en nuestro inbox
+        <h2 style="text-align: center; font-weight: 650;font-size: 12px;" class="modal-title"
+        id="exampleModalLabel">No hay mensajes en el chat</h2>
       </p>
     {% endif %}
 
@@ -276,9 +279,11 @@
   </div>
   {% empty %}
 
-  <h2>
-    Inbox vacio
-  </h2>
+  <div class="div_inbox">
+    <h2 style="text-align: center; font-weight: 600;font-size: 15px;" class="modal-title"
+    id="exampleModalLabel">No tienes ningún mensaje</h2>
+  </div>
+
 
   {% endfor %}
 
@@ -289,9 +294,10 @@
       width: 100%;
       margin:10px auto;
       background: #fff;
-      border-radius: 5px;
+      border-radius: 10px;
       border:1px solid #e6e6e6;
-      padding: 5px;
+      padding: 10px;
+      text-align: center; 
     }
 
   </style>
