@@ -17,11 +17,15 @@ class HomeView(LoginRequiredMixin, View):
         inbox = Canal.objects.filter(canalusuario__usuario__in=[request.user.id])
         form = PublicacionForm()
         posts = Publicacion.objects.all()
+        perfilUsuario = perfil.objects.get(usuario=userLoggedIn)
+
 
         context={
                 'posts': posts,
                 'form' : form,
-                'inbox':inbox
+                'inbox':inbox,
+                'perfil':perfilUsuario,
+
             }
         return render(request, 'pages/home.html', context)
     

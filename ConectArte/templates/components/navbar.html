@@ -72,18 +72,7 @@
 
 
         
-        <li class="w-1/5 md:w-max text-center hidden md:inline-block">
-            <button @click="open=true"
-                class="w-full text-3xl py-2 px-3 xl:px-12 cursor-pointer text-center inline-block rounded text-gray-600 hover:bg-gray-100 dark:hover:bg-dark-third dark:text-dark-txt relative">
-                <i class='bx bx-menu'></i>
-            </button>
-        </li>
-        <li class="w-1/5 md:w-max text-center inline-block md:hidden">
-            <button @click="open=true"
-                class="w-full text-3xl py-2 px-3 xl:px-12 cursor-pointer text-center inline-block rounded text-gray-600 hover:bg-gray-100 dark:hover:bg-dark-third dark:text-dark-txt relative">
-                <i class='bx bx-menu'></i>
-            </button>
-        </li>
+
 
 
         <!--LEFT Mobile Sidebar-->
@@ -165,7 +154,7 @@
                 class="text-xl grid place-items-center bg-gray-200 dark:bg-dark-third dark:text-dark-txt rounded-full mx-1 p-3 cursor-pointer hover:bg-gray-300 relative">
                 <i class='bx bx-message-dots'></i>
                 <span
-                    class="text-xs absolute top-0 right-0 bg-red-500 text-white font-semibold rounded-full px-1 text-center">9</span>
+                    class="text-xs absolute top-0 right-0 bg-red-500 text-white font-semibold rounded-full px-1 text-center"></span>
             </div>
         </li>
         <li>
@@ -182,7 +171,7 @@
                     class="text-xl grid place-items-center dark:bg-dark-second bg-gray-200 dark:bg-dark-third dark:text-dark-txt rounded-full mx-1 p-3 cursor-pointer hover:bg-gray-300 relative">
                     <i class='bx bxs-bell'></i>
                     <span
-                        class="text-xs absolute top-0 right-0 bg-red-500 text-white font-semibold rounded-full px-1 text-center">9</span>
+                        class="text-xs absolute top-0 right-0 bg-red-500 text-white font-semibold rounded-full px-1 text-center"></span>
                 </div>
                 <div x-show="open" @click.away="open=false"
                     class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg dark:bg-dark-second bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"

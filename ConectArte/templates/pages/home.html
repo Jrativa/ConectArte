@@ -32,8 +32,10 @@
 <div
   style=" height: 130px; box-shadow: 0px 0px 0.5px 0.5px  #d1d1d1; border: 1px solid #e0dfdc; border-radius: 5px; background-color: rgb(255, 255, 255); width: 100%; margin-top: 15px;">
   <div style="display: flex;">
-    <img style="border-radius: 50%; width: 50px; height: 50px; margin-left: 2%; margin-top: 3%;"
-      src="{% static 'images/sin-foto.png' %}" alt="art">
+    {% for img in perfil.fotoPerfil.all %}
+    <img style="border-radius: 50%; width: 50px; height: 50px; margin-left: 2%; margin-top: 3%;" src="{{img.imagen.url}}" alt="">
+    {% endfor %}
+  
     <button data-toggle="modal" data-target="#Modal_Publicar"
       style="text-align: calc(100% - 80px); height: 50px; width: 75%; margin-left: 5%; margin-top: 3%; border-radius: 50px; border: 1px #b2b2b2 solid;">Muestra
       tu arte al mundo!</button>
@@ -84,7 +86,14 @@
 
           <div style="display: flex; height: 55px;">
             <div style="width: 50px; height: 50px;">
-              <img style="border-radius: 50%;" src="{% static 'images/sin-foto.png' %}" alt="art">
+
+
+              {% for img in perfil.fotoPerfil.all %}
+              <img style=" border-radius: 50%; "  src="{{img.imagen.url}}" alt="">
+              {% endfor %}
+  
+            </div>
+
             </div>
             <p style="margin-left: 20px; margin-top: 2.5%; font-weight: 600;">{{user.username}} {{user.lastname}}</p>
           </div>
@@ -148,8 +157,10 @@
     <div>
       <div style="display: flex;">
         <a href="{% url 'users:perfil' post.Autor.username %}">
-          <img style="border-radius: 50%; width: 50px; height: 50px; margin-left: 5px; margin-top: 5px;"
-            src="{% static 'images/sin-foto.png' %}" alt="art">
+          {% for img in perfil.fotoPerfil.all %}
+          <img style="border-radius: 50%; width: 50px; height: 50px; margin-left: 5px; margin-top: 5px;"  src="{{img.imagen.url}}" alt="">
+          {% endfor %}
+          
           <div>
             <p style="height: 25px; margin-left: 5px; margin-top: 3px; font-weight: 600;">{{post.Autor.first_name}}
               {{post.Autor.last_name}} </p>

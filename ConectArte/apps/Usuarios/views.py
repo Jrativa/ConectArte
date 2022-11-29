@@ -145,6 +145,8 @@ def EditProfile(request):
 
         context={
             'form':form,
+            'perfil':profile,
+        
         }
 
         return render(request, 'users/editProfile.html', context)
