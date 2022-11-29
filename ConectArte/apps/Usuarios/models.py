@@ -20,6 +20,12 @@ def create_user_profile(sender, instance, created, **kwargs):
 def guardarPerfil(sender, instance, **kwargs):
     instance.profile.save()
 
+def user_directory_path2(instance, fileName):
+    return 'Usuarios/fotoPerfil/{0}'.format(fileName)
+
+class ImagenPerfil(models.Model):
+    imagen = models.ImageField(upload_to= user_directory_path2, blank=True, null = True)
+
 
 
 class Categorias(models.Model):  
@@ -34,7 +40,7 @@ class Usuario(AbstractUser):
 
 class perfil(models.Model):
     usuario = models.OneToOneField(Usuario, on_delete=models.CASCADE, related_name="profile")
-    fotoPerfil = models.ImageField(default="Usuarios/Usuario.png", upload_to=directorioUsuario)
+    fotoPerfil = models.ManyToManyField(ImagenPerfil, blank=True)
     dateCreated = models.DateField(auto_now_add=True)
     Intereses = models.TextField(blank=False, null=True,  verbose_name="Intereses", default="")
     Educacion = models.TextField(blank=False, null=True,  verbose_name="Educacion", default="")

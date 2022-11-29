@@ -6,6 +6,14 @@ from django import forms
 from .models import perfil
 
 class UserForm(forms.ModelForm):
+    fotoPerfil = forms.FileField(widget=forms.ClearableFileInput(attrs={
+        'class':"block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 ",
+        'multiple': False,
+        'title':"uploadfile"
+        }),
+        required=False  
+        )
+
     first_name = forms.CharField(
         widget=forms.TextInput(attrs={
             'class':'shadow-sm focus:ring-indigo-500 dark:bg-dark-third dark:text-dark-txt focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md',
