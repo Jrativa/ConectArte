@@ -1,6 +1,8 @@
 from django import forms 
 from .models import *
 
+#Here we find the Media published
+
 class PublicacionForm(forms.ModelForm):
     
     DescripcionPublicacion = forms.CharField(widget=forms.Textarea(attrs={
