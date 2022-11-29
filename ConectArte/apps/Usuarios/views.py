@@ -122,8 +122,13 @@ def EditProfile(request):
         profile = perfil.objects.get(id=user)
         userInfo = User.objects.get(id=user)
         if request.method == 'POST':
-            form=UserForm(request.POST, instance=profile)
+            form=UserForm(request.POST, request.FILES, instance=profile)
+            Images = request.FILES.getlist('fotoPerfil')
             if form.is_valid():
+                for i in Images:
+                    image = ImagenPerfil(imagen=i)
+                    image.save()
+                    profile.fotoPerfil.add(image)
                 userInfo.first_name = form.cleaned_data.get('first_name')
                 userInfo.last_name = form.cleaned_data.get('last_name')
                 profile.Descripcion = form.cleaned_data.get('Descripcion')
