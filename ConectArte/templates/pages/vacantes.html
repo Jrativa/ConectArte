@@ -255,7 +255,10 @@
 
         <div style="display: flex; height: 100px;">
           <div style="width: 100px; height: 100px;">
-            <img style="border-radius: 50%;" src="{% static 'images/sin-foto.png' %}" alt="art">
+            
+            {% for img in perfil.fotoPerfil.all %}
+              <img style="border-radius: 50%;" src="{{img.imagen.url}}" alt="">
+            {% endfor %}
           </div>
           <p style="margin-left: 20px; margin-top: 2.5%; font-weight: 600;">{{user.username}} {{user.lastname}}</p>
         </div>

@@ -33,9 +33,10 @@
   style=" height: 130px; box-shadow: 0px 0px 0.5px 0.5px  #d1d1d1; border: 1px solid #e0dfdc; border-radius: 5px; background-color: rgb(255, 255, 255); width: 100%; margin-top: 15px;">
   <div style="display: flex;">
     {% for img in perfil.fotoPerfil.all %}
-    <img style="border-radius: 50%; width: 50px; height: 50px; margin-left: 2%; margin-top: 3%;" src="{{img.imagen.url}}" alt="">
+    <img style="border-radius: 50%; width: 50px; height: 50px; margin-left: 2%; margin-top: 3%;"
+      src="{{img.imagen.url}}" alt="">
     {% endfor %}
-  
+
     <button data-toggle="modal" data-target="#Modal_Publicar"
       style="text-align: calc(100% - 80px); height: 50px; width: 75%; margin-left: 5%; margin-top: 3%; border-radius: 50px; border: 1px #b2b2b2 solid;">Muestra
       tu arte al mundo!</button>
@@ -47,9 +48,9 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <button style="text-align: center" data-toggle="modal" data-target="#Modal_Publicar"><svg style="float: left; color: rgb(22, 148, 232);"
-              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6">
+          <button style="text-align: center" data-toggle="modal" data-target="#Modal_Publicar"><svg
+              style="float: left; color: rgb(22, 148, 232);" xmlns="http://www.w3.org/2000/svg" fill="none"
+              viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
               <path stroke-linecap="round" stroke-linejoin="round"
                 d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
             </svg>Foto</button>
@@ -62,7 +63,7 @@
                 d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z" />
             </svg>Video</button>
         </div>
-        
+
       </div>
 
 
@@ -87,13 +88,9 @@
           <div style="display: flex; height: 55px;">
             <div style="width: 50px; height: 50px;">
 
-
               {% for img in perfil.fotoPerfil.all %}
-              <img style=" border-radius: 50%; "  src="{{img.imagen.url}}" alt="">
+              <img style="border-radius: 50%;" src="{{img.imagen.url}}" alt="">
               {% endfor %}
-  
-            </div>
-
             </div>
             <p style="margin-left: 20px; margin-top: 2.5%; font-weight: 600;">{{user.username}} {{user.lastname}}</p>
           </div>
@@ -158,9 +155,10 @@
       <div style="display: flex;">
         <a href="{% url 'users:perfil' post.Autor.username %}">
           {% for img in perfil.fotoPerfil.all %}
-          <img style="border-radius: 50%; width: 50px; height: 50px; margin-left: 5px; margin-top: 5px;"  src="{{img.imagen.url}}" alt="">
+          <img style="border-radius: 50%; width: 50px; height: 50px; margin-left: 5px; margin-top: 5px;"
+            src="{{img.imagen.url}}" alt="">
           {% endfor %}
-          
+
           <div>
             <p style="height: 25px; margin-left: 5px; margin-top: 3px; font-weight: 600;">{{post.Autor.first_name}}
               {{post.Autor.last_name}} </p>
@@ -236,84 +234,82 @@
 
 {% block right_sidebar %}
 
-  {% block contenedor %}
+{% block contenedor %}
 
 
-  <h2 style="text-align: center; font-weight: 600;" class="modal-title"
-  id="exampleModalLabel">Bienvenido a tus mensajes {{user}}</h2>
+<h2 style="text-align: center; font-weight: 600;" class="modal-title" id="exampleModalLabel">Bienvenido a tus mensajes
+  {{user}}</h2>
 
-  {% for inbox in inbox %}
-  <div class="div_inbox">
-
-    
-    {% for second_user in inbox.canalusuario_set.all %}
-
-      {% if second_user.usuario ==  request.user %}
-
-      {% else %}
-
-        <a href="{% url 'dm:detailms' second_user.usuario.username %}">
-          <p>
-            <h2 style="text-align: center; font-weight: 600;color: rgb(22, 148, 232);" class="modal-title"
-            id="exampleModalLabel">{{second_user.usuario}}</h2>
-          </p>
-          <small>
-            Tienes ({{inbox.canalmensaje_set.count}}) Mensajes
-          </small>
-        </a>
-
-      {% endif %}
-
-    {% endfor %}
-
-    {% if inbox.canalmensaje_set.count != 0 %}
-      <div class="div_ms_inbox">
-        
-        {% with ultimo_mensaje=inbox.canalmensaje_set.last %}
-
-          <p>
-            <h2 style="text-align: center; font-weight: 650;font-size: 12px;" class="modal-title"
-            id="exampleModalLabel">Mensaje: {{ultimo_mensaje.texto}}</h2>
-          </p>
-
-        {% endwith %}
-      </div>	
-    {% else %}
-      <p>
-        <h2 style="text-align: center; font-weight: 650;font-size: 12px;" class="modal-title"
-        id="exampleModalLabel">No hay mensajes en el chat</h2>
-      </p>
-    {% endif %}
+{% for inbox in inbox %}
+<div class="div_inbox">
 
 
+  {% for second_user in inbox.canalusuario_set.all %}
 
-  </div>
-  {% empty %}
+  {% if second_user.usuario == request.user %}
 
-  <div class="div_inbox">
-    <h2 style="text-align: center; font-weight: 600;font-size: 15px;" class="modal-title"
-    id="exampleModalLabel">No tienes ningún mensaje</h2>
-  </div>
+  {% else %}
 
+  <a href="{% url 'dm:detailms' second_user.usuario.username %}">
+    <p>
+      <h2 style="text-align: center; font-weight: 600;color: rgb(22, 148, 232);" class="modal-title"
+        id="exampleModalLabel">{{second_user.usuario}}</h2>
+    </p>
+    <small>
+      Tienes ({{inbox.canalmensaje_set.count}}) Mensajes
+    </small>
+  </a>
+
+  {% endif %}
 
   {% endfor %}
 
+  {% if inbox.canalmensaje_set.count != 0 %}
+  <div class="div_ms_inbox">
 
-  <style>
-    
-    .div_inbox{
-      width: 100%;
-      margin:10px auto;
-      background: #fff;
-      border-radius: 10px;
-      border:1px solid #e6e6e6;
-      padding: 10px;
-      text-align: center; 
-    }
+    {% with ultimo_mensaje=inbox.canalmensaje_set.last %}
 
-  </style>
-      
-  {% endblock %}
+    <p>
+    <h2 style="text-align: center; font-weight: 650;font-size: 12px;" class="modal-title" id="exampleModalLabel">
+      Mensaje: {{ultimo_mensaje.texto}}</h2>
+    </p>
+
+    {% endwith %}
+  </div>
+  {% else %}
+  <p>
+  <h2 style="text-align: center; font-weight: 650;font-size: 12px;" class="modal-title" id="exampleModalLabel">No hay
+    mensajes en el chat</h2>
+  </p>
+  {% endif %}
+
+
+
+</div>
+{% empty %}
+
+<div class="div_inbox">
+  <h2 style="text-align: center; font-weight: 600;font-size: 15px;" class="modal-title" id="exampleModalLabel">No tienes
+    ningún mensaje</h2>
+</div>
+
+
+{% endfor %}
+
+
+<style>
+  .div_inbox {
+    width: 100%;
+    margin: 10px auto;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #e6e6e6;
+    padding: 10px;
+    text-align: center;
+  }
+</style>
+
+{% endblock %}
 
 
 
