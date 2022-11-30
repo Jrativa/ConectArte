@@ -11,6 +11,7 @@ from django.db.models import Q
 from .forms import UserForm
 from django.contrib.auth.decorators import login_required
 from apps.DM.models import *
+from django.core.exceptions import ObjectDoesNotExist
 
 
 User = get_user_model()
@@ -52,8 +53,12 @@ def follow(request, username):
     IdUsuario = request.user.id
     IdUsuarioSeguido = get_object_or_404(User, username=username)
     UsuarioSeguido_id=IdUsuarioSeguido.id
-    rel = SigueA(IdUsuario_id=IdUsuario, IdUsuarioSeguido_id=UsuarioSeguido_id )
-    rel.save()
+    try:
+        r1 = SigueA.objects.filter(IdUsuario_id=IdUsuario, IdUsuarioSeguido_id=UsuarioSeguido_id ).get()
+    except ObjectDoesNotExist:
+        rel = SigueA(IdUsuario_id=IdUsuario, IdUsuarioSeguido_id=UsuarioSeguido_id )
+        rel.save()
+        
     user = get_object_or_404(User, username=username)
     perfilUsuario = perfil.objects.get(usuario=user)
     mensajes_privados(request, username)
@@ -67,8 +72,13 @@ def unfollow(request, username):
     IdUsuario = request.user
     IdUsuarioSeguido = get_object_or_404(User, username=username)
     UsuarioSeguido_id=IdUsuarioSeguido
-    rel = SigueA.objects.filter(IdUsuario_id=IdUsuario, IdUsuarioSeguido_id=UsuarioSeguido_id ).get()
-    rel.delete()
+
+    try:
+        rel = SigueA.objects.filter(IdUsuario_id=IdUsuario, IdUsuarioSeguido_id=UsuarioSeguido_id ).get()
+        rel.delete()
+    except ObjectDoesNotExist:
+        pass
+        
     user = get_object_or_404(User, username=username)
     perfilUsuario = perfil.objects.get(usuario=user)
     context={
@@ -76,7 +86,7 @@ def unfollow(request, username):
     }
     return render(request, 'users/perfilUsuario.html', context)
 
-#Metodo para eliminar un seguidor a la cuenta, 
+
 def portfolio(request, username):
     user = get_object_or_404(User, username=username)
     perfilUsuario = perfil.objects.get(usuario=user)
@@ -105,6 +115,8 @@ class PortfolioView(View):
 
 
 class ProfileView(View):
+
+    
     def get(self, request, username, *args, **kwargs):
         user = get_object_or_404(User, username=username)
         perfilUsuario = perfil.objects.get(usuario=user)
