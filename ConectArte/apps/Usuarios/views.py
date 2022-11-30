@@ -61,9 +61,11 @@ def follow(request, username):
         
     user = get_object_or_404(User, username=username)
     perfilUsuario = perfil.objects.get(usuario=user)
+    proflogued = perfil.objects.get(usuario=request.user)
     mensajes_privados(request, username)
     context={
         'perfil':perfilUsuario,
+        'profreq':proflogued,
     }
     return render(request, 'users/perfilUsuario.html', context)
 
@@ -81,8 +83,10 @@ def unfollow(request, username):
         
     user = get_object_or_404(User, username=username)
     perfilUsuario = perfil.objects.get(usuario=user)
+    proflogued = perfil.objects.get(usuario=request.user)
     context={
         'perfil':perfilUsuario,
+        'profreq':proflogued,
     }
     return render(request, 'users/perfilUsuario.html', context)
 
