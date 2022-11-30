@@ -34,6 +34,7 @@
 
 
             <!--Botones de follow y unfollow, usan if para comprobar si el usuario sigue o no a esa cuenta-->
+
             {%if request.user.is_authenticated%}  
               {%if request.user.username != perfil.usuario.username %}
                   {%if perfil.usuario.username not in profreq.following%}
