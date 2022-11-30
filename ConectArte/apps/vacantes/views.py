@@ -4,15 +4,15 @@ from django.core.paginator import Paginator
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from apps.Usuarios.models import Usuario
 from .forms import *
+from apps.DM.models import *
 from .models import *
 
 def is_valid_param(param):
         return param != '' and param is not None
 
-# Create your views here.
 class VacanteView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
-        userLoggedIn = request.user
+        inbox = Canal.objects.filter(canalusuario__usuario__in=[request.user.id])
         form = VacanteForm()
         Vacantes = Vacante.objects.all()
 
@@ -49,11 +49,13 @@ class VacanteView(LoginRequiredMixin, View):
         context={
                 'vacantes': Vacantes,
                 'form' : form,
+                'inbox':inbox,
             }
         return render(request, 'pages/vacantes.html', context)
 
     
     def post(self, request, *args, **kwargs):
+        inbox = Canal.objects.filter(canalusuario__usuario__in=[request.user.id])
         userLoggedIn = request.user
         form = VacanteForm(request.POST)
         Vacantes = Vacante.objects.all()
@@ -65,5 +67,6 @@ class VacanteView(LoginRequiredMixin, View):
         context={
                 'form' : form,
                 'vacantes': Vacantes,
+                'inbox':inbox,
             }
         return render(request, 'pages/vacantes.html', context)

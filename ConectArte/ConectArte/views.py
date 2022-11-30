@@ -59,7 +59,6 @@ class HomeView(LoginRequiredMixin, View):
         
 
 def home(request):
-    context={
-        }
-    return render(request, 'pages/index.html', context)
+
+    return render(request, 'pages/index.html')
 

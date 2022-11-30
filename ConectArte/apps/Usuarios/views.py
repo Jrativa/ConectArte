@@ -42,14 +42,17 @@ def mensajes_privados(request, username, *args, **kwargs):
 
 #Vista para abrir la nueva pagina de followers
 def followers(request):
+    inbox = Canal.objects.filter(canalusuario__usuario__in=[request.user.id])
     proflogued = perfil.objects.get(usuario=request.user)
     context={
-        'profreq':proflogued
+        'profreq':proflogued,
+        'inbox':inbox,
     }
     return render (request, 'users/followers.html', context)
 
 #Metodo para añadir un seguidor a la cuenta, 
 def follow(request, username):
+    inbox = Canal.objects.filter(canalusuario__usuario__in=[request.user.id])
     IdUsuario = request.user.id
     IdUsuarioSeguido = get_object_or_404(User, username=username)
     UsuarioSeguido_id=IdUsuarioSeguido.id
@@ -66,11 +69,13 @@ def follow(request, username):
     context={
         'perfil':perfilUsuario,
         'profreq':proflogued,
+        'inbox':inbox,
     }
     return render(request, 'users/perfilUsuario.html', context)
 
 #Metodo para eliminar un seguidor a la cuenta, 
 def unfollow(request, username):
+    inbox = Canal.objects.filter(canalusuario__usuario__in=[request.user.id])
     IdUsuario = request.user
     IdUsuarioSeguido = get_object_or_404(User, username=username)
     UsuarioSeguido_id=IdUsuarioSeguido
@@ -85,22 +90,26 @@ def unfollow(request, username):
     context={
         'perfil':perfilUsuario,
         'profreq':proflogued,
+        'inbox':inbox,
     }
     return render(request, 'users/perfilUsuario.html', context)
 
 
 def portfolio(request, username):
+    inbox = Canal.objects.filter(canalusuario__usuario__in=[request.user.id])
     user = get_object_or_404(User, username=username)
     perfilUsuario = perfil.objects.get(usuario=user)
     postsUser = Publicacion.objects.filter(usuario=user)
     context={
         'perfil':perfilUsuario,
         'postsUser' : postsUser,
+        'inbox':inbox,
     }
     return render(request, 'users/portfolio.html', context)
 
 class PortfolioView(View):
     def get(self, request, username, *args, **kwargs):
+        inbox = Canal.objects.filter(canalusuario__usuario__in=[request.user.id])
         user = get_object_or_404(User, username=username)
         perfilUsuario = perfil.objects.get(usuario=user)
         postsUser = Publicacion.objects.filter(Autor=user)
@@ -110,28 +119,30 @@ class PortfolioView(View):
             'perfil':perfilUsuario,
             'postsUser' : postsUser,
             'cant_post': cant_post,
-            
+            'inbox':inbox,
         }
         return render(request, 'users/portfolio.html', context)
 
 
 
 class ProfileView(View):
-
-    
+   
     def get(self, request, username, *args, **kwargs):
+        inbox = Canal.objects.filter(canalusuario__usuario__in=[request.user.id])
         user = get_object_or_404(User, username=username)
         perfilUsuario = perfil.objects.get(usuario=user)
         proflogued = perfil.objects.get(usuario=request.user)
         context={
             'user':user,
             'perfil':perfilUsuario,
-            'profreq':proflogued
+            'profreq':proflogued,
+            'inbox':inbox,
         }
         return render(request, 'users/perfilUsuario.html', context)
 
 @login_required
 def EditProfile(request):
+        inbox = Canal.objects.filter(canalusuario__usuario__in=[request.user.id])
         user = request.user.id
         profile = perfil.objects.get(id=user)
         userInfo = User.objects.get(id=user)
@@ -160,7 +171,7 @@ def EditProfile(request):
         context={
             'form':form,
             'perfil':profile,
-        
+            'inbox':inbox,
         }
 
         return render(request, 'users/editProfile.html', context)
