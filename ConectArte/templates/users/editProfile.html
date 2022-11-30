@@ -7,11 +7,13 @@
 {% block title %}{{user.username}} Edit Profile{% endblock title %}
 
 {% block navbar %}
-
+{% include 'components/navbar.html' %}
 {% endblock navbar %}
 
+
 {% block left_sidebar %}
-{% comment %} {% include 'components/sidebars/left/users/sidebar.html' %} {% endcomment %}
+{% include 'components/sidebars/leftBar/sidebar.html' %}
+
 {% endblock left_sidebar %}
 {% block content %}
 

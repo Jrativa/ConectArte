@@ -16,7 +16,7 @@
             <a href="#"
                 class="inline-flex md:hidden items-center justify-center p-1 rounded-full hover:bg-gray-200 dark:hover:bg-dark-third mx-1"></a>
             <form method="GET" action="{% url 'search:searchProfile' %}">
-                <div
+                <div style="margin-top: 22px;"
                     class=" mt-4 relative bg-gray-100 dark:bg-dark-third px-2 py-2 w-10 h-10 sm:w-11 sm:h-11 lg:h-10 lg:w-10 xl:w-max xl:pl-3 xl:pr-8 rounded-full flex items-center justify-center cursor-pointer">
                     <button type="submit" class='bx bx-search-alt-2 text-xl xl:mr-2 dark:text-dark-txt'></button>
                     <input name="query" value="{{request.GET.query}}" type="text" placeholder="Buscar Usuarios"
@@ -32,36 +32,39 @@
     <!-- END LEFT NAV -->
 
     <!-- MAIN NAV -->
-    <ul x-data="{ open: false }" class="flex w-full lg:w-max items-center justify-center">
-        <li class="w-1/5 md:w-max text-center">
-            <a href="/home"
-                class="w-full text-3xl py-2 px-3 xl:px-12 cursor-pointer text-center inline-block text-blue-500 border-b-4 border-blue-500">
+    <ul style="margin-right: 65px;" x-data="{ open: false }" class="flex w-full lg:w-max items-center justify-center">
+      <li style="width: 65px; height: 65px;" class="w-1/5 md:w-max text-center">
+        <a href="/home" 
+                class="w-full text-3xl py-2 px-3 xl:px-12 cursor-pointer text-center inline-block " id="Home">
                 <iconify-icon icon="emojione:house"></iconify-icon>
                 <h1 style=" font-size: 10px;">Inicio</h1>
             </a>
         </li>
 
-        <li class="w-1/5 md:w-max text-center">
-            <a href="/vacantes"
-                class="w-full text-3xl py-2 px-3 xl:px-12 cursor-pointer text-center inline-block rounded text-gray-600 hover:bg-gray-100 dark:hover:bg-dark-third dark:text-dark-txt relative">
+        <li style="width: 65px; height: 65px;" class="w-1/5 md:w-max text-center">
+          <a href="/vacantes"
+                class="w-full text-3xl py-2 px-3 xl:px-12 cursor-pointer text-center inline-block " id="Vacantes">
                 <iconify-icon icon="emojione:performing-arts"></iconify-icon>
                 <h1 style=" font-size: 10px;">Vacantes</h1>
             </a>
         </li>
 
-        <li class="w-1/5 md:w-max text-center">
-            <a href="{% url 'users:portfolio' user.username %}"
-                class="w-full text-3xl py-2 px-3 xl:px-12 cursor-pointer text-center inline-block rounded text-gray-600 hover:bg-gray-100 dark:hover:bg-dark-third dark:text-dark-txt relative">
+        <li style="width: 65px; height: 65px;" class="w-1/5 md:w-max text-center">
+          <a href="{% url 'users:portfolio' user.username %}"
+                class="w-full text-3xl py-2 px-3 xl:px-12 cursor-pointer text-center inline-block " id="Portafolio">
                 <iconify-icon icon="emojione-v1:briefcase"></iconify-icon>
                 <h1 style=" font-size: 10px;">Portafolio</h1>
             </a>
         </li>
 
-        <li class="w-1/5 md:w-max text-center">
-            <a href="{% url 'users:followers' %}"
-                class="w-full text-3xl py-2 px-3 xl:px-12 cursor-pointer text-center inline-block rounded text-gray-600 hover:bg-gray-100 dark:hover:bg-dark-third dark:text-dark-txt relative">
+        <li style="height: 65px;" class="w-1/5 md:w-max text-center">
+          <a href="{% url 'users:followers' %}"
+                class="w-full text-3xl py-2 px-3 xl:px-12 cursor-pointer text-center inline-block text-blue-500 " id="Red">
                 <iconify-icon icon="fluent-emoji-flat:artist-light"></iconify-icon>
-                <h1 style=" font-size: 10px;">Mi red</h1>
+                <h1  style=" font-size: 10px; ">Mi red</h1>
+                
+
+                </div>
             </a>
         </li>
 
@@ -132,38 +135,109 @@
     </ul>
     <!-- END MAIN NAV -->
 
+
+
     <!-- RIGHT NAV -->
     <ul class="hidden md:flex mx-4 items-center justify-center">
 
         <li class="h-full xl:flex">
         </li>
+        
         <li>
-            <div
-                class="text-xl hidden xl:grid place-items-center bg-gray-200 dark:bg-dark-third dark:text-dark-txt rounded-full mx-1 p-3 cursor-pointer hover:bg-gray-300 relative">
-                <i class='bx bx-plus'></i>
-            </div>
-        </li>
-        <li>
-            {% comment %} <div
-                class="text-xl hidden xl:grid place-items-center bg-gray-200 dark:bg-dark-third dark:text-dark-txt rounded-full mx-1 p-3 cursor-pointer hover:bg-gray-300 relative">
-                <i class='bx bxl-messenger'></i>
-            </div> {% endcomment %}
-        </li>
-        <li>
-            <div
+            
+            <div x-data="{open:false}">
+                <div @click="open=true"
                 class="text-xl grid place-items-center bg-gray-200 dark:bg-dark-third dark:text-dark-txt rounded-full mx-1 p-3 cursor-pointer hover:bg-gray-300 relative">
                 <i class='bx bx-message-dots'></i>
                 <span
                     class="text-xs absolute top-0 right-0 bg-red-500 text-white font-semibold rounded-full px-1 text-center"></span>
+                </div>
+                <div x-show="open" @click.away="open=false"
+                    class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg dark:bg-dark-second bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                    role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                    <div class="py-1" role="none">
+  
+                        {% block contenedor %}
+
+
+                            <h2 style="text-align: center; font-weight: 600;" class="modal-title" id="exampleModalLabel">Bienvenido a tus mensajes
+                            {{user}}</h2>
+
+                            {% for inbox in inbox %}
+                            <div class="div_inbox">
+
+
+                            {% for second_user in inbox.canalusuario_set.all %}
+
+                            {% if second_user.usuario == request.user %}
+
+                            {% else %}
+
+                            <a href="{% url 'dm:detailms' second_user.usuario.username %}">
+                                <p>
+                                <h2 style="text-align: center; font-weight: 600;color: rgb(22, 148, 232);" class="modal-title"
+                                    id="exampleModalLabel">{{second_user.usuario}}</h2>
+                                </p>
+                                <small>
+                                Tienes ({{inbox.canalmensaje_set.count}}) Mensajes
+                                </small>
+                            </a>
+
+                            {% endif %}
+
+                            {% endfor %}
+
+                            {% if inbox.canalmensaje_set.count != 0 %}
+                            <div class="div_ms_inbox">
+
+                                {% with ultimo_mensaje=inbox.canalmensaje_set.last %}
+
+                                <p>
+                                <h2 style="text-align: center; font-weight: 650;font-size: 12px;" class="modal-title" id="exampleModalLabel">
+                                Mensaje: {{ultimo_mensaje.texto}}</h2>
+                                </p>
+
+                                {% endwith %}
+                            </div>
+                            {% else %}
+                            <p>
+                            <h2 style="text-align: center; font-weight: 650;font-size: 12px;" class="modal-title" id="exampleModalLabel">No hay
+                                mensajes en el chat</h2>
+                            </p>
+                            {% endif %}
+
+
+
+                            </div>
+                            {% empty %}
+
+                            <div class="div_inbox">
+                            <h2 style="text-align: center; font-weight: 600;font-size: 15px;" class="modal-title" id="exampleModalLabel">No tienes
+                                ningún mensaje</h2>
+                            </div>
+
+
+                            {% endfor %}
+
+
+                            <style>
+                            .div_inbox {
+                                width: 100%;
+                                margin: 10px auto;
+                                background: #fff;
+                                border-radius: 10px;
+                                border: 1px solid #e6e6e6;
+                                padding: 10px;
+                                text-align: center;
+                            }
+                            </style>
+
+                            {% endblock %}
+                    </div>
+                </div>
             </div>
         </li>
-        <li>
-            {% comment %} <div
-                class="text-xl grid place-items-center bg-gray-200 dark:bg-dark-third dark:text-dark-txt rounded-full mx-1 p-3 cursor-pointer hover:bg-gray-300 relative"
-                id="dark-mode-toggle">
-                <i class='bx bxs-moon'></i>
-            </div> {% endcomment %}
-        </li>
+
 
         <li>
             <div x-data="{open:false}">
@@ -177,13 +251,7 @@
                     class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg dark:bg-dark-second bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                     role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
                     <div class="py-1" role="none">
-                        <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-                        <a href="#" class="text-gray-700 dark:text-dark-txt block px-4 py-2 text-sm" role="menuitem"
-                            tabindex="-1" id="menu-item-0">Ajustes de cuenta</a>
-                        <a href="#" class="text-gray-700 dark:text-dark-txt block px-4 py-2 text-sm" role="menuitem"
-                            tabindex="-1" id="menu-item-1">Soporte</a>
-                        <a href="#" class="text-gray-700 dark:text-dark-txt block px-4 py-2 text-sm" role="menuitem"
-                            tabindex="-1" id="menu-item-2">Licencia</a>
+  
                         {% if user.is_authenticated %}
                         <a href="{% url 'account_logout' %}"
                             class="text-gray-700 dark:text-dark-txt block px-4 py-2 text-sm" role="menuitem"
