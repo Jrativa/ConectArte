@@ -74,13 +74,11 @@ def unfollow(request, username):
     IdUsuario = request.user
     IdUsuarioSeguido = get_object_or_404(User, username=username)
     UsuarioSeguido_id=IdUsuarioSeguido
-
     try:
         rel = SigueA.objects.filter(IdUsuario_id=IdUsuario, IdUsuarioSeguido_id=UsuarioSeguido_id ).get()
         rel.delete()
     except ObjectDoesNotExist:
-        pass
-        
+        pass      
     user = get_object_or_404(User, username=username)
     perfilUsuario = perfil.objects.get(usuario=user)
     proflogued = perfil.objects.get(usuario=request.user)
