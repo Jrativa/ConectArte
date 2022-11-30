@@ -36,11 +36,12 @@ class Categorias(models.Model):
 
 class Usuario(AbstractUser):
     IdUsuario = models.CharField(max_length=50)
+    fotoPerfil = models.ManyToManyField(ImagenPerfil, blank=True)
+
     
 
 class perfil(models.Model):
     usuario = models.OneToOneField(Usuario, on_delete=models.CASCADE, related_name="profile")
-    fotoPerfil = models.ManyToManyField(ImagenPerfil, blank=True)
     dateCreated = models.DateField(auto_now_add=True)
     Intereses = models.TextField(blank=False, null=True,  verbose_name="Intereses", default="")
     Educacion = models.TextField(blank=False, null=True,  verbose_name="Educacion", default="")

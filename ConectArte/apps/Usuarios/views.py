@@ -153,7 +153,7 @@ def EditProfile(request):
                 for i in Images:
                     image = ImagenPerfil(imagen=i)
                     image.save()
-                    profile.fotoPerfil.add(image)
+                    userInfo.fotoPerfil.add(image)
                 userInfo.first_name = form.cleaned_data.get('first_name')
                 userInfo.last_name = form.cleaned_data.get('last_name')
                 profile.Descripcion = form.cleaned_data.get('Descripcion')

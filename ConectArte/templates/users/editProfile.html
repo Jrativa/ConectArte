@@ -50,7 +50,7 @@
 
           <div class="mx-auto"
             style=" vertical-align: middle; border: rgb(223, 216, 216) 5px solid;  position: relative; width: 120px; height: 120px; overflow: hidden; border-radius: 50%;">
-            {% for img in perfil.fotoPerfil.all %}
+            {% for img in perfil.usuario.fotoPerfil.all %}
             <img style=" width: 100%; height: 100%; " class="mx-auto" src="{{img.imagen.url}}" alt="">
             {% endfor %}
 

@@ -59,7 +59,7 @@
         <div style="display: flex; height: 100px;">
           <div style="width: 100px; height: 100px;">
             
-            {% for img in perfil.fotoPerfil.all %}
+            {% for img in user.fotoPerfil.all %}
               <img style="border-radius: 50%;" src="{{img.imagen.url}}" alt="">
             {% endfor %}
           </div>

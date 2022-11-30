@@ -37,7 +37,7 @@
 <div
   style=" height: 130px; box-shadow: 0px 0px 0.5px 0.5px  #d1d1d1; border: 1px solid #e0dfdc; border-radius: 5px; background-color: rgb(255, 255, 255); width: 100%; margin-top: 15px;">
   <div style="display: flex;">
-    {% for img in perfil.fotoPerfil.all %}
+    {% for img in user.fotoPerfil.all %}
     <img style="border-radius: 50%; width: 50px; height: 50px; margin-left: 2%; margin-top: 3%;"
       src="{{img.imagen.url}}" alt="">
     {% endfor %}
@@ -93,7 +93,7 @@
           <div style="display: flex; height: 55px;">
             <div style="width: 50px; height: 50px;">
 
-              {% for img in perfil.fotoPerfil.all %}
+              {% for img in user.fotoPerfil.all %}
               <img style="border-radius: 50%;" src="{{img.imagen.url}}" alt="">
               {% endfor %}
             </div>
@@ -159,7 +159,7 @@
     <div>
       <div style="display: flex;">
         <a href="{% url 'users:perfil' post.Autor.username %}">
-          {% for img in perfil.fotoPerfil.all %}
+          {% for img in post.Autor.fotoPerfil.all %}
           <img style="border-radius: 50%; width: 50px; height: 50px; margin-left: 5px; margin-top: 5px;"
             src="{{img.imagen.url}}" alt="">
           {% endfor %}

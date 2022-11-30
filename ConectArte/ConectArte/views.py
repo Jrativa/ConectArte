@@ -18,7 +18,7 @@ class HomeView(LoginRequiredMixin, View):
         form = PublicacionForm()
         posts = Publicacion.objects.all()
         perfilUsuario = perfil.objects.get(usuario=userLoggedIn)
-
+        
 
         context={
                 'posts': posts,
@@ -31,6 +31,7 @@ class HomeView(LoginRequiredMixin, View):
     
     def post(self, request, *args, **kwargs):
         userLoggedIn = request.user
+        #perfilAutor = perfil(perfil.objects.raw("SELECT * FROM usuarios_perfil WHERE usuario_id = " + str(request.user.id)))
         inbox = Canal.objects.filter(canalusuario__usuario__in=[request.user.id])
         posts = Publicacion.objects.all()
         form = PublicacionForm(request.POST, request.FILES)
@@ -40,6 +41,7 @@ class HomeView(LoginRequiredMixin, View):
         if form.is_valid():
             newPost = form.save(commit=False)
             newPost.Autor = userLoggedIn
+            #newPost.PerfilAutor = perfilAutor
             newPost.save()
             for f in files:
                 image = Imagen(imagen=f)
