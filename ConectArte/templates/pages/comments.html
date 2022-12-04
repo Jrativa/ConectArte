@@ -72,9 +72,9 @@ justify-content: center">
 
         <div style="display: flex; height: 100px;">
 
-          <div style="width: 80px; height: 80px;">
-            {% for img in perfil.fotoPerfil.all %}
-            <img style="border-radius: 50%;" src="{{img.imagen.url}}" alt="">
+          <div style="max-width: 80px; max-height: 80px;">
+            {% for img in user.fotoPerfil.all %}
+            <img style="border-radius: 50%; max-width: 80px; max-height: 80px;" src="{{img.imagen.url}}" alt="">
             {% endfor %}
           </div>
           <div class="container">

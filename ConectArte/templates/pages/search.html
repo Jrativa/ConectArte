@@ -37,7 +37,7 @@
     <div class="hodd" style="margin-top: 20px;">
       <a href="{% url 'users:perfil' perfil.usuario.username %}">
       <div id = "results" style="display: flex; background-color: rgba(237, 237, 237, 0.943); border-radius: 5px; width: 100%; margin-top: 20px; height: 13%;"> 
-        {% for img in perfil.fotoPerfil.all %}
+        {% for img in perfil.usuario.fotoPerfil.all %}
           <img style="border-radius: 50%; width: 65px; height: 65px; margin-left: 0px; margin-top: 10px; margin-left: 7px;"
             src="{{img.imagen.url}}" alt="">
           {% endfor %}

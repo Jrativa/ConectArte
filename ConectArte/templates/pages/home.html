@@ -94,7 +94,7 @@
             <div style="width: 50px; height: 50px;">
 
               {% for img in user.fotoPerfil.all %}
-              <img style="border-radius: 50%;" src="{{img.imagen.url}}" alt="">
+              <img style="border-radius: 50%; width: 50px; max-height: 50px;" src="{{img.imagen.url}}" alt="">
               {% endfor %}
             </div>
             <p style="margin-left: 20px; margin-top: 2.5%; font-weight: 600;">{{user.username}} {{user.lastname}}</p>
